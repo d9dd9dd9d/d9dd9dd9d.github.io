@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Jekyll 搭建静态博客"
+title:  "第一个post"
 categories: mics
 tags: mics
 authors: Mark
