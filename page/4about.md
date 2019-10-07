@@ -15,8 +15,8 @@ type: page
 ## 联系我
 
 * Linkedin:[mark](https://www.linkedin.com/in/markfanyang/)
-* GitHub：[d9dd9dd9d](https://github.com/d9dd9dd9d)
-* email：yff345@gmail.com
+* GitHub:[d9dd9dd9d](https://github.com/d9dd9dd9d)
+* email:yff345@gmail.com
 
 ## 关于本站
 
