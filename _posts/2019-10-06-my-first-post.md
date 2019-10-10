@@ -10,3 +10,5 @@ authors: Mark
 {:toc}
 
 This is my first post.
+
+[cookbook](https://d9dd9dd9d.github.io/Audio-EQ-Cookbook/Cookbook.html)
