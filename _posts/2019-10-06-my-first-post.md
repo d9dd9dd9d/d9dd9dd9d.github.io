@@ -11,4 +11,6 @@ authors: Mark
 
 This is my first post.
 
-[cookbook](https://d9dd9dd9d.github.io/Audio-EQ-Cookbook/Cookbook.html)
+[Cookbook](https://d9dd9dd9d.github.io/Audio-EQ-Cookbook/Cookbook.html)
+
+PDF [Bilinear Z transform](https://d9dd9dd9d.github.io/Audio-EQ-Cookbook/The-bilinear-z-transform_EarLevel-Engineering.pdf)
