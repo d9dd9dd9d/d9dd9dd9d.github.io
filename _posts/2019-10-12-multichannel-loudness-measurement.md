@@ -11,11 +11,13 @@ authors: Mark
 
 # Introduction
 
-This Recommendation specifies audio measurement algorithms for purpose of determining subjective programme loudness, and true-peak signal level.
+Many audio DSP algorithms require information on loudness of current track. Here we present a standard audio measurement algorithm for determining audio loudness, and true-peak signal level.
 
 # Algorithm
 
-## Objective multichannel loudness measurement algorithm
+## Multichannel loudness measurement algorithm
+
+![](https://d9dd9dd9d.github.io/Docs/audio/loudness/Annotation%202019-10-12%20105118.png)
 
 The algorithm consists of four stages:
 1. "K" frequency weighting;
