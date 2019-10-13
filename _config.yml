@@ -7,7 +7,7 @@
 
 # Site settings
 title: M-space
-brief-intro: DSP
+brief-intro: Summary of DSP algorithms
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://d9dd9dd9d.github.io" # the base hostname & protocol for your site
 
