@@ -10,9 +10,9 @@ type: page
 {:toc}
 
 ## My Background
-2013 – Present: R&D Engineer at ESS Technology, BC, Canada
-2013 – 2016: Ph.D. Electrical Engineering at The University of British Columbia, Canada
-2010 – 2013: M.A.Sc. Electrical Engineering at Southeast University, China
+2013 – Present: R&D Engineer at ESS Technology, BC, Canada\
+2013 – 2016: Ph.D. Electrical Engineering at The University of British Columbia, Canada\
+2010 – 2013: M.A.Sc. Electrical Engineering at Southeast University, China\
 2007 – 2010: B.A.Sc. Electrical Engineering at South China University of Technology, China
 
 ## Contact
