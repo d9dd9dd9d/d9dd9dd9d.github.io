@@ -47,6 +47,7 @@ The stages of processing are:
 
 Continuous tones which are close to low-integer factors of the sampling frequency will underread on peak-sample meters because the beat frequency (the difference between n.ftone and fs) is low compared to the reciprocal of the decay rate of the meter:
 ![](https://d9dd9dd9d.github.io/Docs/audio/loudness/mis_peak.png)
+
 For individual transients, the higher the frequency content of the transient, the larger the potential under-read.
 
 Because real sounds generally have a spectrum which falls off towards higher frequencies, and
