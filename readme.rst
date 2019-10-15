@@ -1,9 +1,4 @@
-Welcome to Musicdsp.org website source
-======================================
-
 |build-status|
-
-Pull requests welcome!
 
 In order to build the HTML locally with python3:
 
