@@ -1,0 +1,368 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Arbitary shaped band-limited waveform generation (using oversampling and low-pass filtering) &mdash; Musicdsp.org  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Audiable alias free waveform gen using width sine" href="123-audiable-alias-free-waveform-gen-using-width-sine.html" />
+    <link rel="prev" title="Antialiased square generator" href="219-antialiased-square-generator.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Musicdsp.org
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Synthesis</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="16-allmost-ready-to-use-oscillators.html">(Allmost) Ready-to-use oscillators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="224-am-formantic-synthesis.html">AM Formantic Synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1-alias-free-waveform-generation-with-analog-filtering.html">Alias-free waveform generation with analog filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="152-another-lfo-class.html">Another LFO class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="167-another-cheap-sinusoidal-lfo.html">Another cheap sinusoidal LFO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="219-antialiased-square-generator.html">Antialiased square generator</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Arbitary shaped band-limited waveform generation (using oversampling and low-pass filtering)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#comments">Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="123-audiable-alias-free-waveform-gen-using-width-sine.html">Audiable alias free waveform gen using width sine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="268-band-limited-waveforms-my-way.html">Band Limited waveforms my way</a></li>
+<li class="toctree-l2"><a class="reference internal" href="90-bandlimited-sawtooth-synthesis.html">Bandlimited sawtooth synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17-bandlimited-waveform-generation.html">Bandlimited waveform generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="75-bandlimited-waveforms-synopsis.html">Bandlimited waveforms synopsis.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12-bandlimited-waveforms.html">Bandlimited waveforms…</a></li>
+<li class="toctree-l2"><a class="reference internal" href="227-butterworth.html">Butterworth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="239-c-oscilator-class.html">C# Oscilator class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="168-c-gaussian-noise-generation.html">C++ gaussian noise generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="187-chebyshev-waveshaper-using-their-recursive-definition.html">Chebyshev waveshaper (using their recursive definition)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15-cubic-polynomial-envelopes.html">Cubic polynomial envelopes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="140-dsf-super-set-of-blit.html">DSF (super-set of BLIT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="244-direct-pink-noise-synthesis-with-auto-correlated-generator.html">Direct pink noise synthesis with auto-correlated generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="68-discrete-summation-formula-dsf.html">Discrete Summation Formula (DSF)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="183-drift-generator.html">Drift generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="217-easy-noise-generation.html">Easy noise generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="189-fast-exponential-envelope-generator.html">Fast Exponential Envelope Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="151-fast-lfo-in-delphi.html">Fast LFO in Delphi…</a></li>
+<li class="toctree-l2"><a class="reference internal" href="261-fast-sin-approximation-for-usage-in-e-g-additive-synthesizers.html">Fast SIN approximation for usage in e.g. additive synthesizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="216-fast-whitenoise-generator.html">Fast Whitenoise Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-fast-sine-and-cosine-calculation.html">Fast sine and cosine calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="9-fast-sine-wave-calculation.html">Fast sine wave calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="69-fast-square-wave-generator.html">Fast square wave generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="113-gaussian-white-noise.html">Gaussian White Noise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="109-gaussian-white-noise.html">Gaussian White noise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="215-generator.html">Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14-inverted-parabolic-envelope.html">Inverted parabolic envelope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="211-matlab-octave-code-for-minblep-table-generation.html">Matlab/octave code for minblep table generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="213-padsynth-synthesys-method.html">PADsynth synthesys method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="271-prng-for-non-uniformly-distributed-values-from-trigonometric-identity.html">PRNG for non-uniformly distributed values from trigonometric identity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="254-parabolic-shaper.html">Parabolic shaper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="111-phase-modulation-vs-frequency-modulation.html">Phase modulation Vs. Frequency modulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="160-phase-modulation-vs-frequency-modulation-ii.html">Phase modulation Vs. Frequency modulation II</a></li>
+<li class="toctree-l2"><a class="reference internal" href="59-pseudo-random-generator.html">Pseudo-Random generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="242-pulsequad.html">PulseQuad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="8-pulsewidth-modulation.html">Pulsewidth modulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="241-quick-dirty-sine.html">Quick &amp; Dirty Sine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="161-quick-and-dirty-sine-generator.html">Quick and dirty sine generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="199-rbj-wavetable-101.html">RBJ Wavetable 101</a></li>
+<li class="toctree-l2"><a class="reference internal" href="272-randja-compressor.html">Randja compressor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="184-rossler-and-lorenz-oscillators.html">Rossler and Lorenz Oscillators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="67-sawsin.html">SawSin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="262-simple-time-stretching-granular-synthesizer.html">Simple Time Stretching-Granular Synthesizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13-sine-calculation.html">Sine calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="269-smooth-random-lfo-generator.html">Smooth random LFO Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2-square-waves.html">Square Waves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="220-trammell-pink-noise-c-class.html">Trammell Pink Noise (C++ class)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="112-waveform-generator-using-minbleps.html">Waveform generator using MinBLEPS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="80-wavetable-synthesis.html">Wavetable Synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-weird-synthesis.html">Weird synthesis</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Analysis/index.html">Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Filters/index.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Effects/index.html">Effects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Other/index.html">Other</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Musicdsp.org</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Synthesis</a> &raquo;</li>
+        
+      <li>Arbitary shaped band-limited waveform generation (using oversampling and low-pass filtering)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Synthesis/134-arbitary-shaped-band-limited-waveform-generation-using-oversampling-and-low-pass-filtering.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="arbitary-shaped-band-limited-waveform-generation-using-oversampling-and-low-pass-filtering">
+<h1>Arbitary shaped band-limited waveform generation (using oversampling and low-pass filtering)<a class="headerlink" href="#arbitary-shaped-band-limited-waveform-generation-using-oversampling-and-low-pass-filtering" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><strong>Author or source:</strong> <a class="reference external" href="mailto:uh&#46;doilop&#46;cak&#37;&#52;&#48;egamer">uh<span>&#46;</span>doilop<span>&#46;</span>cak<span>&#64;</span>egamer</a></p></li>
+<li><p><strong>Created:</strong> 2003-01-02 20:27:18</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">code</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span>Arbitary shaped band-limited waveform generation
+(using oversampling and low-pass filtering)
+
+There are many articles about band-limited waveform synthesis techniques, that provide correct and fast methods for generating classic analogue waveforms, such as saw, pulse, and triangle wave.  However, generating arbitary shaped band-limited waveforms, such as the &quot;sawsin&quot; shape (found in this source-code archive), seems to be quite hard using these techniques.
+
+My analogue waveforms are generated in a _very_ high sampling rate (actually it&#39;s 1.4112 GHz for 44.1 kHz waveforms, using 32x oversampling).  Using this sample-rate, the amplitude of the aliasing harmonics are negligible (the base analogue waveforms has exponentially decreasing harmonics amplitudes).
+
+Using a 511-tap windowed sync FIR filter (with Blackman-Harris window, and 12 kHz cutoff frequency) the harmonics above 20 kHz are killed, the higher harmonics (that cause the sharp overshoot at step response) are dampened.
+
+The filtered signal downsampled to 44.1 kHz contains the audible (non-aliased) harmonics only.
+
+This waveform synthesis is performed for wavetables of 4096, 2048, 1024, ... 8, 4, 2 samples.  The real-time signal is interpolated from these waveform-tables, using Hermite-(cubic-)interpolation for the waveforms, and linear interpolation between the two wavetables near the required note.
+
+This procedure is quite time-consuming, but the whole waveform (or, in my implementation, the whole waveform-set) can be precalculated (or saved at first launch of the synth) and reloaded at synth initialization.
+
+I don&#39;t know if this is a theoretically correct solution, but the waveforms sound good (no audible aliasing).  Please let me know if I&#39;m wrong...
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2003-01-23 13:26:38</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;xinortceletrams&#37;&#52;&#48;xelA">moc<span>&#46;</span>xinortceletrams<span>&#64;</span>xelA</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Why can&#39;t you use fft/ifft
+to synthesis directly wavetables of 2048,1024,..?
+It&#39;d be not so
+&quot;time consuming&quot; comparing to FIR filtering.
+Further cubic interpolation still might give you audible
+distortion in some cases.
+--Alex.
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2003-02-02 19:24:23</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:uh&#46;doilop&#46;cak&#37;&#52;&#48;egamer">uh<span>&#46;</span>doilop<span>&#46;</span>cak<span>&#64;</span>egamer</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>What should I use instead of cubic interpolation? (I had already some aliasing problems with cubic interpolation, but that can be solved by oversampling 4x the realtime signal generation)
+Is this theory of generating waves from wavetables of 4096, 2084, ... 8, 4, 2 samples wrong?
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2003-02-19 17:12:42</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;xinortceletrams&#37;&#52;&#48;xelA">moc<span>&#46;</span>xinortceletrams<span>&#64;</span>xelA</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>I think tablesize should not vary
+depending on tone (4096,2048...)
+and you&#39;d better stay with the same table size for all notes (for example 4096, 4096...).
+
+To avoid interpolation noise
+(it&#39;s NOT caused by aliasing)
+try to increase wavetable size
+and be sure that waveform spectrum has
+steep roll off
+(don&#39;t forget Gibbs phenomena as well).
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2004-08-24 08:04:28</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:es&#46;tensse&#37;&#52;&#48;idarozs&#46;szalab">es<span>&#46;</span>tensse<span>&#64;</span>idarozs<span>&#46;</span>szalab</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>you say that the higher harmonics (that cause the sharp overshoot at step response) are dampened.
+How ? Or is it a result of the filtering ?
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-04-03 07:10:58</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:uh&#46;doilop&#46;scakam&#37;&#52;&#48;egamer">uh<span>&#46;</span>doilop<span>&#46;</span>scakam<span>&#64;</span>egamer</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Yes. The FIR-filter cutoff is set to 12 kHz, so it dampens the audible frequencies too. This way the frequncies above 20 kHz are about -90 dB (don&#39;t remember exactly, but killing all harmonics above 20 kHz was the main reason to set the cutoff to 12 kHz).
+
+Anyway, as Alex suggested, FFT/IFFT seems to be a better solution to this problem.
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="123-audiable-alias-free-waveform-gen-using-width-sine.html" class="btn btn-neutral float-right" title="Audiable alias free waveform gen using width sine" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="219-antialiased-square-generator.html" class="btn btn-neutral float-left" title="Antialiased square generator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Too many to list
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

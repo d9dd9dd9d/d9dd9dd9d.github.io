@@ -1,0 +1,716 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Zoelzer biquad filters &mdash; Musicdsp.org  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Effects" href="../Effects/index.html" />
+    <link rel="prev" title="Windowed Sinc FIR Generator" href="194-windowed-sinc-fir-generator.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Musicdsp.org
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Synthesis/index.html">Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Analysis/index.html">Analysis</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Filters</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="257-1-pole-lpf-for-smooth-parameter-changes.html">1 pole LPF for smooth parameter changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="185-1-rc-and-c-filter.html">1-RC and C filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="72-18db-oct-resonant-3-pole-lpf-with-tanh-dist.html">18dB/oct resonant 3 pole LPF with tanh() dist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="85-1st-and-2nd-order-pink-noise-filters.html">1st and 2nd order pink noise filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="236-3-band-equaliser.html">3 Band Equaliser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30-303-type-filter-with-saturation.html">303 type filter with saturation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="266-4th-order-linkwitz-riley-filters.html">4th order Linkwitz-Riley filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="31-all-pass-filters-a-good-explanation.html">All-Pass Filters, a good explanation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="181-another-4-pole-lowpass.html">Another 4-pole lowpass…</a></li>
+<li class="toctree-l2"><a class="reference internal" href="235-bass-booster.html">Bass Booster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="64-biquad-c-code.html">Biquad C code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="276-biquad-butterworth-chebyshev-n-order-m-channel-optimized-filters.html">Biquad, Butterworth, Chebyshev N-order, M-channel  optimized filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="243-butterworth-optimized-c-class.html">Butterworth Optimized C++ Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="128-c-class-implementation-of-rbj-filters.html">C++ class implementation of RBJ Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="226-c-weighed-filter.html">C-Weighed Filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="131-cascaded-resonant-lp-hp-filter.html">Cascaded resonant lp/hp filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="180-cool-sounding-lowpass-with-decibel-measured-resonance.html">Cool Sounding Lowpass With Decibel Measured Resonance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="135-dc-filter.html">DC filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="225-delphi-class-implementation-of-the-rbj-filters.html">Delphi Class implementation of the RBJ filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="122-digital-riaa-equalization-filter-coefficients.html">Digital RIAA equalization filter coefficients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="275-direct-form-ii-biquad.html">Direct Form II biquad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="174-direct-form-ii.html">Direct form II</a></li>
+<li class="toctree-l2"><a class="reference internal" href="214-fast-downsampling-with-antialiasing.html">Fast Downsampling With Antialiasing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="110-formant-filter.html">Formant filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="179-frequency-warped-fir-lattice.html">Frequency warped FIR lattice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="195-hilbert-filter-coefficient-calculation.html">Hilbert Filter Coefficient Calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="231-hiqh-quality-2-decimators.html">Hiqh quality /2 decimators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="141-karlsen.html">Karlsen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="240-karlsen-fast-ladder.html">Karlsen Fast Ladder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="38-lp-and-hp-filter.html">LP and HP filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="229-lpf-24db-oct.html">LPF 24dB/Oct</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28-lowpass-filter-for-parameter-edge-filtering.html">Lowpass filter for parameter edge filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="270-mdct-and-imdct-based-on-fftw3.html">MDCT and IMDCT based on FFTW3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="196-moog-filter.html">Moog Filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24-moog-vcf.html">Moog VCF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25-moog-vcf-variation-1.html">Moog VCF, variation 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26-moog-vcf-variation-2.html">Moog VCF, variation 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="35-notch-filter.html">Notch filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="116-one-pole-lp-and-hp.html">One pole LP and HP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="237-one-pole-filter-lp-and-hp.html">One pole filter, LP and HP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="117-one-pole-one-zero-lp-hp.html">One pole, one zero LP/HP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="118-one-zero-lp-hp.html">One zero, LP/HP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="263-one-liner-iir-filters-1st-order.html">One-Liner IIR Filters (1st order)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="265-output-limiter-using-envelope-follower-in-c.html">Output Limiter using Envelope Follower in C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="130-peak-notch-filter.html">Peak/Notch filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="253-perfect-lp4-filter.html">Perfect LP4 filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="76-pink-noise-filter.html">Pink noise filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="251-plot-filter-analyze-filter-characteristics.html">Plot Filter (Analyze filter characteristics)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="218-plotting-r-b-j-equalisers-in-excel.html">Plotting R B-J Equalisers in Excel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="39-polyphase-filters.html">Polyphase Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="223-polyphase-filters-delphi.html">Polyphase Filters (Delphi)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="247-poor-man-s-fiwiz.html">Poor Man’s FIWIZ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="34-prewarping.html">Prewarping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="197-rbj-audio-eq-cookbook.html">RBJ Audio-EQ-Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="198-rbj-audio-eq-cookbook.html">RBJ Audio-EQ-Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="209-remez-exchange-algorithm-parks-mcclellan.html">Remez Exchange Algorithm (Parks/McClellan)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="208-remez-remez-parks-mcclellan.html">Remez Remez (Parks/McClellan)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="27-resonant-iir-lowpass-12db-oct.html">Resonant IIR lowpass (12dB/oct)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="29-resonant-filter.html">Resonant filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="33-resonant-low-pass-filter.html">Resonant low pass filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="176-reverb-filter-generator.html">Reverb Filter Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="267-simple-tilt-equalizer.html">Simple Tilt equalizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="259-simple-biquad-filter-from-apple-com.html">Simple biquad filter from apple.com</a></li>
+<li class="toctree-l2"><a class="reference internal" href="258-spuc-s-open-source-filters.html">Spuc’s open source filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="142-state-variable-filter-chamberlin-version.html">State Variable Filter (Chamberlin version)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="92-state-variable-filter-double-sampled-stable.html">State Variable Filter (Double Sampled, Stable)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23-state-variable.html">State variable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="145-stilson-s-moog-filter-code.html">Stilson’s Moog filter code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="65-time-domain-convolution-with-o-n-log2-3.html">Time domain convolution with O(n^log2(3))</a></li>
+<li class="toctree-l2"><a class="reference internal" href="66-time-domain-convolution-with-o-n-log2-3.html">Time domain convolution with O(n^log2(3))</a></li>
+<li class="toctree-l2"><a class="reference internal" href="232-type-lpf-24db-oct.html">Type : LPF 24dB/Oct</a></li>
+<li class="toctree-l2"><a class="reference internal" href="32-various-biquad-filters.html">Various Biquad filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="194-windowed-sinc-fir-generator.html">Windowed Sinc FIR Generator</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Zoelzer biquad filters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#comments">Comments</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Effects/index.html">Effects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Other/index.html">Other</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Musicdsp.org</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Filters</a> &raquo;</li>
+        
+      <li>Zoelzer biquad filters</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Filters/37-zoelzer-biquad-filters.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="zoelzer-biquad-filters">
+<h1>Zoelzer biquad filters<a class="headerlink" href="#zoelzer-biquad-filters" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><strong>Author or source:</strong> Udo Zoelzer: Digital Audio Signal Processing (John Wiley &amp; Sons, ISBN 0 471 97226 6), Chris Townsend</p></li>
+<li><p><strong>Type:</strong> biquad IIR</p></li>
+<li><p><strong>Created:</strong> 2002-01-17 02:13:13</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">notes</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Here&#39;s the formulas for the Low Pass, Peaking, and Low Shelf, which should
+cover the basics. I tried to convert the formulas so they are little more consistent.
+Also, the Zolzer low pass/shelf formulas didn&#39;t have adjustable Q, so I added that for
+consistency with Roberts formulas as well. I think someone may want to check that I did
+it right.
+------------ Chris Townsend
+I mistranscribed the low shelf cut formulas.
+Hopefully this is correct. Thanks to James McCartney for noticing.
+------------ Chris Townsend
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">code</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">omega</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">PI</span><span class="o">*</span><span class="n">frequency</span><span class="o">/</span><span class="n">sample_rate</span>
+
+<span class="n">K</span><span class="o">=</span><span class="n">tan</span><span class="p">(</span><span class="n">omega</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Q</span><span class="o">=</span><span class="n">Quality</span> <span class="n">Factor</span>
+<span class="n">V</span><span class="o">=</span><span class="n">gain</span>
+
+<span class="nl">LPF</span><span class="p">:</span>   <span class="n">b0</span> <span class="o">=</span>  <span class="n">K</span><span class="o">^</span><span class="mi">2</span>
+       <span class="n">b1</span> <span class="o">=</span>  <span class="mi">2</span><span class="o">*</span><span class="n">K</span><span class="o">^</span><span class="mi">2</span>
+       <span class="n">b2</span> <span class="o">=</span>  <span class="n">K</span><span class="o">^</span><span class="mi">2</span>
+       <span class="n">a0</span> <span class="o">=</span>  <span class="mi">1</span> <span class="o">+</span> <span class="n">K</span><span class="o">/</span><span class="n">Q</span> <span class="o">+</span> <span class="n">K</span><span class="o">^</span><span class="mi">2</span>
+       <span class="n">a1</span> <span class="o">=</span>  <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">K</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+       <span class="n">a2</span> <span class="o">=</span>  <span class="mi">1</span> <span class="o">-</span> <span class="n">K</span><span class="o">/</span><span class="n">Q</span> <span class="o">+</span> <span class="n">K</span><span class="o">^</span><span class="mi">2</span>
+
+<span class="nl">peakingEQ</span><span class="p">:</span>
+      <span class="nl">boost</span><span class="p">:</span>
+      <span class="n">b0</span> <span class="o">=</span>  <span class="mi">1</span> <span class="o">+</span> <span class="n">V</span><span class="o">*</span><span class="n">K</span><span class="o">/</span><span class="n">Q</span> <span class="o">+</span> <span class="n">K</span><span class="o">^</span><span class="mi">2</span>
+      <span class="n">b1</span> <span class="o">=</span>  <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">K</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="n">b2</span> <span class="o">=</span>  <span class="mi">1</span> <span class="o">-</span> <span class="n">V</span><span class="o">*</span><span class="n">K</span><span class="o">/</span><span class="n">Q</span> <span class="o">+</span> <span class="n">K</span><span class="o">^</span><span class="mi">2</span>
+      <span class="n">a0</span> <span class="o">=</span>  <span class="mi">1</span> <span class="o">+</span> <span class="n">K</span><span class="o">/</span><span class="n">Q</span> <span class="o">+</span> <span class="n">K</span><span class="o">^</span><span class="mi">2</span>
+      <span class="n">a1</span> <span class="o">=</span>  <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">K</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="n">a2</span> <span class="o">=</span>  <span class="mi">1</span> <span class="o">-</span> <span class="n">K</span><span class="o">/</span><span class="n">Q</span> <span class="o">+</span> <span class="n">K</span><span class="o">^</span><span class="mi">2</span>
+
+      <span class="nl">cut</span><span class="p">:</span>
+      <span class="n">b0</span> <span class="o">=</span>  <span class="mi">1</span> <span class="o">+</span> <span class="n">K</span><span class="o">/</span><span class="n">Q</span> <span class="o">+</span> <span class="n">K</span><span class="o">^</span><span class="mi">2</span>
+      <span class="n">b1</span> <span class="o">=</span>  <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">K</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="n">b2</span> <span class="o">=</span>  <span class="mi">1</span> <span class="o">-</span> <span class="n">K</span><span class="o">/</span><span class="n">Q</span> <span class="o">+</span> <span class="n">K</span><span class="o">^</span><span class="mi">2</span>
+      <span class="n">a0</span> <span class="o">=</span>  <span class="mi">1</span> <span class="o">+</span> <span class="n">V</span><span class="o">*</span><span class="n">K</span><span class="o">/</span><span class="n">Q</span> <span class="o">+</span> <span class="n">K</span><span class="o">^</span><span class="mi">2</span>
+      <span class="n">a1</span> <span class="o">=</span>  <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">K</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="n">a2</span> <span class="o">=</span>  <span class="mi">1</span> <span class="o">-</span> <span class="n">V</span><span class="o">*</span><span class="n">K</span><span class="o">/</span><span class="n">Q</span> <span class="o">+</span> <span class="n">K</span><span class="o">^</span><span class="mi">2</span>
+
+<span class="nl">lowShelf</span><span class="p">:</span>
+     <span class="nl">boost</span><span class="p">:</span>
+       <span class="n">b0</span> <span class="o">=</span>  <span class="mi">1</span> <span class="o">+</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">V</span><span class="p">)</span><span class="o">*</span><span class="n">K</span> <span class="o">+</span> <span class="n">V</span><span class="o">*</span><span class="n">K</span><span class="o">^</span><span class="mi">2</span>
+       <span class="n">b1</span> <span class="o">=</span>  <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">V</span><span class="o">*</span><span class="n">K</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+       <span class="n">b2</span> <span class="o">=</span>  <span class="mi">1</span> <span class="o">-</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">V</span><span class="p">)</span><span class="o">*</span><span class="n">K</span> <span class="o">+</span> <span class="n">V</span><span class="o">*</span><span class="n">K</span><span class="o">^</span><span class="mi">2</span>
+       <span class="n">a0</span> <span class="o">=</span>  <span class="mi">1</span> <span class="o">+</span> <span class="n">K</span><span class="o">/</span><span class="n">Q</span> <span class="o">+</span> <span class="n">K</span><span class="o">^</span><span class="mi">2</span>
+       <span class="n">a1</span> <span class="o">=</span>  <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">K</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+       <span class="n">a2</span> <span class="o">=</span>  <span class="mi">1</span> <span class="o">-</span> <span class="n">K</span><span class="o">/</span><span class="n">Q</span> <span class="o">+</span> <span class="n">K</span><span class="o">^</span><span class="mi">2</span>
+
+     <span class="nl">cut</span><span class="p">:</span>
+       <span class="n">b0</span> <span class="o">=</span>  <span class="mi">1</span> <span class="o">+</span> <span class="n">K</span><span class="o">/</span><span class="n">Q</span> <span class="o">+</span> <span class="n">K</span><span class="o">^</span><span class="mi">2</span>
+       <span class="n">b1</span> <span class="o">=</span>  <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">K</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+       <span class="n">b2</span> <span class="o">=</span>  <span class="mi">1</span> <span class="o">-</span> <span class="n">K</span><span class="o">/</span><span class="n">Q</span> <span class="o">+</span> <span class="n">K</span><span class="o">^</span><span class="mi">2</span>
+       <span class="n">a0</span> <span class="o">=</span>  <span class="mi">1</span> <span class="o">+</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">V</span><span class="p">)</span><span class="o">*</span><span class="n">K</span> <span class="o">+</span> <span class="n">V</span><span class="o">*</span><span class="n">K</span><span class="o">^</span><span class="mi">2</span>
+       <span class="n">a1</span> <span class="o">=</span>  <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">v</span><span class="o">*</span><span class="n">K</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+       <span class="n">a2</span> <span class="o">=</span>  <span class="mi">1</span> <span class="o">-</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">V</span><span class="p">)</span><span class="o">*</span><span class="n">K</span> <span class="o">+</span> <span class="n">V</span><span class="o">*</span><span class="n">K</span><span class="o">^</span><span class="mi">2</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2002-04-11 10:33:20</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;oohay&#37;&#52;&#48;bdorezlangis">moc<span>&#46;</span>oohay<span>&#64;</span>bdorezlangis</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>I get a different result for the low-shelf boost with parametric control.
+Zolzer builds his lp shelf from a pair of poles and a pair of zeros at:
+poles = Q(-1 +- j)
+zeros = sqrt(V)Q(-1 +- j)
+Where (in the book) Q=1/sqrt(2)
+So,
+       s^2 + 2sqrt(V)Qs + 2VQ^2
+H(s) = ------------------------
+           s^2 + 2Qs +2Q^2
+
+If you analyse this in terms of:
+H(s) = LPF(s) + 1, it sort of falls apart, as we&#39;ve gained a zero in the LPF. (as does zolzers)
+
+Then, if we bilinear transform that, we get:
+
+a0= 1 + 2*sqrt(V)*Q*K + 2*V*Q^2*K^2
+a1= 2 ( 2*V*Q^2*K^2 - 1 )
+a2= 1 - 2*sqrt(V)*Q*K + 2*V*Q^2*K^2
+b0= 1 + 2*Q*K + 2*Q^2*K^2
+b1= 2 ( 2*Q^2*K^2 - 1)
+b2= 1 - 2*Q*K + 2*Q^2*K^2
+
+For:
+H(z) = a0z^2 + a1z +a2 / b0z^2 + b1z + b2
+
+Which, i /think/ is right...
+
+Dave.
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2002-04-13 08:14:38</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;oohay&#37;&#52;&#48;bdorezlangis">moc<span>&#46;</span>oohay<span>&#64;</span>bdorezlangis</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Very sorry, I interpreted Zolzer&#39;s s-plane poles as z-plane poles. Too much digital stuff.
+
+After getting back to grips with s-plane maths :) and much graphing to test that it&#39;s right, I still get slightly different results.
+
+b0 = 1 + sqrt(V)*K/Q + V*K^2
+b1 = 2*(V*K^2 - 1)
+b2 = 1 - sqrt(V)*K/Q + V*K^2
+a0 = 1 + K/Q + K^2
+a1 = 2*(K^2 - 1)
+a2 = 1 - K/Q + K^2
+The way the filter works is to have two poles on a unit circle around the origin in the s-plane, and two zeros that start at the poles at V0=1, and move outwards. The above co-efficients represent that. Chris&#39;s original results put the poles in the right place, but put the zeros at the location where the poles would be if they were butterworth, and move out from there - yielding some rather strange results...
+
+But I&#39;ve graphed that extensively, and it works fine now :)
+
+Dave.
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-01-17 07:21:21</p></li>
+<li><p><strong>By</strong>: asynth(at)io(dot)com</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Once you divide through by a0, the Zoelzer LPF gives coefficient values that are _identical_ to the RBJ LPF.
+This one is a cheaper formulation because there is only one transcendental function call (tan) instead of two (sin, cos) for RBJ.
+-- james mccartney
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-01-18 02:33:04</p></li>
+<li><p><strong>By</strong>: asynth(at)io(dot)com</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Actually, sin and cos are pretty cheap when done via taylor series, so I take that last bit back.
+-- james mccartney
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-05-04 14:23:01</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:se&#46;arret&#37;&#52;&#48;htrehgraknu">se<span>&#46;</span>arret<span>&#64;</span>htrehgraknu</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Anybody know the formulation for Band Pass, High Pass and High shelf ?
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-05-04 16:57:08</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:ed&#46;luosfosruoivas&#37;&#52;&#48;naitsirhC">ed<span>&#46;</span>luosfosruoivas<span>&#64;</span>naitsirhC</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Have a look at tobybear&#39;s Filter Explorer: http://www.tobybear.de/p_filterexp.html
+
+Usually you can derivate a highpass from a lowpass and vice versa.
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-05-05 11:15:46</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:se&#46;arret&#37;&#52;&#48;htrehgraknu">se<span>&#46;</span>arret<span>&#64;</span>htrehgraknu</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Thanks Christian, lots of things solved now !!
+
+Unfortunately, Bandpass continues missing. I don&#39;t know if it&#39;s really posible to obtain a Bandpass filter out of this ( my filters math knowlegde isn&#39;t so deep), but i asked for it because would be nice to have the complete set of Zoeltzer filters
+
+I supose thta YOU can derive one from another as you stated, but this is not my case. Anyway, lots of thanks for your help
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-05-20 21:04:10</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;noitanigamioidua&#37;&#52;&#48;jbr">moc<span>&#46;</span>noitanigamioidua<span>&#64;</span>jbr</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;Actually, sin and cos are pretty cheap when done via taylor series, so I take that last bit back
+-----------------------------------------------
+
+also, James, the sin() and cos() are less of a problem for implementing in a fixed-point context.  tan() is a bitch.
+
+r b-j
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2006-06-27 17:32:53</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:uh&#46;etle&#46;fni&#37;&#52;&#48;yfoocs">uh<span>&#46;</span>etle<span>&#46;</span>fni<span>&#64;</span>yfoocs</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Highpass version:
+
+HPF:
+b0 = 1 - K^2
+b1 = -2*K^2
+b2 = 1 - K^2
+a0 = 1 + K/Q + K^2
+a1 = 2*(K^2 - 1)
+a2 = 1 - K/Q + K^2
+
+Bandpass version:
+
+BPF1 (peak gain = Q):
+b0 = K
+b1 = 0
+b2 = -K
+a0 = 1 + K/Q + K^2
+a1 = 2*(K^2 - 1)
+a2 = 1 - K/Q + K^2
+
+BPF2 (peak gain = zero):
+
+b0 = K/Q
+b1 = 0
+b2 = -K/Q
+a0 = 1 + K/Q + K^2
+a1 = 2*(K^2 - 1)
+a2 = 1 - K/Q + K^2
+
+Couldn&#39;t figure out the notch coeffs yet...
+
+-- peter schoffhauzer
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2006-06-28 00:07:25</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:uh&#46;etle&#46;fni&#37;&#52;&#48;yfoocs">uh<span>&#46;</span>etle<span>&#46;</span>fni<span>&#64;</span>yfoocs</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Got the notch too finally ;)
+
+Notch
+
+b0 = 1 + K^2
+b1 = 2*(K^2 - 1)
+b2 = 1 + K^2
+a0 = 1 + K/Q + K^2
+a1 = 2*(K^2 - 1)
+a2 = 1 - K/Q + K^2
+
+The HPF seems to have an error in the previous post. The correct HPF version:
+
+HPF:
+b0 = 1 + K/Q
+b1 = -2
+b2 = 1 - K/Q
+a0 = 1 + K/Q + K^2
+a1 = 2*(K^2 - 1)
+a2 = 1 - K/Q + K^2
+
+Hopefully it works now. Anyone confirms?
+The set is complete now. Happy coding :)
+
+-- peter schoffhauzer
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2006-06-28 20:22:23</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:uh&#46;etle&#46;fni&#37;&#52;&#48;yfoocs">uh<span>&#46;</span>etle<span>&#46;</span>fni<span>&#64;</span>yfoocs</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>For sake of completeness ;)
+
+Allpass:
+
+b0 = 1 - K/Q + K^2
+b1 = 2*(K^2 - 1)
+b2 = 1
+a0 = 1 + K/Q + K^2
+a1 = 2*(K^2 - 1)
+a2 = 1 - K/Q + K^2
+
+-- peter schoffhauzer
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2006-06-30 00:59:04</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:ed&#46;luosfosruoivas&#37;&#52;&#48;naitsirhC">ed<span>&#46;</span>luosfosruoivas<span>&#64;</span>naitsirhC</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>What was wrong with the first version:
+
+HPF:
+b0 = 1 - K^2
+b1 = -2 (!!)
+b2 = 1 - K^2
+a0 = 1 + K/Q + K^2
+a1 = 2*(K^2 - 1)
+a2 = 1 - K/Q + K^2
+
+you only have to delete K^2. In the other version the cutoff frequency depends on the Q!
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2006-06-30 01:50:50</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:ed&#46;luosfosruoivas&#37;&#52;&#48;naitsirhC">ed<span>&#46;</span>luosfosruoivas<span>&#64;</span>naitsirhC</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Also the Allpass should be symmetrical:
+
+b0 = 1 - K/Q + K^2
+b1 = 2*(K^2 - 1)
+b2 = 1 + K/Q + K^2  (!!)
+a0 = 1 + K/Q + K^2
+a1 = 2*(K^2 - 1)
+a2 = 1 - K/Q + K^2
+
+If you divide by a0 (to reduce a coefficient) b2 will get 1 of course.
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2006-06-30 11:33:24</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:uh&#46;etle&#46;fni&#37;&#52;&#48;yfoocs">uh<span>&#46;</span>etle<span>&#46;</span>fni<span>&#64;</span>yfoocs</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Ah, thanks for the allpass correction! I used TobyBear Filter Explorer, where I see only 5 coeffs instead of six, that was the source of confusion.
+
+However, the highpass is still not perfect. In my 2nd version, the cutoff is not dependent of Q, because the cutoff is determined by the pole positions, which are set by a1 and a2. Instead, as the zero positions change according to Q, the cutoff slope varies. So it has an interesting behaviour, for low Qs it has a 6dB/Oct slope, for infinite resonance, the slope becomes 12dB/Oct.
+
+However, with your suggested HPF version, I got only a strange highshelf-like filter. So here is my 3rd version, which I hope works fine:
+
+HPF:
+b0 = 1
+b1 = -2
+b2 = 1
+a0 = 1 + K/Q + K^2
+a1 = 2*(K^2 - 1)
+a2 = 1 - K/Q + K^2
+
+Quite simple isn&#39;t it? ;)
+
+Cheers
+Peter
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2006-06-30 12:25:36</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:uh&#46;etle&#46;fni&#37;&#52;&#48;yfoocs">uh<span>&#46;</span>etle<span>&#46;</span>fni<span>&#64;</span>yfoocs</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>james mccartney:
+
+Tan can also be approximated using Taylor series (approx sin and cos with Taylor, then tan(x)=sin(x)/cos(x)) well, there&#39;s a heavy division that you can&#39;t get rid of... well, that&#39;s not true in all cases. The advantage of tan() is that you can use that tan(x) ~= x when x is small. So you can get coefficients without any transcendental functions for low and middle frequencies.
+
+Peter
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2006-06-30 13:20:44</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:rf&#46;eerf&#37;&#52;&#48;navi&#46;neflow">rf<span>&#46;</span>eerf<span>&#64;</span>navi<span>&#46;</span>neflow</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>I think it is possible to get a Taylor serie of the tan() function ? And it is possible to do a polynomial division of the sin &amp; cos series to get rid of the division, you get the same thing...
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2006-07-01 00:20:28</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:uh&#46;etle&#46;fni&#37;&#52;&#48;yfoocs">uh<span>&#46;</span>etle<span>&#46;</span>fni<span>&#64;</span>yfoocs</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Yes, there is a Taylor serie for tan(x), but near pi/2, it converges very slowly, so high frequencies is a problem again.
+
+Let&#39;s suppose you approximate sin(x) with x-x^3/6+x^5/120, and cos(x) with 1-x^2/2+x^4/24.
+
+So tan(x) would be
+
+ x - x^3/6 + x^5/120
+---------------------
+ 1 - x^2/2 + x^4/24
+
+How do you do a polynomial division for that?
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2006-07-10 19:21:54</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:ed&#46;luosfosruoivas&#37;&#52;&#48;naitsirhC">ed<span>&#46;</span>luosfosruoivas<span>&#64;</span>naitsirhC</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Here&#39;s also a highshelf filters for completeness
+
+K:=tan(fW0*0.5);
+t2:=;
+t3:=K*fQ; t6:=(V);
+t5:=sqrt(2*V)*K;
+t1:=1/;
+
+b0 =   (K*K + sqrt(2*V)*K + V);
+b1 = 2*(K*K               - V);
+b2 =   (K*K - sqrt(2*V)*K + V);
+a0 =   (K*K + K*fQ + 1)
+a1 =-2*(K*K        - 1);
+a2 =-  (K*K - K*fQ + 1);
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Effects/index.html" class="btn btn-neutral float-right" title="Effects" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="194-windowed-sinc-fir-generator.html" class="btn btn-neutral float-left" title="Windowed Sinc FIR Generator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Too many to list
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

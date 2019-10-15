@@ -1,0 +1,368 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>C++ gaussian noise generation &mdash; Musicdsp.org  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chebyshev waveshaper (using their recursive definition)" href="187-chebyshev-waveshaper-using-their-recursive-definition.html" />
+    <link rel="prev" title="C# Oscilator class" href="239-c-oscilator-class.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Musicdsp.org
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Synthesis</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="16-allmost-ready-to-use-oscillators.html">(Allmost) Ready-to-use oscillators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="224-am-formantic-synthesis.html">AM Formantic Synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1-alias-free-waveform-generation-with-analog-filtering.html">Alias-free waveform generation with analog filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="152-another-lfo-class.html">Another LFO class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="167-another-cheap-sinusoidal-lfo.html">Another cheap sinusoidal LFO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="219-antialiased-square-generator.html">Antialiased square generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="134-arbitary-shaped-band-limited-waveform-generation-using-oversampling-and-low-pass-filtering.html">Arbitary shaped band-limited waveform generation (using oversampling and low-pass filtering)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="123-audiable-alias-free-waveform-gen-using-width-sine.html">Audiable alias free waveform gen using width sine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="268-band-limited-waveforms-my-way.html">Band Limited waveforms my way</a></li>
+<li class="toctree-l2"><a class="reference internal" href="90-bandlimited-sawtooth-synthesis.html">Bandlimited sawtooth synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17-bandlimited-waveform-generation.html">Bandlimited waveform generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="75-bandlimited-waveforms-synopsis.html">Bandlimited waveforms synopsis.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12-bandlimited-waveforms.html">Bandlimited waveforms…</a></li>
+<li class="toctree-l2"><a class="reference internal" href="227-butterworth.html">Butterworth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="239-c-oscilator-class.html">C# Oscilator class</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">C++ gaussian noise generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#comments">Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="187-chebyshev-waveshaper-using-their-recursive-definition.html">Chebyshev waveshaper (using their recursive definition)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15-cubic-polynomial-envelopes.html">Cubic polynomial envelopes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="140-dsf-super-set-of-blit.html">DSF (super-set of BLIT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="244-direct-pink-noise-synthesis-with-auto-correlated-generator.html">Direct pink noise synthesis with auto-correlated generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="68-discrete-summation-formula-dsf.html">Discrete Summation Formula (DSF)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="183-drift-generator.html">Drift generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="217-easy-noise-generation.html">Easy noise generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="189-fast-exponential-envelope-generator.html">Fast Exponential Envelope Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="151-fast-lfo-in-delphi.html">Fast LFO in Delphi…</a></li>
+<li class="toctree-l2"><a class="reference internal" href="261-fast-sin-approximation-for-usage-in-e-g-additive-synthesizers.html">Fast SIN approximation for usage in e.g. additive synthesizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="216-fast-whitenoise-generator.html">Fast Whitenoise Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-fast-sine-and-cosine-calculation.html">Fast sine and cosine calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="9-fast-sine-wave-calculation.html">Fast sine wave calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="69-fast-square-wave-generator.html">Fast square wave generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="113-gaussian-white-noise.html">Gaussian White Noise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="109-gaussian-white-noise.html">Gaussian White noise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="215-generator.html">Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14-inverted-parabolic-envelope.html">Inverted parabolic envelope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="211-matlab-octave-code-for-minblep-table-generation.html">Matlab/octave code for minblep table generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="213-padsynth-synthesys-method.html">PADsynth synthesys method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="271-prng-for-non-uniformly-distributed-values-from-trigonometric-identity.html">PRNG for non-uniformly distributed values from trigonometric identity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="254-parabolic-shaper.html">Parabolic shaper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="111-phase-modulation-vs-frequency-modulation.html">Phase modulation Vs. Frequency modulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="160-phase-modulation-vs-frequency-modulation-ii.html">Phase modulation Vs. Frequency modulation II</a></li>
+<li class="toctree-l2"><a class="reference internal" href="59-pseudo-random-generator.html">Pseudo-Random generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="242-pulsequad.html">PulseQuad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="8-pulsewidth-modulation.html">Pulsewidth modulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="241-quick-dirty-sine.html">Quick &amp; Dirty Sine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="161-quick-and-dirty-sine-generator.html">Quick and dirty sine generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="199-rbj-wavetable-101.html">RBJ Wavetable 101</a></li>
+<li class="toctree-l2"><a class="reference internal" href="272-randja-compressor.html">Randja compressor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="184-rossler-and-lorenz-oscillators.html">Rossler and Lorenz Oscillators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="67-sawsin.html">SawSin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="262-simple-time-stretching-granular-synthesizer.html">Simple Time Stretching-Granular Synthesizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13-sine-calculation.html">Sine calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="269-smooth-random-lfo-generator.html">Smooth random LFO Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2-square-waves.html">Square Waves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="220-trammell-pink-noise-c-class.html">Trammell Pink Noise (C++ class)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="112-waveform-generator-using-minbleps.html">Waveform generator using MinBLEPS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="80-wavetable-synthesis.html">Wavetable Synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-weird-synthesis.html">Weird synthesis</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Analysis/index.html">Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Filters/index.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Effects/index.html">Effects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Other/index.html">Other</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Musicdsp.org</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Synthesis</a> &raquo;</li>
+        
+      <li>C++ gaussian noise generation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Synthesis/168-c-gaussian-noise-generation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="c-gaussian-noise-generation">
+<h1>C++ gaussian noise generation<a class="headerlink" href="#c-gaussian-noise-generation" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><strong>Author or source:</strong> <a class="reference external" href="mailto:ku&#46;oc&#46;latigidpxe&#37;&#52;&#48;luap">ku<span>&#46;</span>oc<span>&#46;</span>latigidpxe<span>&#64;</span>luap</a></p></li>
+<li><p><strong>Type:</strong> gaussian noise generation</p></li>
+<li><p><strong>Created:</strong> 2004-05-20 09:12:55</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">notes</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>References :
+Tobybears delphi noise generator was the basis. Simply converted it to C++.
+Link for original is:
+http://www.musicdsp.org/archive.php?classid=0#129
+The output is in noise.
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">code</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/* Include requisits */</span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstdlib&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;ctime&gt;</span><span class="cp"></span>
+
+<span class="cm">/* Generate a new random seed from system time - do this once in your constructor */</span>
+<span class="n">srand</span><span class="p">(</span><span class="n">time</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+
+<span class="cm">/* Setup constants */</span>
+<span class="k">const</span> <span class="k">static</span> <span class="kt">int</span> <span class="n">q</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+<span class="k">const</span> <span class="k">static</span> <span class="kt">float</span> <span class="n">c1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">q</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">const</span> <span class="k">static</span> <span class="kt">float</span> <span class="n">c2</span> <span class="o">=</span> <span class="p">((</span><span class="kt">int</span><span class="p">)(</span><span class="n">c1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">const</span> <span class="k">static</span> <span class="kt">float</span> <span class="n">c3</span> <span class="o">=</span> <span class="mf">1.f</span> <span class="o">/</span> <span class="n">c1</span><span class="p">;</span>
+
+<span class="cm">/* random number in range 0 - 1 not including 1 */</span>
+<span class="kt">float</span> <span class="n">random</span> <span class="o">=</span> <span class="mf">0.f</span><span class="p">;</span>
+
+<span class="cm">/* the white noise */</span>
+<span class="kt">float</span> <span class="n">noise</span> <span class="o">=</span> <span class="mf">0.f</span><span class="p">;</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numSamples</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">random</span> <span class="o">=</span> <span class="p">((</span><span class="kt">float</span><span class="p">)</span><span class="n">rand</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="kt">float</span><span class="p">)(</span><span class="n">RAND_MAX</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
+    <span class="n">noise</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.f</span> <span class="o">*</span> <span class="p">((</span><span class="n">random</span> <span class="o">*</span> <span class="n">c2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">random</span> <span class="o">*</span> <span class="n">c2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">random</span> <span class="o">*</span> <span class="n">c2</span><span class="p">))</span> <span class="o">-</span> <span class="mf">3.f</span> <span class="o">*</span> <span class="p">(</span><span class="n">c2</span> <span class="o">-</span> <span class="mf">1.f</span><span class="p">))</span> <span class="o">*</span> <span class="n">c3</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2009-07-10 17:39:39</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;enon&#37;&#52;&#48;enon">moc<span>&#46;</span>enon<span>&#64;</span>enon</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>What&#39;s the difference between the much simpler noise generator:
+
+randSeed = (randSeed * 196314165) + 907633515;      out=((int)randSeed)*0.0000000004656612873077392578125f;
+
+and this one? they both sound the same to my ears...
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2011-07-22 11:07:12</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;nwonknu&#37;&#52;&#48;nwonknu">moc<span>&#46;</span>nwonknu<span>&#64;</span>nwonknu</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>How can you change the variance (sigma)?
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2013-06-12 12:30:33</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;enon&#37;&#52;&#48;lubeb">moc<span>&#46;</span>enon<span>&#64;</span>lubeb</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>This is NOT a good code to generate Gaussian Noice. Look into:
+  (random * c2) + (random * c2) + (random * c2)
+It is all nonsense! The reason of adding three numbers it the Central Limit Theorem to aproximate Gaussian distribution. But the random numbers inside must differ, which is not the case. The code on original link http://www.musicdsp.org/archive.php?classid=0#129 is correct.
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="187-chebyshev-waveshaper-using-their-recursive-definition.html" class="btn btn-neutral float-right" title="Chebyshev waveshaper (using their recursive definition)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="239-c-oscilator-class.html" class="btn btn-neutral float-left" title="C# Oscilator class" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Too many to list
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

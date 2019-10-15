@@ -1,0 +1,431 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Denormalization preventer &mdash; Musicdsp.org  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Dither code" href="61-dither-code.html" />
+    <link rel="prev" title="Denormalization preventer" href="193-denormalization-preventer.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Musicdsp.org
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Synthesis/index.html">Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Analysis/index.html">Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Filters/index.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Effects/index.html">Effects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Other</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="212-16-point-fast-integer-sinc-interpolator.html">16-Point Fast Integer Sinc Interpolator.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="95-16-to-8-bit-first-order-dither.html">16-to-8-bit first-order dither</a></li>
+<li class="toctree-l2"><a class="reference internal" href="62-3rd-order-spline-interpollation.html">3rd order Spline interpollation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="60-5-point-spline-interpollation.html">5-point spline interpollation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="54-allocating-aligned-memory.html">Allocating aligned memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="162-antialiased-lines.html">Antialiased Lines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="228-automatic-pdc-system.html">Automatic PDC system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="50-base-2-exp.html">Base-2 exp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="171-bit-reversed-counting.html">Bit-Reversed Counting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="149-block-loop-benchmarking.html">Block/Loop Benchmarking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="210-branchless-clipping.html">Branchless Clipping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="103-calculate-notes-java.html">Calculate notes (java)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="163-center-separation-in-a-stereo-mixdown.html">Center separation in a stereo mixdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="165-center-separation-in-a-stereo-mixdown.html">Center separation in a stereo mixdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="166-cheap-pseudo-sinusoidal-lfo.html">Cheap pseudo-sinusoidal lfo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="81-clipping-without-branching.html">Clipping without branching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="71-constant-time-exponent-of-2-detector.html">Constant-time exponent of 2 detector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="248-conversion-and-normalization-of-16-bit-sample-to-a-floating-point-number.html">Conversion and normalization of 16-bit sample to a floating point number</a></li>
+<li class="toctree-l2"><a class="reference internal" href="52-conversions-on-a-powerpc.html">Conversions on a PowerPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="49-cubic-interpollation.html">Cubic interpollation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="191-cure-for-malicious-samples.html">Cure for malicious samples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="88-denormal-double-variables-macro.html">Denormal DOUBLE variables, macro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="51-denormal-numbers.html">Denormal numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="83-denormal-numbers-the-meta-text.html">Denormal numbers, the meta-text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="193-denormalization-preventer.html">Denormalization preventer</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Denormalization preventer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#comments">Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="61-dither-code.html">Dither code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="77-dithering.html">Dithering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="48-double-to-int.html">Double to Int</a></li>
+<li class="toctree-l2"><a class="reference internal" href="138-envelope-follower.html">Envelope Follower</a></li>
+<li class="toctree-l2"><a class="reference internal" href="260-exponential-curve-for.html">Exponential curve for</a></li>
+<li class="toctree-l2"><a class="reference internal" href="87-exponential-parameter-mapping.html">Exponential parameter mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="273-fast-float-random-numbers.html">Fast Float Random Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="132-fast-abs-neg-sign-for-32bit-floats.html">Fast abs/neg/sign for 32bit floats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="91-fast-binary-log-approximations.html">Fast binary log approximations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="206-fast-cube-root-square-root-and-reciprocal-for-x86-sse-cpus.html">Fast cube root, square root, and reciprocal for x86/SSE CPUs.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="222-fast-exp-approximations.html">Fast exp() approximations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="106-fast-exp2-approximation.html">Fast exp2 approximation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="63-fast-log2.html">Fast log2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="133-fast-power-and-root-estimates-for-32bit-floats.html">Fast power and root estimates for 32bit floats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="252-fast-rounding-functions-in-pascal.html">Fast rounding functions in pascal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="249-fast-sign-for-32-bit-floats.html">Fast sign for 32 bit floats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="56-float-to-int.html">Float to int</a></li>
+<li class="toctree-l2"><a class="reference internal" href="170-float-to-int-more-intel-asm.html">Float to int (more intel asm)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="246-float-to-integer-conversion.html">Float to integer conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="57-float-to-int-coverting-an-array-of-floats.html">Float-to-int, coverting an array of floats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="121-gaussian-dithering.html">Gaussian dithering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="129-gaussian-random-numbers.html">Gaussian random numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="157-hermite-interpolator-x86-asm.html">Hermite Interpolator (x86 ASM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="93-hermite-interpollation.html">Hermite interpollation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="245-linear-interpolation.html">Linear interpolation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="119-lock-free-fifo.html">Lock free fifo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="58-matlab-tools-for-sndan.html">MATLAB-Tools for SNDAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="125-midi-note-frequency-conversion.html">MIDI note/frequency conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="188-matlab-time-domain-impulse-response-inverter-divider.html">Matlab Time Domain Impulse Response Inverter/Divider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="94-millimeter-to-db-faders.html">Millimeter to DB (faders…)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="202-motorola-56300-disassembler.html">Motorola 56300 Disassembler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="99-noise-shaping-class.html">Noise Shaping Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="148-nonblocking-multiprocessor-multithread-algorithms-in-c.html">Nonblocking multiprocessor/multithread algorithms in C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="250-piecewise-quadratic-approximate-exponential-function.html">Piecewise quadratic approximate exponential function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="55-pow-x-4-approximation.html">Pow(x,4) approximation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="238-rational-tanh-approximation.html">Rational tanh approximation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="84-reading-the-compressed-wa-parts-in-gigasampler-files.html">Reading the compressed WA! parts in gigasampler files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="158-really-fast-x86-floating-point-sin-cos.html">Really fast x86 floating point sin/cos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="178-reasonably-accurate-fastish-tanh-approximation.html">Reasonably accurate/fastish tanh approximation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="164-resampling.html">Resampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="120-saturation.html">Saturation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="175-sin-x-aproximation-with-sse-code.html">Sin(x) Aproximation (with SSE code)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="115-sin-cos-tan-approximation.html">Sin, Cos, Tan approximation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="182-vst-sdk-gui-switch-without.html">VST SDK GUI Switch without</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Musicdsp.org</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Other</a> &raquo;</li>
+        
+      <li>Denormalization preventer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Other/233-denormalization-preventer.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="denormalization-preventer">
+<h1>Denormalization preventer<a class="headerlink" href="#denormalization-preventer" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><strong>Author or source:</strong> <a class="reference external" href="mailto:eb&#46;tenyks&#37;&#52;&#48;didid">eb<span>&#46;</span>tenyks<span>&#64;</span>didid</a></p></li>
+<li><p><strong>Created:</strong> 2006-08-05 16:37:20</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">notes</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Because I still see people adding noise or offset to their signal to avoid slow
+denormalization, here&#39;s a piece of code to zero out (near) tiny numbers instead.
+
+Why zeroing out is better? Because a fully silent signal is better than a little offset,
+or noise. A host or effect can detect silent signals and choose not to process them in a
+safe way.
+Plus, adding an offset or noise reduces huge packets of denormalization, but still leaves
+some behind.
+Also, truncating is what the DAZ (Denormals Are Zero) SSE flag does.
+
+This code uses integer comparison, and a CMOV, so you need a Pentium Pro or higher.
+There&#39;s no need for an SSE version, as if you have SSE code you&#39;re probably already using
+the DAZ flag instead (but I advise plugins not to mess with the SSE flags, as the host is
+likely to have DAZ switched on already). This is for FPU code. Should work much faster
+than crap FPU comparison.
+
+Den_Thres is your threshold, it cannot be denormalized (would be pointless). The function
+is Delphi, if you want to adapt, just make sure EAX is the buffer and EDX is length
+(Delphi register calling convention - it&#39;s not the same in C++).
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">code</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29</pre></div></td><td class="code"><div class="highlight"><pre><span></span>const  Den_Thres:Single=1/$1000000;
+
+procedure PrevFPUDen_Buffer(Buffer:Pointer;Length:Integer);
+asm
+    PUSH  ESI
+    PUSH  EDI
+    PUSH  EBX
+
+    MOV   ECX,EDX
+    LEA   EDI,[EAX+4*ECX]
+    NEG   ECX
+    MOV   EDX,Den_Thres
+    SHL   EDX,1
+    XOR   ESI,ESI
+
+    @Loop:
+    MOV   EAX,[EDI+4*ECX]
+    LEA   EBX,[EAX*2]
+    CMP   EBX,EDX
+    CMOVB EAX,ESI
+    MOV   [EDI+4*ECX],EAX
+
+    INC   ECX
+    JNZ   @Loop
+
+    POP   EBX
+    POP   EDI
+    POP   ESI
+End;
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2006-08-14 05:36:29</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:uh&#46;etle&#46;fni&#37;&#52;&#48;yfoocs">uh<span>&#46;</span>etle<span>&#46;</span>fni<span>&#64;</span>yfoocs</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>You can zero out denormals by adding and subtracting a small number.
+
+void kill_denormal_by_quantization(float &amp;val)
+{
+  static const float anti_denormal = 1e-18;
+  val += anti_denormal;
+  val -= anti_denormal;
+}
+
+Reference: Laurent de Soras&#39; great article on denormal numbers:
+ldesoras.free.fr/doc/articles/denormal-en.pdf
+
+I tend to add DC because it is faster than quantization. A slight DC offset (0.000000000000000001) won&#39;t hurt. That&#39;s -360 decibels...
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2006-08-14 09:20:43</p></li>
+<li><p><strong>By</strong>: gol</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt;You can zero out denormals by adding and subtracting a small number
+
+But with drawbacks as explained in his paper.
+
+As for the speed, not sure which is the faster. Especially since the FPU speed is too manufacturer-dependant (read: it&#39;s crap in pentiums), and mine is using integer.
+
+&gt;&gt;A slight DC offset (0.000000000000000001) won&#39;t hurt
+
+As I wrote, it really does.. hurt the sequencer, that can&#39;t detect pure silence and optimize things accordingly. A host can detect near-silence, but it can&#39;t know which offset value YOU chose, so may use a lower threshold.
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2006-08-14 09:33:35</p></li>
+<li><p><strong>By</strong>: gol</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Btw, I happen to see I had already posted this code, probably years ago, doh!
+
+Anyway this version gives more explanation.
+
+And here&#39;s more:
+The LEA EBX,[EAX*2] is to get rid of the sign bit.
+And the integer comparison of float values can be done providing both are the same sign (I&#39;m not quite sure it works on denormals, but we don&#39;t care, since they&#39;re the ones we want to zero out, so our threshold won&#39;t be denormalized).
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2010-03-10 13:29:06</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;liamg&#37;&#52;&#48;sisehtnysorpitna">moc<span>&#46;</span>liamg<span>&#64;</span>sisehtnysorpitna</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>You could also add input noise and assure output samples are reset to 0 if they&#39;re below a certain treshold, slightly higher than your noise volume. That ensures hosts can do proper tail detection and it&#39;s cheap.
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="61-dither-code.html" class="btn btn-neutral float-right" title="Dither code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="193-denormalization-preventer.html" class="btn btn-neutral float-left" title="Denormalization preventer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Too many to list
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

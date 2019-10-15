@@ -1,0 +1,435 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Most simple static delay &mdash; Musicdsp.org  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Parallel combs delay calculation" href="101-parallel-combs-delay-calculation.html" />
+    <link rel="prev" title="Most simple and smooth feedback delay" href="154-most-simple-and-smooth-feedback-delay.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Musicdsp.org
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Synthesis/index.html">Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Analysis/index.html">Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Filters/index.html">Filters</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Effects</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="89-2-wave-shaping-things.html">2 Wave shaping things</a></li>
+<li class="toctree-l2"><a class="reference internal" href="70-alien-wah.html">Alien Wah</a></li>
+<li class="toctree-l2"><a class="reference internal" href="221-band-limited-pwm-generator.html">Band Limited PWM Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="96-bit-quantization-reduction-effect.html">Bit quantization/reduction effect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="98-class-for-waveguide-delay-effects.html">Class for waveguide/delay effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="169-compressor.html">Compressor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="124-decimator.html">Decimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="44-delay-time-calculation-for-reverberation.html">Delay time calculation for reverberation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="207-dynamic-convolution.html">Dynamic convolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="102-ece320-project-reverberation-w-parameter-control-from-pc.html">ECE320 project: Reverberation w/ parameter control from PC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="74-early-echo-s-with-image-mirror-technique.html">Early echo’s with image-mirror technique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="203-fold-back-distortion.html">Fold back distortion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="47-guitar-feedback.html">Guitar feedback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="139-lo-fi-crusher.html">Lo-Fi Crusher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="274-lookahead-limiter.html">Lookahead Limiter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="154-most-simple-and-smooth-feedback-delay.html">Most simple and smooth feedback delay</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Most simple static delay</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#comments">Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="101-parallel-combs-delay-calculation.html">Parallel combs delay calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="78-phaser-code.html">Phaser code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="230-polynominal-waveshaper.html">Polynominal Waveshaper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="150-reverberation-algorithms-in-matlab.html">Reverberation Algorithms in Matlab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="45-reverberation-techniques.html">Reverberation techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="204-simple-compressor-class-c.html">Simple Compressor class (C++)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="42-soft-saturation.html">Soft saturation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="173-stereo-enhancer.html">Stereo Enhancer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="255-stereo-field-rotation-via-transformation-matrix.html">Stereo Field Rotation Via Transformation Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="256-stereo-width-control-obtained-via-transfromation-matrix.html">Stereo Width Control (Obtained Via Transfromation Matrix)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="126-time-compression-expansion-using-standard-phase-vocoder.html">Time compression-expansion using standard phase vocoder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="177-transistor-differential-amplifier-simulation.html">Transistor differential amplifier simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="277-univox-univibe-emulator.html">UniVox Univibe Emulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="104-variable-hardness-clipping-function.html">Variable-hardness clipping function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="41-waveshaper.html">WaveShaper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="43-waveshaper.html">Waveshaper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="46-waveshaper.html">Waveshaper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="114-waveshaper-simple-description.html">Waveshaper (simple description)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="86-waveshaper-gloubi-boulga.html">Waveshaper :: Gloubi-boulga</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Other/index.html">Other</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Musicdsp.org</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Effects</a> &raquo;</li>
+        
+      <li>Most simple static delay</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Effects/153-most-simple-static-delay.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="most-simple-static-delay">
+<h1>Most simple static delay<a class="headerlink" href="#most-simple-static-delay" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><strong>Author or source:</strong> <a class="reference external" href="mailto:moc&#46;liamtoh&#37;&#52;&#48;sisehtnysorpitna">moc<span>&#46;</span>liamtoh<span>&#64;</span>sisehtnysorpitna</a></p></li>
+<li><p><strong>Type:</strong> Static delay</p></li>
+<li><p><strong>Created:</strong> 2003-09-02 06:21:15</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">notes</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>This is the most simple static delay (just delays the input sound an amount of samples).
+Very useful for newbies also probably very easy to change in a feedback delay (for comb
+filters for example).
+
+Note: fDlyTime is the delay time parameter (0 to 1)
+
+i = input index
+j = output index
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">code</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">SampleRate</span> <span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="n">DlyBuffer</span><span class="p">[</span> <span class="n">i</span> <span class="p">]</span> <span class="o">=</span> <span class="n">Input</span><span class="p">;</span>
+
+<span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="p">(</span><span class="n">fDlyTime</span> <span class="o">*</span> <span class="n">SampleRate</span><span class="p">);</span>
+
+<span class="n">i</span><span class="o">++</span><span class="p">;</span>
+
+<span class="k">if</span><span class="p">(</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">)</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="n">SampleRate</span> <span class="o">+</span> <span class="n">j</span><span class="p">;</span>
+
+<span class="n">Output</span> <span class="o">=</span> <span class="n">DlyBuffer</span><span class="p">[</span> <span class="n">j</span> <span class="p">];</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2003-09-02 09:17:47</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;liamtoh&#37;&#52;&#48;sisehtnysorpitna">moc<span>&#46;</span>liamtoh<span>&#64;</span>sisehtnysorpitna</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Another note: The delay time will be 0 if fDlyTime is 0 or 1.
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2003-09-08 12:21:20</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:gro&#46;ekaf&#37;&#52;&#48;suomynona">gro<span>&#46;</span>ekaf<span>&#64;</span>suomynona</a></p></li>
+</ul>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// I think you should be careful with mixing floats and integers that way (error-prone,</span>
+<span class="c1">// slow float-to-int conversions, etc).</span>
+
+<span class="c1">// This should also work (haven&#39;t checked, not best way of doing it):</span>
+
+<span class="c1">// ... (initializing) ..</span>
+
+<span class="kt">float</span> <span class="n">numSecondsDelay</span> <span class="o">=</span> <span class="mf">0.3f</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">numSamplesDelay_</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">numSecondsDelay</span> <span class="o">*</span> <span class="n">sampleRate</span><span class="p">);</span> <span class="c1">// maybe want to round to an integer instead of truncating..</span>
+
+<span class="kt">float</span> <span class="o">*</span><span class="n">buffer_</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">float</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">numSamplesDelay</span><span class="p">];</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numSamplesDelay_</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">buffer_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.f</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">readPtr_</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">writePtr_</span> <span class="o">=</span> <span class="n">numSamplesDelay_</span><span class="p">;</span>
+
+<span class="c1">// ... (processing) ...</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="n">each</span> <span class="n">sample</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">buffer_</span><span class="p">[</span><span class="n">writePtr_</span><span class="p">]</span> <span class="o">=</span> <span class="n">input</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+  <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">buffer_</span><span class="p">[</span><span class="n">readPtr_</span><span class="p">];</span>
+
+  <span class="o">++</span><span class="n">writePtr_</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">writePtr_</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="o">*</span><span class="n">numSamplesDelay_</span><span class="p">)</span>
+    <span class="n">writePtr_</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="o">++</span><span class="n">readPtr_</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">readPtr_</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="o">*</span><span class="n">numSamplesDelay_</span><span class="p">)</span>
+    <span class="n">readPtr_</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2004-08-24 19:31:45</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;liamg&#37;&#52;&#48;noteex">moc<span>&#46;</span>liamg<span>&#64;</span>noteex</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>I may be missing something, but I think it gets a little simpler than the previous two examples.
+The difference in result is that actual delay will be 1 if d is 0 or 1.
+
+i = input/output index
+d = delay (in samples)
+
+Code:
+
+out = buffer[i];
+buffer[i] = in;
+i++;
+if(i &gt;= delay) i = 0;
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-12-18 02:35:00</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;liamg&#37;&#52;&#48;noteex">moc<span>&#46;</span>liamg<span>&#64;</span>noteex</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>or even in three lines...
+
+out = buffer[i];
+buffer[i++] = in;
+if(i &gt;= delay) i = 0;
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2006-12-30 16:29:07</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:ku&#46;oc&#46;etativarg-jd&#37;&#52;&#48;etativarg">ku<span>&#46;</span>oc<span>&#46;</span>etativarg-jd<span>&#64;</span>etativarg</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>The only problem with this implementation, is that it is not really an audio effect! all this
+will do is to delay the input signal by a given number of samples! ...why would you ever want
+to do that? ...this would only ever work if you had a DSP and speakers both connected to the
+audio source and run them at the same time, so the speakers would be playing the original sorce
+and the DSP containing the delayed source connected to another set of speakers! this is not
+really an audio efffect!
+
+...Here is a pseudo code example of a delay effect that will mix both the original sound with
+the delayed sound:
+
+Pseudo Code implementation for simple delay:
+ - This implementation will put the current audio signal to the
+   left channel and the delayed audio signal to the right channel.
+   this is suitable for any stereo codec!
+
+delay_function {
+
+  left_channel   // for stereo left
+  right_channel  // for stereo right
+  mono           // mono representation of stereo input
+  delay_time     // amount of time to delay input
+  counter = 0    // counter
+
+  //setup an array that is the same length as the maximum delay time:
+  delay_array[max delay time]  // array containing delayed data
+
+  // convert stereo to mono:
+  (left_channel + right_channel) / 2
+
+  // initalise time to delay signal - maybe input from user
+  delay_time = x
+
+  if (delay_time = 0){
+    left_out = mono
+    right_out = mono
+  }
+  else {
+    // put current input data to left channel:
+    left_out = mono
+    // put oldest delayed input data to right channel:
+    right_out = delay_array[index]
+
+    // overwrite with newest input:
+    delay_array[index] = mono;
+
+    // is index at end of delay buffer? if not increment, else set to zero
+    if (index &lt; delay_time) index++
+    else index = 0
+  }
+
+}
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="101-parallel-combs-delay-calculation.html" class="btn btn-neutral float-right" title="Parallel combs delay calculation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="154-most-simple-and-smooth-feedback-delay.html" class="btn btn-neutral float-left" title="Most simple and smooth feedback delay" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Too many to list
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

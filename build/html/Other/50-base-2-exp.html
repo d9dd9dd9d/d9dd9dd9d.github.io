@@ -1,0 +1,406 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Base-2 exp &mdash; Musicdsp.org  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Bit-Reversed Counting" href="171-bit-reversed-counting.html" />
+    <link rel="prev" title="Automatic PDC system" href="228-automatic-pdc-system.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Musicdsp.org
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Synthesis/index.html">Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Analysis/index.html">Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Filters/index.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Effects/index.html">Effects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Other</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="212-16-point-fast-integer-sinc-interpolator.html">16-Point Fast Integer Sinc Interpolator.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="95-16-to-8-bit-first-order-dither.html">16-to-8-bit first-order dither</a></li>
+<li class="toctree-l2"><a class="reference internal" href="62-3rd-order-spline-interpollation.html">3rd order Spline interpollation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="60-5-point-spline-interpollation.html">5-point spline interpollation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="54-allocating-aligned-memory.html">Allocating aligned memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="162-antialiased-lines.html">Antialiased Lines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="228-automatic-pdc-system.html">Automatic PDC system</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Base-2 exp</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#comments">Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="171-bit-reversed-counting.html">Bit-Reversed Counting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="149-block-loop-benchmarking.html">Block/Loop Benchmarking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="210-branchless-clipping.html">Branchless Clipping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="103-calculate-notes-java.html">Calculate notes (java)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="163-center-separation-in-a-stereo-mixdown.html">Center separation in a stereo mixdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="165-center-separation-in-a-stereo-mixdown.html">Center separation in a stereo mixdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="166-cheap-pseudo-sinusoidal-lfo.html">Cheap pseudo-sinusoidal lfo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="81-clipping-without-branching.html">Clipping without branching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="71-constant-time-exponent-of-2-detector.html">Constant-time exponent of 2 detector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="248-conversion-and-normalization-of-16-bit-sample-to-a-floating-point-number.html">Conversion and normalization of 16-bit sample to a floating point number</a></li>
+<li class="toctree-l2"><a class="reference internal" href="52-conversions-on-a-powerpc.html">Conversions on a PowerPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="49-cubic-interpollation.html">Cubic interpollation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="191-cure-for-malicious-samples.html">Cure for malicious samples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="88-denormal-double-variables-macro.html">Denormal DOUBLE variables, macro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="51-denormal-numbers.html">Denormal numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="83-denormal-numbers-the-meta-text.html">Denormal numbers, the meta-text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="193-denormalization-preventer.html">Denormalization preventer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="233-denormalization-preventer.html">Denormalization preventer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="61-dither-code.html">Dither code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="77-dithering.html">Dithering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="48-double-to-int.html">Double to Int</a></li>
+<li class="toctree-l2"><a class="reference internal" href="138-envelope-follower.html">Envelope Follower</a></li>
+<li class="toctree-l2"><a class="reference internal" href="260-exponential-curve-for.html">Exponential curve for</a></li>
+<li class="toctree-l2"><a class="reference internal" href="87-exponential-parameter-mapping.html">Exponential parameter mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="273-fast-float-random-numbers.html">Fast Float Random Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="132-fast-abs-neg-sign-for-32bit-floats.html">Fast abs/neg/sign for 32bit floats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="91-fast-binary-log-approximations.html">Fast binary log approximations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="206-fast-cube-root-square-root-and-reciprocal-for-x86-sse-cpus.html">Fast cube root, square root, and reciprocal for x86/SSE CPUs.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="222-fast-exp-approximations.html">Fast exp() approximations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="106-fast-exp2-approximation.html">Fast exp2 approximation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="63-fast-log2.html">Fast log2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="133-fast-power-and-root-estimates-for-32bit-floats.html">Fast power and root estimates for 32bit floats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="252-fast-rounding-functions-in-pascal.html">Fast rounding functions in pascal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="249-fast-sign-for-32-bit-floats.html">Fast sign for 32 bit floats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="56-float-to-int.html">Float to int</a></li>
+<li class="toctree-l2"><a class="reference internal" href="170-float-to-int-more-intel-asm.html">Float to int (more intel asm)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="246-float-to-integer-conversion.html">Float to integer conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="57-float-to-int-coverting-an-array-of-floats.html">Float-to-int, coverting an array of floats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="121-gaussian-dithering.html">Gaussian dithering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="129-gaussian-random-numbers.html">Gaussian random numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="157-hermite-interpolator-x86-asm.html">Hermite Interpolator (x86 ASM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="93-hermite-interpollation.html">Hermite interpollation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="245-linear-interpolation.html">Linear interpolation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="119-lock-free-fifo.html">Lock free fifo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="58-matlab-tools-for-sndan.html">MATLAB-Tools for SNDAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="125-midi-note-frequency-conversion.html">MIDI note/frequency conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="188-matlab-time-domain-impulse-response-inverter-divider.html">Matlab Time Domain Impulse Response Inverter/Divider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="94-millimeter-to-db-faders.html">Millimeter to DB (faders…)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="202-motorola-56300-disassembler.html">Motorola 56300 Disassembler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="99-noise-shaping-class.html">Noise Shaping Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="148-nonblocking-multiprocessor-multithread-algorithms-in-c.html">Nonblocking multiprocessor/multithread algorithms in C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="250-piecewise-quadratic-approximate-exponential-function.html">Piecewise quadratic approximate exponential function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="55-pow-x-4-approximation.html">Pow(x,4) approximation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="238-rational-tanh-approximation.html">Rational tanh approximation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="84-reading-the-compressed-wa-parts-in-gigasampler-files.html">Reading the compressed WA! parts in gigasampler files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="158-really-fast-x86-floating-point-sin-cos.html">Really fast x86 floating point sin/cos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="178-reasonably-accurate-fastish-tanh-approximation.html">Reasonably accurate/fastish tanh approximation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="164-resampling.html">Resampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="120-saturation.html">Saturation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="175-sin-x-aproximation-with-sse-code.html">Sin(x) Aproximation (with SSE code)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="115-sin-cos-tan-approximation.html">Sin, Cos, Tan approximation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="182-vst-sdk-gui-switch-without.html">VST SDK GUI Switch without</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Musicdsp.org</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Other</a> &raquo;</li>
+        
+      <li>Base-2 exp</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Other/50-base-2-exp.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="base-2-exp">
+<h1>Base-2 exp<a class="headerlink" href="#base-2-exp" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><strong>Author or source:</strong> Laurent de Soras</p></li>
+<li><p><strong>Created:</strong> 2002-01-17 03:06:08</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">notes</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Linear approx. between 2 integer values of val. Uses 32-bit integers. Not very efficient
+but fastest than exp()
+This code was designed for x86 (little endian), but could be adapted for big endian
+processors.
+Laurent thinks you just have to change the (*(1 + (int *) &amp;ret)) expressions and replace
+it by (*(int *) &amp;ret). However, He didn&#39;t test it.
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">code</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kr">inline</span> <span class="kt">double</span> <span class="nf">fast_exp2</span> <span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">val</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="kt">int</span>    <span class="n">e</span><span class="p">;</span>
+   <span class="kt">double</span> <span class="n">ret</span><span class="p">;</span>
+
+   <span class="k">if</span> <span class="p">(</span><span class="n">val</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+   <span class="p">{</span>
+      <span class="n">e</span> <span class="o">=</span> <span class="kt">int</span> <span class="p">(</span><span class="n">val</span><span class="p">);</span>
+      <span class="n">ret</span> <span class="o">=</span> <span class="n">val</span> <span class="o">-</span> <span class="p">(</span><span class="n">e</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="p">((</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">ret</span><span class="p">))</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="p">(</span><span class="mi">2047</span> <span class="o">&lt;&lt;</span> <span class="mi">20</span><span class="p">))</span> <span class="o">+=</span> <span class="p">(</span><span class="n">e</span> <span class="o">+</span> <span class="mi">1023</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">20</span><span class="p">;</span>
+   <span class="p">}</span>
+   <span class="k">else</span>
+   <span class="p">{</span>
+      <span class="n">e</span> <span class="o">=</span> <span class="kt">int</span> <span class="p">(</span><span class="n">val</span> <span class="o">+</span> <span class="mi">1023</span><span class="p">);</span>
+      <span class="n">ret</span> <span class="o">=</span> <span class="n">val</span> <span class="o">-</span> <span class="p">(</span><span class="n">e</span> <span class="o">-</span> <span class="mi">1024</span><span class="p">);</span>
+      <span class="p">((</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">ret</span><span class="p">))</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="p">(</span><span class="mi">2047</span> <span class="o">&lt;&lt;</span> <span class="mi">20</span><span class="p">))</span> <span class="o">+=</span> <span class="n">e</span> <span class="o">&lt;&lt;</span> <span class="mi">20</span><span class="p">;</span>
+   <span class="p">}</span>
+   <span class="k">return</span> <span class="p">(</span><span class="n">ret</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2002-04-10 02:48:33</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:gro&#46;ecruosrv&#37;&#52;&#48;cimotabus">gro<span>&#46;</span>ecruosrv<span>&#64;</span>cimotabus</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Here is the code to detect little endian processor:
+
+         union
+         {
+            short   val;
+            char    ch[sizeof( short )];
+         } un;
+         un.val = 256; // 0x10;
+
+         if (un.ch[1] == 1)
+         {
+            // then we&#39;re little
+         }
+
+I&#39;ve tested the fast_exp2() on both little and big endian (intel, AMD, and motorola) processors, and the comment is correct.
+
+Here is the completed function that works on all endian systems:
+
+inline double fast_exp2( const double val )
+{
+   // is the machine little endian?
+   union
+   {
+      short   val;
+      char    ch[sizeof( short )];
+   } un;
+   un.val = 256; // 0x10;
+   // if un.ch[1] == 1 then we&#39;re little
+
+   // return 2 to the power of val (exp base2)
+   int    e;
+   double ret;
+
+   if (val &gt;= 0)
+   {
+      e = int (val);
+      ret = val - (e - 1);
+
+      if (un.ch[1] == 1)
+         ((*(1 + (int *) &amp;ret)) &amp;= ~(2047 &lt;&lt; 20)) += (e + 1023) &lt;&lt; 20;
+      else
+         ((*((int *) &amp;ret)) &amp;= ~(2047 &lt;&lt; 20)) += (e + 1023) &lt;&lt; 20;
+   }
+   else
+   {
+      e = int (val + 1023);
+      ret = val - (e - 1024);
+
+      if (un.ch[1] == 1)
+         ((*(1 + (int *) &amp;ret)) &amp;= ~(2047 &lt;&lt; 20)) += e &lt;&lt; 20;
+      else
+         ((*((int *) &amp;ret)) &amp;= ~(2047 &lt;&lt; 20)) += e &lt;&lt; 20;
+   }
+
+   return ret;
+}
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="171-bit-reversed-counting.html" class="btn btn-neutral float-right" title="Bit-Reversed Counting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="228-automatic-pdc-system.html" class="btn btn-neutral float-left" title="Automatic PDC system" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Too many to list
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

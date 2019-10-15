@@ -1,0 +1,482 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Branchless Clipping &mdash; Musicdsp.org  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Calculate notes (java)" href="103-calculate-notes-java.html" />
+    <link rel="prev" title="Block/Loop Benchmarking" href="149-block-loop-benchmarking.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Musicdsp.org
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Synthesis/index.html">Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Analysis/index.html">Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Filters/index.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Effects/index.html">Effects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Other</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="212-16-point-fast-integer-sinc-interpolator.html">16-Point Fast Integer Sinc Interpolator.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="95-16-to-8-bit-first-order-dither.html">16-to-8-bit first-order dither</a></li>
+<li class="toctree-l2"><a class="reference internal" href="62-3rd-order-spline-interpollation.html">3rd order Spline interpollation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="60-5-point-spline-interpollation.html">5-point spline interpollation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="54-allocating-aligned-memory.html">Allocating aligned memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="162-antialiased-lines.html">Antialiased Lines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="228-automatic-pdc-system.html">Automatic PDC system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="50-base-2-exp.html">Base-2 exp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="171-bit-reversed-counting.html">Bit-Reversed Counting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="149-block-loop-benchmarking.html">Block/Loop Benchmarking</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Branchless Clipping</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#comments">Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="103-calculate-notes-java.html">Calculate notes (java)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="163-center-separation-in-a-stereo-mixdown.html">Center separation in a stereo mixdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="165-center-separation-in-a-stereo-mixdown.html">Center separation in a stereo mixdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="166-cheap-pseudo-sinusoidal-lfo.html">Cheap pseudo-sinusoidal lfo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="81-clipping-without-branching.html">Clipping without branching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="71-constant-time-exponent-of-2-detector.html">Constant-time exponent of 2 detector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="248-conversion-and-normalization-of-16-bit-sample-to-a-floating-point-number.html">Conversion and normalization of 16-bit sample to a floating point number</a></li>
+<li class="toctree-l2"><a class="reference internal" href="52-conversions-on-a-powerpc.html">Conversions on a PowerPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="49-cubic-interpollation.html">Cubic interpollation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="191-cure-for-malicious-samples.html">Cure for malicious samples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="88-denormal-double-variables-macro.html">Denormal DOUBLE variables, macro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="51-denormal-numbers.html">Denormal numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="83-denormal-numbers-the-meta-text.html">Denormal numbers, the meta-text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="193-denormalization-preventer.html">Denormalization preventer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="233-denormalization-preventer.html">Denormalization preventer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="61-dither-code.html">Dither code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="77-dithering.html">Dithering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="48-double-to-int.html">Double to Int</a></li>
+<li class="toctree-l2"><a class="reference internal" href="138-envelope-follower.html">Envelope Follower</a></li>
+<li class="toctree-l2"><a class="reference internal" href="260-exponential-curve-for.html">Exponential curve for</a></li>
+<li class="toctree-l2"><a class="reference internal" href="87-exponential-parameter-mapping.html">Exponential parameter mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="273-fast-float-random-numbers.html">Fast Float Random Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="132-fast-abs-neg-sign-for-32bit-floats.html">Fast abs/neg/sign for 32bit floats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="91-fast-binary-log-approximations.html">Fast binary log approximations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="206-fast-cube-root-square-root-and-reciprocal-for-x86-sse-cpus.html">Fast cube root, square root, and reciprocal for x86/SSE CPUs.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="222-fast-exp-approximations.html">Fast exp() approximations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="106-fast-exp2-approximation.html">Fast exp2 approximation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="63-fast-log2.html">Fast log2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="133-fast-power-and-root-estimates-for-32bit-floats.html">Fast power and root estimates for 32bit floats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="252-fast-rounding-functions-in-pascal.html">Fast rounding functions in pascal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="249-fast-sign-for-32-bit-floats.html">Fast sign for 32 bit floats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="56-float-to-int.html">Float to int</a></li>
+<li class="toctree-l2"><a class="reference internal" href="170-float-to-int-more-intel-asm.html">Float to int (more intel asm)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="246-float-to-integer-conversion.html">Float to integer conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="57-float-to-int-coverting-an-array-of-floats.html">Float-to-int, coverting an array of floats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="121-gaussian-dithering.html">Gaussian dithering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="129-gaussian-random-numbers.html">Gaussian random numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="157-hermite-interpolator-x86-asm.html">Hermite Interpolator (x86 ASM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="93-hermite-interpollation.html">Hermite interpollation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="245-linear-interpolation.html">Linear interpolation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="119-lock-free-fifo.html">Lock free fifo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="58-matlab-tools-for-sndan.html">MATLAB-Tools for SNDAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="125-midi-note-frequency-conversion.html">MIDI note/frequency conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="188-matlab-time-domain-impulse-response-inverter-divider.html">Matlab Time Domain Impulse Response Inverter/Divider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="94-millimeter-to-db-faders.html">Millimeter to DB (faders…)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="202-motorola-56300-disassembler.html">Motorola 56300 Disassembler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="99-noise-shaping-class.html">Noise Shaping Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="148-nonblocking-multiprocessor-multithread-algorithms-in-c.html">Nonblocking multiprocessor/multithread algorithms in C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="250-piecewise-quadratic-approximate-exponential-function.html">Piecewise quadratic approximate exponential function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="55-pow-x-4-approximation.html">Pow(x,4) approximation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="238-rational-tanh-approximation.html">Rational tanh approximation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="84-reading-the-compressed-wa-parts-in-gigasampler-files.html">Reading the compressed WA! parts in gigasampler files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="158-really-fast-x86-floating-point-sin-cos.html">Really fast x86 floating point sin/cos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="178-reasonably-accurate-fastish-tanh-approximation.html">Reasonably accurate/fastish tanh approximation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="164-resampling.html">Resampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="120-saturation.html">Saturation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="175-sin-x-aproximation-with-sse-code.html">Sin(x) Aproximation (with SSE code)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="115-sin-cos-tan-approximation.html">Sin, Cos, Tan approximation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="182-vst-sdk-gui-switch-without.html">VST SDK GUI Switch without</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Musicdsp.org</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Other</a> &raquo;</li>
+        
+      <li>Branchless Clipping</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Other/210-branchless-clipping.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="branchless-clipping">
+<h1>Branchless Clipping<a class="headerlink" href="#branchless-clipping" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><strong>Author or source:</strong> <a class="reference external" href="mailto:ku&#46;oc&#46;snosrapsd&#37;&#52;&#48;psdcisum">ku<span>&#46;</span>oc<span>&#46;</span>snosrapsd<span>&#64;</span>psdcisum</a></p></li>
+<li><p><strong>Type:</strong> Clipping at 0dB, with none of the usual ‘if..then..’</p></li>
+<li><p><strong>Created:</strong> 2005-10-30 10:33:19</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">notes</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>I was working on something that I wanted to ensure that the signal never went above 0dB,
+and a branchless solution occurred to me.
+
+It works by playing with the structure of a single type, shifting the sign bit down to
+make a new mulitplicand.
+
+calling MaxZerodB(mydBSample) will ensure that it will never stray over 0dB.
+By playing with signs or adding/removing offsets, this offers a complete branchless
+limiting solution, no matter whether dB or not (after all, they&#39;re all just numbers...).
+
+eg:
+Limit to &lt;=0   : sample:=MaxZerodB(sample);
+Limit to &lt;=3   : sample:=MaxZerodB(sample-3)+3;
+Limit to &lt;=-4  : sample:=MaxZerodB(sample+4)-4;
+
+Limit to &gt;=0   : sample:=-MaxZerodB(-sample);
+Limit to &gt;=2   : sample:=-MaxZerodB(-sample+2)+2;
+Limit to &gt;=-1.5: sample:=-MaxZerodB(-sample-1.5)-1.5;
+
+Whether it actually saves any CPU cycles remains to be seen, but it was an interesting
+diversion for half an hour :)
+
+[Translating from pascal to other languages shouldn&#39;t be too hard, and for doubles, you&#39;ll
+need to fiddle it abit :)]
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">code</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span>function MaxZerodB(dBin:single):single;
+var tmp:longint;
+begin
+     //given that leftmost bit of a longint indicates the negative,
+     //  if we shift that down to bit0, and multiply dBin by that
+     //  it will return dBin, or zero :)
+     tmp:=(longint((@dBin)^) and $80000000) shr 31;
+     result:=dBin*tmp;
+end;
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-11-29 18:33:09</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:hotpop&#46;com&#37;&#52;&#48;blargg">hotpop<span>&#46;</span>com<span>&#64;</span>blargg</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Since most processors include a sign-preserving right shift, you can right shift by 31 to end up with either -1 (all bits set) or 0, then mask the original value with it:
+
+out = (in &gt;&gt; 31) &amp; in;
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-12-01 20:33:28</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;liamg&#37;&#52;&#48;tramum">moc<span>&#46;</span>liamg<span>&#64;</span>tramum</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>I prefer this method, using a sign-preserving shift, as it can clip a signal to arbitrary bounds:
+
+over = upper_limit - samp
+mask = over &gt;&gt; 31
+over = over &amp; mask
+samp = samp + over
+over = samp - lower_limit
+mask = over &gt;&gt; 31
+over = over &amp; mask
+samp = samp - over
+
+Is it faster? Maybe on modern machines with 20-plus-stage pipelines and if the signal is clipped often, as the branches are not predictable.
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2006-03-22 17:53:44</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:ku&#46;oc&#46;snosrapsd&#37;&#52;&#48;psdcisum">ku<span>&#46;</span>oc<span>&#46;</span>snosrapsd<span>&#64;</span>psdcisum</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>hmm.. Did some looking into the sign preserving thing. My laptop has an P3 which didn&#39;t preserve as mentioned, and my work PC (P4HT) didn&#39;t either. Maybe its an AMD or motorola thing :)
+
+unless it&#39;s how delphi interprets the shr.. what does a C++ compiler generate for &#39;&gt;&gt;&#39; ?
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2006-03-28 14:42:44</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;liamg&#37;&#52;&#48;tramum">moc<span>&#46;</span>liamg<span>&#64;</span>tramum</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>C and C++ have sign-preserving shifts. If the value is negative, a right shift will add ones onto the left hand side (thus -2 becomes -1 etc).
+
+Java also has a non-sign-preserving right shift operator (&gt;&gt;&gt;).
+
+I tried googling for information on how Delphi handles shifts, but nothing turned up. Looks like you might need to use in-line assembly :/
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2006-03-30 02:47:35</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:ed&#46;ko0&#37;&#52;&#48;oreb">ed<span>&#46;</span>ko0<span>&#64;</span>oreb</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Here my SAR function for Delphi+FreePascal
+
+FUNCTION SAR(Value,Shift:INTEGER):INTEGER; {$IFDEF CPU386}ASSEMBLER; REGISTER;{$ELSE}{$IFDEF FPC}INLINE;{$ELSE}REGISTER;{$ENDIF}{$ENDIF}
+{$IFDEF CPU386}
+ASM
+ MOV ECX,EDX
+ SAR EAX,CL
+END;
+{$ELSE}
+BEGIN
+ RESULT:=(Value SHR Shift) OR (($FFFFFFFF+(1-((Value AND (1 SHL 31)) SHR 31) AND ORD(Shift&lt;&gt;0))) SHL (32-Shift));
+END;
+{$ENDIF}
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2006-03-30 03:19:59</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:ed&#46;ko0&#37;&#52;&#48;oreb">ed<span>&#46;</span>ko0<span>&#64;</span>oreb</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Ny branchless clipping functions (the first is faster than the second)
+
+FUNCTION Clip(Value,Min,Max:SINGLE):SINGLE; ASSEMBLER; STDCALL;
+CONST Constant0Dot5:SINGLE=0.5;
+ASM
+ FLD DWORD PTR Value
+ FLD DWORD PTR Min
+ FLD DWORD PTR Max
+
+ FLD ST(2)
+ FSUB ST(0),ST(2)
+ FABS
+ FADD ST(0),ST(2)
+ FADD ST(0),ST(1)
+
+ FLD ST(3)
+ FSUB ST(0),ST(2)
+ FABS
+ FSUBP ST(1),ST(0)
+ FMUL DWORD PTR Constant0Dot5
+
+ FFREE ST(4)
+ FFREE ST(3)
+ FFREE ST(2)
+ FFREE ST(1)
+END;
+
+FUNCTION ClipDSP(Value:SINGLE):SINGLE; {$IFDEF CPU386} ASSEMBLER; REGISTER;
+ASM
+ MOV EAX,DWORD PTR Value
+ AND EAX,$80000000
+
+ AND DWORD PTR Value,$7FFFFFFF
+
+ FLD DWORD PTR Value
+ FLD1
+ FSUBP ST(1),ST(0)
+ FSTP DWORD PTR Value
+
+ MOV EDX,DWORD PTR Value
+ AND EDX,$80000000
+ SHR EDX,31
+ NEG EDX
+ AND DWORD PTR Value,EDX
+
+ FLD DWORD PTR Value
+ FLD1
+ FADDP ST(1),ST(0)
+ FSTP DWORD PTR Value
+
+ OR DWORD PTR Value,EAX
+
+ FLD DWORD PTR Value
+END;
+{$ELSE}
+VAR ValueCasted:LONGWORD ABSOLUTE Value;
+    Sign:LONGWORD;
+BEGIN
+ Sign:=ValueCasted AND $80000000;
+ ValueCasted:=ValueCasted AND $7FFFFFFF;
+ Value:=Value-1;
+ ValueCasted:=ValueCasted AND (-LONGWORD((ValueCasted AND $80000000) SHR 31));
+ Value:=Value+1;
+ ValueCasted:=ValueCasted OR Sign;
+ RESULT:=Value;
+END;
+{$ENDIF}
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="103-calculate-notes-java.html" class="btn btn-neutral float-right" title="Calculate notes (java)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="149-block-loop-benchmarking.html" class="btn btn-neutral float-left" title="Block/Loop Benchmarking" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Too many to list
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,471 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Karlsen Fast Ladder &mdash; Musicdsp.org  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="LP and HP filter" href="38-lp-and-hp-filter.html" />
+    <link rel="prev" title="Karlsen" href="141-karlsen.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Musicdsp.org
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Synthesis/index.html">Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Analysis/index.html">Analysis</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Filters</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="257-1-pole-lpf-for-smooth-parameter-changes.html">1 pole LPF for smooth parameter changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="185-1-rc-and-c-filter.html">1-RC and C filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="72-18db-oct-resonant-3-pole-lpf-with-tanh-dist.html">18dB/oct resonant 3 pole LPF with tanh() dist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="85-1st-and-2nd-order-pink-noise-filters.html">1st and 2nd order pink noise filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="236-3-band-equaliser.html">3 Band Equaliser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30-303-type-filter-with-saturation.html">303 type filter with saturation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="266-4th-order-linkwitz-riley-filters.html">4th order Linkwitz-Riley filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="31-all-pass-filters-a-good-explanation.html">All-Pass Filters, a good explanation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="181-another-4-pole-lowpass.html">Another 4-pole lowpass…</a></li>
+<li class="toctree-l2"><a class="reference internal" href="235-bass-booster.html">Bass Booster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="64-biquad-c-code.html">Biquad C code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="276-biquad-butterworth-chebyshev-n-order-m-channel-optimized-filters.html">Biquad, Butterworth, Chebyshev N-order, M-channel  optimized filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="243-butterworth-optimized-c-class.html">Butterworth Optimized C++ Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="128-c-class-implementation-of-rbj-filters.html">C++ class implementation of RBJ Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="226-c-weighed-filter.html">C-Weighed Filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="131-cascaded-resonant-lp-hp-filter.html">Cascaded resonant lp/hp filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="180-cool-sounding-lowpass-with-decibel-measured-resonance.html">Cool Sounding Lowpass With Decibel Measured Resonance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="135-dc-filter.html">DC filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="225-delphi-class-implementation-of-the-rbj-filters.html">Delphi Class implementation of the RBJ filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="122-digital-riaa-equalization-filter-coefficients.html">Digital RIAA equalization filter coefficients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="275-direct-form-ii-biquad.html">Direct Form II biquad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="174-direct-form-ii.html">Direct form II</a></li>
+<li class="toctree-l2"><a class="reference internal" href="214-fast-downsampling-with-antialiasing.html">Fast Downsampling With Antialiasing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="110-formant-filter.html">Formant filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="179-frequency-warped-fir-lattice.html">Frequency warped FIR lattice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="195-hilbert-filter-coefficient-calculation.html">Hilbert Filter Coefficient Calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="231-hiqh-quality-2-decimators.html">Hiqh quality /2 decimators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="141-karlsen.html">Karlsen</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Karlsen Fast Ladder</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#comments">Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="38-lp-and-hp-filter.html">LP and HP filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="229-lpf-24db-oct.html">LPF 24dB/Oct</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28-lowpass-filter-for-parameter-edge-filtering.html">Lowpass filter for parameter edge filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="270-mdct-and-imdct-based-on-fftw3.html">MDCT and IMDCT based on FFTW3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="196-moog-filter.html">Moog Filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="24-moog-vcf.html">Moog VCF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25-moog-vcf-variation-1.html">Moog VCF, variation 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26-moog-vcf-variation-2.html">Moog VCF, variation 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="35-notch-filter.html">Notch filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="116-one-pole-lp-and-hp.html">One pole LP and HP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="237-one-pole-filter-lp-and-hp.html">One pole filter, LP and HP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="117-one-pole-one-zero-lp-hp.html">One pole, one zero LP/HP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="118-one-zero-lp-hp.html">One zero, LP/HP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="263-one-liner-iir-filters-1st-order.html">One-Liner IIR Filters (1st order)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="265-output-limiter-using-envelope-follower-in-c.html">Output Limiter using Envelope Follower in C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="130-peak-notch-filter.html">Peak/Notch filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="253-perfect-lp4-filter.html">Perfect LP4 filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="76-pink-noise-filter.html">Pink noise filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="251-plot-filter-analyze-filter-characteristics.html">Plot Filter (Analyze filter characteristics)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="218-plotting-r-b-j-equalisers-in-excel.html">Plotting R B-J Equalisers in Excel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="39-polyphase-filters.html">Polyphase Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="223-polyphase-filters-delphi.html">Polyphase Filters (Delphi)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="247-poor-man-s-fiwiz.html">Poor Man’s FIWIZ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="34-prewarping.html">Prewarping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="197-rbj-audio-eq-cookbook.html">RBJ Audio-EQ-Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="198-rbj-audio-eq-cookbook.html">RBJ Audio-EQ-Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="209-remez-exchange-algorithm-parks-mcclellan.html">Remez Exchange Algorithm (Parks/McClellan)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="208-remez-remez-parks-mcclellan.html">Remez Remez (Parks/McClellan)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="27-resonant-iir-lowpass-12db-oct.html">Resonant IIR lowpass (12dB/oct)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="29-resonant-filter.html">Resonant filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="33-resonant-low-pass-filter.html">Resonant low pass filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="176-reverb-filter-generator.html">Reverb Filter Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="267-simple-tilt-equalizer.html">Simple Tilt equalizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="259-simple-biquad-filter-from-apple-com.html">Simple biquad filter from apple.com</a></li>
+<li class="toctree-l2"><a class="reference internal" href="258-spuc-s-open-source-filters.html">Spuc’s open source filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="142-state-variable-filter-chamberlin-version.html">State Variable Filter (Chamberlin version)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="92-state-variable-filter-double-sampled-stable.html">State Variable Filter (Double Sampled, Stable)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23-state-variable.html">State variable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="145-stilson-s-moog-filter-code.html">Stilson’s Moog filter code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="65-time-domain-convolution-with-o-n-log2-3.html">Time domain convolution with O(n^log2(3))</a></li>
+<li class="toctree-l2"><a class="reference internal" href="66-time-domain-convolution-with-o-n-log2-3.html">Time domain convolution with O(n^log2(3))</a></li>
+<li class="toctree-l2"><a class="reference internal" href="232-type-lpf-24db-oct.html">Type : LPF 24dB/Oct</a></li>
+<li class="toctree-l2"><a class="reference internal" href="32-various-biquad-filters.html">Various Biquad filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="194-windowed-sinc-fir-generator.html">Windowed Sinc FIR Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="37-zoelzer-biquad-filters.html">Zoelzer biquad filters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Effects/index.html">Effects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Other/index.html">Other</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Musicdsp.org</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Filters</a> &raquo;</li>
+        
+      <li>Karlsen Fast Ladder</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Filters/240-karlsen-fast-ladder.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="karlsen-fast-ladder">
+<h1>Karlsen Fast Ladder<a class="headerlink" href="#karlsen-fast-ladder" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><strong>Author or source:</strong> <a class="reference external" href="mailto:moc&#46;liamtoh&#37;&#52;&#48;neslrakevofira">moc<span>&#46;</span>liamtoh<span>&#64;</span>neslrakevofira</a></p></li>
+<li><p><strong>Type:</strong> 4 pole ladder emulation</p></li>
+<li><p><strong>Created:</strong> 2007-01-08 10:49:56</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">notes</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ATTN Admin: You should remove the old version named &quot;Karlsen&quot; on your website, and rather
+include this one instead.
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">code</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// An updated version of &quot;Karlsen 24dB Filter&quot;</span>
+<span class="c1">// This time, the fastest incarnation possible.</span>
+<span class="c1">// The very best greetings, Arif Ove Karlsen.</span>
+<span class="c1">// arifovekarlsen-&gt;hotmail.com</span>
+
+<span class="n">b_rscl</span> <span class="o">=</span> <span class="n">b_buf4</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">b_rscl</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span><span class="n">b_rscl</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;}</span>
+<span class="n">b_in</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">b_rscl</span> <span class="o">*</span> <span class="n">b_rez</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_in</span><span class="p">;</span>
+<span class="n">b_buf1</span> <span class="o">=</span> <span class="p">((</span><span class="o">-</span><span class="n">b_buf1</span> <span class="o">+</span> <span class="n">b_in1</span><span class="p">)</span> <span class="o">*</span> <span class="n">b_cut</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_buf1</span><span class="p">;</span>
+<span class="n">b_buf2</span> <span class="o">=</span> <span class="p">((</span><span class="o">-</span><span class="n">b_buf2</span> <span class="o">+</span> <span class="n">b_buf1</span><span class="p">)</span> <span class="o">*</span> <span class="n">b_cut</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_buf2</span><span class="p">;</span>
+<span class="n">b_buf3</span> <span class="o">=</span> <span class="p">((</span><span class="o">-</span><span class="n">b_buf3</span> <span class="o">+</span> <span class="n">b_buf2</span><span class="p">)</span> <span class="o">*</span> <span class="n">b_cut</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_buf3</span><span class="p">;</span>
+<span class="n">b_buf4</span> <span class="o">=</span> <span class="p">((</span><span class="o">-</span><span class="n">b_buf4</span> <span class="o">+</span> <span class="n">b_buf3</span><span class="p">)</span> <span class="o">*</span> <span class="n">b_cut</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_buf4</span><span class="p">;</span>
+<span class="n">b_lpout</span> <span class="o">=</span> <span class="n">b_buf4</span><span class="p">;</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2007-01-08 18:42:24</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;erehwon&#37;&#52;&#48;ydobon">moc<span>&#46;</span>erehwon<span>&#64;</span>ydobon</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Where are the coefficients? How do I set the cutoff frequency?
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2007-01-09 09:49:18</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:uh&#46;etle&#46;fni&#37;&#52;&#48;yfoocs">uh<span>&#46;</span>etle<span>&#46;</span>fni<span>&#64;</span>yfoocs</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>The parameters are:
+b_cut - cutoff freq
+b_rez - resonance
+b_in1 - input
+
+Cutoff is normalized frequency in rads (2*pi*cutoff/samplerate). Stability limit for b_cut is around 0.7-0.8.
+
+There&#39;s a typo, the input is sometimes b_in, sometimes b_in1. Anyways why do you use a b_ prefix for all your variables? Wouldn&#39;t it be more easy to read like this:
+
+resoclip = buf4; if (resoclip &gt; 1) resoclip = 1;
+in = in - (resoclip * res);
+buf1 = ((in - buf1) * cut) + buf1;
+buf2 = ((buf1 - buf2) * cut) + buf2;
+buf3 = ((buf2 - buf3) * cut) + buf3;
+buf4 = ((buf3 - buf4) * cut) + buf4;
+lpout = buf4;
+
+Also note that asymmetrical clipping gives you DC offset (at least that&#39;s what I get), so symmetrical clipping is better (and gives a much smoother sound).
+
+-- peter schoffhauzer
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2007-06-26 16:23:57</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;psd8rts&#37;&#52;&#48;fira">moc<span>&#46;</span>psd8rts<span>&#64;</span>fira</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Tee b_prefix is simply a procedure I began using when I started programming C. Influenced by the BEOS operating system. However it seemed to also make my code more readable, atleast to me. So I started using various prefixes for various things, making the variables easily reckognizable. Peter, everyone, I am now reachable on www.str8dsp.com - Do also check out the plugin offers there!
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2007-07-17 20:21:47</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;psd8rts&#37;&#52;&#48;koa">moc<span>&#46;</span>psd8rts<span>&#64;</span>koa</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Here&#39;s even another filter, I will probably never get around to making any product with this one so here it is, pseudo-vintage diode ladder.
+
+                    Diode Ladder, (unbuffered)
+
+                    // limit resonance, rzl, tweak smearing with fltw, 0.3230 seems to be a good vintage sound.
+                    in = in - rzl;
+                    in = in + ((-in +kbuf1) * cutoff);
+                    kbuf1 = in + ((-in + kbuf1) * fltw);
+                    in = in + ((-in +kbuf2) * cutoff);
+                    kbuf2 = in + ((-in + kbuf2) * fltw);
+                    etc..
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2007-09-09 22:37:08</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;oiduatniopxf&#37;&#52;&#48;ved">moc<span>&#46;</span>oiduatniopxf<span>&#64;</span>ved</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&quot;Cutoff is normalized frequency in rads (2*pi*cutoff/samplerate):
+
+This seems to be valid for very low ( &lt; 200 Hz ) frequencies - higher sample rates seem to be &quot;Closer&quot;
+
+thanks
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2010-07-17 09:25:41</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;liamerofegapkcehc&#37;&#52;&#48;liamerofegapkcehc">moc<span>&#46;</span>liamerofegapkcehc<span>&#64;</span>liamerofegapkcehc</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>I also did a 9th order gaussian filter (minimal phase), using only 5 orders, for my limiter, which is released under the GPL LICENCE. http://www.paradoxuncreated.com
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2012-11-14 08:15:06</p></li>
+<li><p><strong>By</strong>: Generalized perfect digital “ladder” filter, with the desired aspects of analog.</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Hi, I have now generalized the ladder filter, into fast code, and with the desired aspects of analog, but retaining digital perfectness.
+
+Please see my blog: http://paradoxuncreated.com/Blog/wordpress/?p=1360
+
+Peace Be With You.
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2013-06-21 14:44:18</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;golb&#37;&#52;&#48;eesesaelp">moc<span>&#46;</span>golb<span>&#64;</span>eesesaelp</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>I have also moved domains now, and consolidated the information on this ultimate digital filter, with &quot;analog sound&quot;, here:
+
+http://ovekarlsen.com/Blog/abdullah-filter/
+
+Peace Be With You!
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2016-02-14 01:31:32</p></li>
+<li><p><strong>By</strong>: ove hy karlsen &#64; facebook.com</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Karlsen Fast Ladder III - inspired by &quot;transistors set to work as diode&quot; type Roland filters. The best fast and non-nonsensical approximation of popular analog filter sound, as in for instance Roland SH-5, and the smaller TB-303.
+
+//Coupled with oversampling and simple oscs you will probably get the best analog approximation.
+
+//          // for nice low sat, or sharper type low deemphasis saturation, one can use a onepole shelf before the filter.
+//          b_lf = b_lf + ((-b_lf + b_v) * b_lfcut); // b_lfcut 0..1
+//          double b_lfhp = b_v - b_lf;
+//          b_v = b_lf + (b_lf1hp * ((b_lfgain*0.5)+1));
+
+            double b_rez = b_aflt4 - b_v; // no attenuation with rez, makes a stabler filter.
+            b_v = b_v - (b_rez*b_fres); // b_fres = resonance amount. 0..4 typical &quot;to selfoscillation&quot;, 0.6 covers a more saturated range.
+
+            double b_vnc = b_v; // clip, and adding back some nonclipped, to get a dynamic like analog.
+            if (b_v &gt; 1) {b_v = 1;} else if (b_v &lt; -1) {b_v = -1;}
+            b_v = b_vnc + ((-b_vnc + b_v) * 0.9840);
+
+            b_aflt1 = b_aflt1 + ((-b_aflt1 + b_v) * b_fenv); // straightforward 4 pole filter, (4 normalized feedback paths in series)
+            b_aflt2 = b_aflt2 + ((-b_aflt2 + b_aflt1) * b_fenv);
+            b_aflt3 = b_aflt3 + ((-b_aflt3 + b_aflt2) * b_fenv);
+            b_aflt4 = b_aflt4 + ((-b_aflt4 + b_aflt3) * b_fenv);
+            b_v = b_aflt4;
+
+// Behave.
+// Ove Hy Karlsen.
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2018-03-12 09:34:57</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;liamtoh&#37;&#52;&#48;06rorrexatnys">moc<span>&#46;</span>liamtoh<span>&#64;</span>06rorrexatnys</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Hey Ove
+
+I am wondering about the last filter the  Fast ladder diode III. Where is the input supposed to go?
+
+Sorry, I am still learning and thanks for some great filters, btw :)
+
+Thanks, Jakob
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="38-lp-and-hp-filter.html" class="btn btn-neutral float-right" title="LP and HP filter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="141-karlsen.html" class="btn btn-neutral float-left" title="Karlsen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Too many to list
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,354 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Stereo Width Control (Obtained Via Transfromation Matrix) &mdash; Musicdsp.org  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Time compression-expansion using standard phase vocoder" href="126-time-compression-expansion-using-standard-phase-vocoder.html" />
+    <link rel="prev" title="Stereo Field Rotation Via Transformation Matrix" href="255-stereo-field-rotation-via-transformation-matrix.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Musicdsp.org
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Synthesis/index.html">Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Analysis/index.html">Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Filters/index.html">Filters</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Effects</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="89-2-wave-shaping-things.html">2 Wave shaping things</a></li>
+<li class="toctree-l2"><a class="reference internal" href="70-alien-wah.html">Alien Wah</a></li>
+<li class="toctree-l2"><a class="reference internal" href="221-band-limited-pwm-generator.html">Band Limited PWM Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="96-bit-quantization-reduction-effect.html">Bit quantization/reduction effect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="98-class-for-waveguide-delay-effects.html">Class for waveguide/delay effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="169-compressor.html">Compressor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="124-decimator.html">Decimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="44-delay-time-calculation-for-reverberation.html">Delay time calculation for reverberation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="207-dynamic-convolution.html">Dynamic convolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="102-ece320-project-reverberation-w-parameter-control-from-pc.html">ECE320 project: Reverberation w/ parameter control from PC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="74-early-echo-s-with-image-mirror-technique.html">Early echo’s with image-mirror technique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="203-fold-back-distortion.html">Fold back distortion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="47-guitar-feedback.html">Guitar feedback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="139-lo-fi-crusher.html">Lo-Fi Crusher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="274-lookahead-limiter.html">Lookahead Limiter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="154-most-simple-and-smooth-feedback-delay.html">Most simple and smooth feedback delay</a></li>
+<li class="toctree-l2"><a class="reference internal" href="153-most-simple-static-delay.html">Most simple static delay</a></li>
+<li class="toctree-l2"><a class="reference internal" href="101-parallel-combs-delay-calculation.html">Parallel combs delay calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="78-phaser-code.html">Phaser code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="230-polynominal-waveshaper.html">Polynominal Waveshaper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="150-reverberation-algorithms-in-matlab.html">Reverberation Algorithms in Matlab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="45-reverberation-techniques.html">Reverberation techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="204-simple-compressor-class-c.html">Simple Compressor class (C++)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="42-soft-saturation.html">Soft saturation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="173-stereo-enhancer.html">Stereo Enhancer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="255-stereo-field-rotation-via-transformation-matrix.html">Stereo Field Rotation Via Transformation Matrix</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Stereo Width Control (Obtained Via Transfromation Matrix)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#comments">Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="126-time-compression-expansion-using-standard-phase-vocoder.html">Time compression-expansion using standard phase vocoder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="177-transistor-differential-amplifier-simulation.html">Transistor differential amplifier simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="277-univox-univibe-emulator.html">UniVox Univibe Emulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="104-variable-hardness-clipping-function.html">Variable-hardness clipping function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="41-waveshaper.html">WaveShaper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="43-waveshaper.html">Waveshaper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="46-waveshaper.html">Waveshaper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="114-waveshaper-simple-description.html">Waveshaper (simple description)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="86-waveshaper-gloubi-boulga.html">Waveshaper :: Gloubi-boulga</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Other/index.html">Other</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Musicdsp.org</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Effects</a> &raquo;</li>
+        
+      <li>Stereo Width Control (Obtained Via Transfromation Matrix)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Effects/256-stereo-width-control-obtained-via-transfromation-matrix.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="stereo-width-control-obtained-via-transfromation-matrix">
+<h1>Stereo Width Control (Obtained Via Transfromation Matrix)<a class="headerlink" href="#stereo-width-control-obtained-via-transfromation-matrix" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><strong>Author or source:</strong> Michael Gruhn</p></li>
+<li><p><strong>Type:</strong> Stereo Widener</p></li>
+<li><p><strong>Created:</strong> 2008-03-17 16:54:42</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">notes</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>(I was quite surprised that this wasn&#39;t already in the archive, so here it is.)
+
+This work is hereby placed in the public domain for all purposes, including use in
+commercial applications.
+
+&#39;width&#39; is the stretch factor of the stereo field:
+width &lt; 1: decrease in stereo width
+width = 1: no change
+width &gt; 1: increase in stereo width
+width = 0: mono
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">code</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// calculate scale coefficient</span>
+<span class="n">coef_S</span> <span class="o">=</span> <span class="n">width</span><span class="o">*</span><span class="mf">0.5</span><span class="p">;</span>
+
+<span class="c1">// then do this per sample</span>
+<span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">in_left</span>  <span class="o">+</span> <span class="n">in_right</span><span class="p">)</span><span class="o">*</span><span class="mf">0.5</span><span class="p">;</span>
+<span class="n">s</span> <span class="o">=</span> <span class="p">(</span><span class="n">in_right</span> <span class="o">-</span> <span class="n">in_left</span> <span class="p">)</span><span class="o">*</span><span class="n">coef_S</span><span class="p">;</span>
+
+<span class="n">out_left</span>  <span class="o">=</span> <span class="n">m</span> <span class="o">-</span> <span class="n">s</span><span class="p">;</span>
+<span class="n">out_right</span> <span class="o">=</span> <span class="n">m</span> <span class="o">+</span> <span class="n">s</span><span class="p">;</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2008-04-06 11:32:43</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:ku&#46;oc&#46;oohay&#37;&#52;&#48;895rennacs">ku<span>&#46;</span>oc<span>&#46;</span>oohay<span>&#64;</span>895rennacs</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Nice peace of code. I would add the following code at the end of the source to compensate for the
+loss/gain of amplitude:
+
+out_left  /= 0.5 + coef_S;
+out_right /= 0.5 + coef_S;
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2008-04-06 17:40:29</p></li>
+<li><p><strong>By</strong>: -</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Scanner, no I wouldn&#39;t add that. First off it is unnecessary calculation you can rescale the MS
+matrix to your liking already! Plus your methode will cause a boost by 6dBs when you set the width
+to 0 = mono. So mono signals get boosted by 6dB which I&#39;m sure isn&#39;t what you intented.
+
+Note: My original code is correct that is, when you&#39;d look at an audio signal on a goniometer it
+would scale the audio signal at the S-axis and leaving everything else unaffected.
+
+But as I don&#39;t want people that add the additional calculation that scanner requested (sorry not
+trying to mock you), an volume adjusted version.
+
+[code]
+// calc coefs
+tmp = 1/max(1 + width,2);
+coef_M = 1 * tmp;
+coef_S = width * tmp;
+
+// then do this per sample
+m = (in_left + in_right)*coef_M;
+s = (in_right - in_left )*coef_S;
+
+out_left = m - s;
+out_right = m + s;
+[/code]
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2008-04-06 21:42:16</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:ku&#46;oc&#46;oohay&#37;&#52;&#48;895rennacs">ku<span>&#46;</span>oc<span>&#46;</span>oohay<span>&#64;</span>895rennacs</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Hi Michael,
+
+Thanks for the correction, I have build your solution in PureData and it is better than my
+suggestion was. B.t.w. there was already a posting on stereo enhancement on this site, you can
+find it under the effects section.
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2008-04-07 22:47:14</p></li>
+<li><p><strong>By</strong>: -</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Scanner, no problem and yes I&#39;ve seen the &quot;Stereo Enhancer&quot; entry, though (even though it
+seems to try to achieve the same as this here) it is (as far as I can see) broken.
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="126-time-compression-expansion-using-standard-phase-vocoder.html" class="btn btn-neutral float-right" title="Time compression-expansion using standard phase vocoder" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="255-stereo-field-rotation-via-transformation-matrix.html" class="btn btn-neutral float-left" title="Stereo Field Rotation Via Transformation Matrix" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Too many to list
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

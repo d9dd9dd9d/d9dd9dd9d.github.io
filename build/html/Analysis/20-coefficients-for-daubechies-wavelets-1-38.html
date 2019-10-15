@@ -1,0 +1,236 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Coefficients for Daubechies wavelets 1-38 &mdash; Musicdsp.org  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="DFT" href="21-dft.html" />
+    <link rel="prev" title="Beat Detector Class" href="200-beat-detector-class.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Musicdsp.org
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Synthesis/index.html">Synthesis</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Analysis</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="200-beat-detector-class.html">Beat Detector Class</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Coefficients for Daubechies wavelets 1-38</a></li>
+<li class="toctree-l2"><a class="reference internal" href="21-dft.html">DFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="97-envelope-detector.html">Envelope detector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="136-envelope-follower-with-different-attack-and-release.html">Envelope follower with different attack and release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="79-fft.html">FFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="82-fft-classes-in-c-and-object-pascal.html">FFT classes in C++ and Object Pascal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-fast-in-place-walsh-hadamard-transform.html">Fast in-place Walsh-Hadamard Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="186-frequency-response-from-biquad-coefficients.html">Frequency response from biquad coefficients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="156-java-fft.html">Java FFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="137-lpc-analysis-autocorrelation-levinson-durbin-recursion.html">LPC analysis (autocorrelation + Levinson-Durbin recursion)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="53-look-ahead-limiting.html">Look ahead limiting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="108-magnitude-and-phase-plot-of-arbitrary-iir-function-up-to-5th-order.html">Magnitude and phase plot of arbitrary IIR function, up to 5th order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22-measuring-interpollation-noise.html">Measuring interpollation noise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="146-qft-and-dqft-double-precision-classes.html">QFT and DQFT (double precision) classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-simple-peak-follower.html">Simple peak follower</a></li>
+<li class="toctree-l2"><a class="reference internal" href="107-tone-detection-with-goertzel.html">Tone detection with Goertzel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="172-tone-detection-with-goertzel-x86-asm.html">Tone detection with Goertzel (x86 ASM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="264-vintage-vu-meters-tutorial.html">Vintage VU meters tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Filters/index.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Effects/index.html">Effects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Other/index.html">Other</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Musicdsp.org</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Analysis</a> &raquo;</li>
+        
+      <li>Coefficients for Daubechies wavelets 1-38</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Analysis/20-coefficients-for-daubechies-wavelets-1-38.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="coefficients-for-daubechies-wavelets-1-38">
+<h1>Coefficients for Daubechies wavelets 1-38<a class="headerlink" href="#coefficients-for-daubechies-wavelets-1-38" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><strong>Author or source:</strong> Computed by Kazuo Hatano, Compiled and verified by Olli Niemitalo</p></li>
+<li><p><strong>Type:</strong> wavelet transform</p></li>
+<li><p><strong>Created:</strong> 2002-01-17 02:00:43</p></li>
+<li><p><strong>Linked files:</strong> <a class="reference download internal" download="" href="../_downloads/b3c432f150025c913db22e84373d2e92/daub.h"><code class="xref download docutils literal notranslate"><span class="pre">daub.h</span></code></a>.</p></li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="21-dft.html" class="btn btn-neutral float-right" title="DFT" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="200-beat-detector-class.html" class="btn btn-neutral float-left" title="Beat Detector Class" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Too many to list
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

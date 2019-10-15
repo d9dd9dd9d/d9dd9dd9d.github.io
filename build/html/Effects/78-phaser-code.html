@@ -1,0 +1,710 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Phaser code &mdash; Musicdsp.org  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Polynominal Waveshaper" href="230-polynominal-waveshaper.html" />
+    <link rel="prev" title="Parallel combs delay calculation" href="101-parallel-combs-delay-calculation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Musicdsp.org
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Synthesis/index.html">Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Analysis/index.html">Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Filters/index.html">Filters</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Effects</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="89-2-wave-shaping-things.html">2 Wave shaping things</a></li>
+<li class="toctree-l2"><a class="reference internal" href="70-alien-wah.html">Alien Wah</a></li>
+<li class="toctree-l2"><a class="reference internal" href="221-band-limited-pwm-generator.html">Band Limited PWM Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="96-bit-quantization-reduction-effect.html">Bit quantization/reduction effect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="98-class-for-waveguide-delay-effects.html">Class for waveguide/delay effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="169-compressor.html">Compressor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="124-decimator.html">Decimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="44-delay-time-calculation-for-reverberation.html">Delay time calculation for reverberation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="207-dynamic-convolution.html">Dynamic convolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="102-ece320-project-reverberation-w-parameter-control-from-pc.html">ECE320 project: Reverberation w/ parameter control from PC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="74-early-echo-s-with-image-mirror-technique.html">Early echo’s with image-mirror technique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="203-fold-back-distortion.html">Fold back distortion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="47-guitar-feedback.html">Guitar feedback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="139-lo-fi-crusher.html">Lo-Fi Crusher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="274-lookahead-limiter.html">Lookahead Limiter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="154-most-simple-and-smooth-feedback-delay.html">Most simple and smooth feedback delay</a></li>
+<li class="toctree-l2"><a class="reference internal" href="153-most-simple-static-delay.html">Most simple static delay</a></li>
+<li class="toctree-l2"><a class="reference internal" href="101-parallel-combs-delay-calculation.html">Parallel combs delay calculation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Phaser code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#comments">Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="230-polynominal-waveshaper.html">Polynominal Waveshaper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="150-reverberation-algorithms-in-matlab.html">Reverberation Algorithms in Matlab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="45-reverberation-techniques.html">Reverberation techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="204-simple-compressor-class-c.html">Simple Compressor class (C++)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="42-soft-saturation.html">Soft saturation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="173-stereo-enhancer.html">Stereo Enhancer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="255-stereo-field-rotation-via-transformation-matrix.html">Stereo Field Rotation Via Transformation Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="256-stereo-width-control-obtained-via-transfromation-matrix.html">Stereo Width Control (Obtained Via Transfromation Matrix)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="126-time-compression-expansion-using-standard-phase-vocoder.html">Time compression-expansion using standard phase vocoder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="177-transistor-differential-amplifier-simulation.html">Transistor differential amplifier simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="277-univox-univibe-emulator.html">UniVox Univibe Emulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="104-variable-hardness-clipping-function.html">Variable-hardness clipping function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="41-waveshaper.html">WaveShaper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="43-waveshaper.html">Waveshaper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="46-waveshaper.html">Waveshaper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="114-waveshaper-simple-description.html">Waveshaper (simple description)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="86-waveshaper-gloubi-boulga.html">Waveshaper :: Gloubi-boulga</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Other/index.html">Other</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Musicdsp.org</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Effects</a> &raquo;</li>
+        
+      <li>Phaser code</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Effects/78-phaser-code.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="phaser-code">
+<h1>Phaser code<a class="headerlink" href="#phaser-code" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><strong>Author or source:</strong> Ross Bencina</p></li>
+<li><p><strong>Created:</strong> 2002-02-11 17:41:53</p></li>
+<li><p><strong>Linked files:</strong> <a class="reference download internal" download="" href="../_downloads/6be9ab07d8067af2635ff7e7b050724b/phaser.cpp"><code class="xref download docutils literal notranslate"><span class="pre">phaser.cpp</span></code></a>.</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">notes</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>(see linked file)
+</pre></div>
+</div>
+</div>
+<div class="section" id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-06-01 22:48:17</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:ed&#46;luosfosruoivas&#37;&#52;&#48;naitsirhC">ed<span>&#46;</span>luosfosruoivas<span>&#64;</span>naitsirhC</a></p></li>
+</ul>
+<div class="highlight-delphi notranslate"><div class="highlight"><pre><span></span><span class="c1">// Delphi / Object Pascal Translation:</span>
+<span class="c1">// -----------------------------------</span>
+
+<span class="k">unit</span> <span class="n">Phaser</span><span class="o">;</span>
+
+<span class="c1">// Still not efficient, but avoiding denormalisation.</span>
+
+<span class="k">interface</span>
+
+<span class="k">type</span>
+  <span class="n">TAllPass</span><span class="o">=</span><span class="k">class</span><span class="p">(</span><span class="kt">TObject</span><span class="p">)</span>
+  <span class="kp">private</span>
+    <span class="n">fDelay</span> <span class="o">:</span> <span class="kt">Single</span><span class="o">;</span>
+    <span class="n">fA1</span><span class="o">,</span> <span class="n">fZM1</span> <span class="o">:</span> <span class="kt">Single</span><span class="o">;</span>
+    <span class="n">fSampleRate</span> <span class="o">:</span> <span class="kt">Single</span><span class="o">;</span>
+    <span class="k">procedure</span> <span class="nf">SetDelay</span><span class="p">(</span><span class="n">v</span><span class="o">:</span><span class="kt">Single</span><span class="p">)</span><span class="o">;</span>
+  <span class="kp">public</span>
+    <span class="k">constructor</span> <span class="nf">Create</span><span class="o">;</span>
+    <span class="k">destructor</span> <span class="nf">Destroy</span><span class="o">;</span> <span class="kp">override</span><span class="o">;</span>
+    <span class="k">function</span> <span class="nf">Process</span><span class="p">(</span><span class="k">const</span> <span class="n">x</span><span class="o">:</span><span class="kt">single</span><span class="p">)</span><span class="o">:</span><span class="kt">single</span><span class="o">;</span>
+    <span class="k">property</span> <span class="py">SampleRate</span> <span class="o">:</span> <span class="kt">Single</span> <span class="kp">read</span> <span class="nf">fSampleRate</span> <span class="kp">write</span> <span class="nf">fSampleRate</span><span class="o">;</span>
+    <span class="k">property</span> <span class="py">Delay</span><span class="o">:</span> <span class="kt">Single</span> <span class="kp">read</span> <span class="nf">fDelay</span> <span class="kp">write</span> <span class="nf">SetDelay</span><span class="o">;</span>
+  <span class="k">end</span><span class="o">;</span>
+
+  <span class="n">TPhaser</span><span class="o">=</span><span class="k">class</span><span class="p">(</span><span class="kt">TObject</span><span class="p">)</span>
+  <span class="kp">private</span>
+    <span class="n">fZM1</span> <span class="o">:</span> <span class="kt">Single</span><span class="o">;</span>
+    <span class="n">fDepth</span> <span class="o">:</span> <span class="kt">Single</span><span class="o">;</span>
+    <span class="n">fLFOInc</span> <span class="o">:</span> <span class="kt">Single</span><span class="o">;</span>
+    <span class="n">fLFOPhase</span> <span class="o">:</span> <span class="kt">Single</span><span class="o">;</span>
+    <span class="n">fFeedBack</span> <span class="o">:</span> <span class="kt">Single</span><span class="o">;</span>
+    <span class="n">fRate</span> <span class="o">:</span> <span class="kt">Single</span><span class="o">;</span>
+    <span class="n">fMinimum</span><span class="o">:</span> <span class="kt">Single</span><span class="o">;</span>
+    <span class="n">fMaximum</span><span class="o">:</span> <span class="kt">Single</span><span class="o">;</span>
+    <span class="n">fMin</span><span class="o">:</span> <span class="kt">Single</span><span class="o">;</span>
+    <span class="n">fMax</span><span class="o">:</span> <span class="kt">Single</span><span class="o">;</span>
+    <span class="n">fSampleRate</span> <span class="o">:</span> <span class="kt">Single</span><span class="o">;</span>
+    <span class="n">fAllpassDelay</span><span class="o">:</span> <span class="k">array</span><span class="p">[</span><span class="mi">0</span><span class="o">..</span><span class="mi">5</span><span class="p">]</span> <span class="k">of</span> <span class="n">TAllPass</span><span class="o">;</span>
+    <span class="k">procedure</span> <span class="nf">SetSampleRate</span><span class="p">(</span><span class="n">v</span><span class="o">:</span><span class="kt">Single</span><span class="p">)</span><span class="o">;</span>
+    <span class="k">procedure</span> <span class="nf">SetMinimum</span><span class="p">(</span><span class="n">v</span><span class="o">:</span><span class="kt">Single</span><span class="p">)</span><span class="o">;</span>
+    <span class="k">procedure</span> <span class="nf">SetMaximum</span><span class="p">(</span><span class="n">v</span><span class="o">:</span><span class="kt">Single</span><span class="p">)</span><span class="o">;</span>
+    <span class="k">procedure</span> <span class="nf">SetRate</span><span class="p">(</span><span class="n">v</span><span class="o">:</span><span class="kt">Single</span><span class="p">)</span><span class="o">;</span>
+    <span class="k">procedure</span> <span class="nf">Calculate</span><span class="o">;</span>
+  <span class="kp">public</span>
+    <span class="k">constructor</span> <span class="nf">Create</span><span class="o">;</span>
+    <span class="k">destructor</span> <span class="nf">Destroy</span><span class="o">;</span> <span class="kp">override</span><span class="o">;</span>
+    <span class="k">function</span> <span class="nf">Process</span><span class="p">(</span><span class="k">const</span> <span class="n">x</span><span class="o">:</span><span class="kt">single</span><span class="p">)</span><span class="o">:</span><span class="kt">single</span><span class="o">;</span>
+    <span class="k">property</span> <span class="py">SampleRate</span> <span class="o">:</span> <span class="kt">Single</span> <span class="kp">read</span> <span class="nf">fSampleRate</span> <span class="kp">write</span> <span class="nf">SetSampleRate</span><span class="o">;</span>
+    <span class="k">property</span> <span class="py">Depth</span><span class="o">:</span> <span class="kt">Single</span> <span class="kp">read</span> <span class="nf">fDepth</span> <span class="kp">write</span> <span class="nf">fDepth</span><span class="o">;</span> <span class="c1">//0..1</span>
+    <span class="k">property</span> <span class="py">Feedback</span><span class="o">:</span> <span class="kt">Single</span> <span class="kp">read</span> <span class="nf">fFeedback</span> <span class="kp">write</span> <span class="nf">fFeedback</span><span class="o">;</span> <span class="c1">// 0..&lt;1</span>
+    <span class="k">property</span> <span class="py">Minimum</span><span class="o">:</span> <span class="kt">Single</span> <span class="kp">read</span> <span class="nf">fMin</span> <span class="kp">write</span> <span class="nf">SetMinimum</span><span class="o">;</span>
+    <span class="k">property</span> <span class="py">Maximum</span><span class="o">:</span> <span class="kt">Single</span> <span class="kp">read</span> <span class="nf">fMax</span> <span class="kp">write</span> <span class="nf">SetMaximum</span><span class="o">;</span>
+    <span class="k">property</span> <span class="py">Rate</span><span class="o">:</span> <span class="kt">Single</span> <span class="kp">read</span> <span class="nf">fRate</span> <span class="kp">write</span> <span class="nf">SetRate</span><span class="o">;</span>
+  <span class="k">end</span><span class="o">;</span>
+
+<span class="k">implementation</span>
+
+<span class="k">uses</span> <span class="n">DDSPUtils</span><span class="o">;</span>
+
+<span class="k">const</span> <span class="n">kDenorm</span><span class="o">=</span><span class="mf">1E-25</span><span class="o">;</span>
+
+<span class="k">constructor</span> <span class="nc">TAllpass</span><span class="o">.</span><span class="nf">Create</span><span class="o">;</span>
+<span class="k">begin</span>
+ <span class="k">inherited</span><span class="o">;</span>
+ <span class="n">fA1</span><span class="o">:=</span><span class="mi">0</span><span class="o">;</span>
+ <span class="n">fZM1</span><span class="o">:=</span><span class="mi">0</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span>
+
+<span class="k">destructor</span> <span class="nc">TAllpass</span><span class="o">.</span><span class="nf">Destroy</span><span class="o">;</span>
+<span class="k">begin</span>
+ <span class="k">inherited</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span>
+
+<span class="k">function</span> <span class="nc">TAllpass</span><span class="o">.</span><span class="nf">Process</span><span class="p">(</span><span class="k">const</span> <span class="n">x</span><span class="o">:</span><span class="kt">single</span><span class="p">)</span><span class="o">:</span><span class="kt">single</span><span class="o">;</span>
+<span class="k">begin</span>
+ <span class="bp">Result</span><span class="o">:=</span><span class="n">x</span><span class="o">*-</span><span class="n">fA1</span><span class="o">+</span><span class="n">fZM1</span><span class="o">;</span>
+ <span class="n">fZM1</span><span class="o">:=</span><span class="bp">Result</span><span class="o">*</span><span class="n">fA1</span><span class="o">+</span><span class="n">x</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span>
+
+<span class="k">procedure</span> <span class="nc">TAllpass</span><span class="o">.</span><span class="nf">SetDelay</span><span class="p">(</span><span class="n">v</span><span class="o">:</span><span class="kt">Single</span><span class="p">)</span><span class="o">;</span>
+<span class="k">begin</span>
+ <span class="n">fDelay</span><span class="o">:=</span><span class="n">v</span><span class="o">;</span>
+ <span class="n">fA1</span><span class="o">:=</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">v</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">v</span><span class="p">)</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span>
+
+<span class="k">constructor</span> <span class="nc">TPhaser</span><span class="o">.</span><span class="nf">Create</span><span class="o">;</span>
+<span class="k">var</span> <span class="n">i</span> <span class="o">:</span> <span class="kt">Integer</span><span class="o">;</span>
+<span class="k">begin</span>
+ <span class="k">inherited</span><span class="o">;</span>
+ <span class="n">fSampleRate</span><span class="o">:=</span><span class="mi">44100</span><span class="o">;</span>
+ <span class="n">fFeedBack</span><span class="o">:=</span><span class="mf">0.7</span><span class="o">;</span>
+ <span class="n">fLFOPhase</span><span class="o">:=</span><span class="mi">0</span><span class="o">;</span>
+ <span class="n">fDepth</span><span class="o">:=</span><span class="mi">1</span><span class="o">;</span>
+ <span class="n">fZM1</span><span class="o">:=</span><span class="mi">0</span><span class="o">;</span>
+ <span class="n">Minimum</span><span class="o">:=</span><span class="mi">440</span><span class="o">;</span>
+ <span class="n">Maximum</span><span class="o">:=</span><span class="mi">1600</span><span class="o">;</span>
+ <span class="n">Rate</span><span class="o">:=</span><span class="mi">5</span><span class="o">;</span>
+ <span class="k">for</span> <span class="n">i</span><span class="o">:=</span><span class="mi">0</span> <span class="k">to</span> <span class="nb">Length</span><span class="p">(</span><span class="n">fAllpassDelay</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+  <span class="k">do</span> <span class="n">fAllpassDelay</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">:=</span><span class="n">TAllpass</span><span class="o">.</span><span class="n">Create</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span>
+
+<span class="k">destructor</span> <span class="nc">TPhaser</span><span class="o">.</span><span class="nf">Destroy</span><span class="o">;</span>
+<span class="k">var</span> <span class="n">i</span> <span class="o">:</span> <span class="kt">Integer</span><span class="o">;</span>
+<span class="k">begin</span>
+ <span class="k">for</span> <span class="n">i</span><span class="o">:=</span><span class="mi">0</span> <span class="k">to</span> <span class="nb">Length</span><span class="p">(</span><span class="n">fAllpassDelay</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+  <span class="k">do</span> <span class="n">fAllpassDelay</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">Free</span><span class="o">;</span>
+ <span class="k">inherited</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span>
+
+<span class="k">procedure</span> <span class="nc">TPhaser</span><span class="o">.</span><span class="nf">SetRate</span><span class="p">(</span><span class="n">v</span><span class="o">:</span><span class="kt">Single</span><span class="p">)</span><span class="o">;</span>
+<span class="k">begin</span>
+ <span class="n">fLFOInc</span><span class="o">:=</span><span class="mi">2</span><span class="o">*</span><span class="nb">Pi</span><span class="o">*</span><span class="p">(</span><span class="n">v</span><span class="o">/</span><span class="n">SampleRate</span><span class="p">)</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span>
+
+<span class="k">procedure</span> <span class="nc">TPhaser</span><span class="o">.</span><span class="nf">Calculate</span><span class="o">;</span>
+<span class="k">begin</span>
+ <span class="n">fMin</span><span class="o">:=</span> <span class="n">fMinimum</span> <span class="o">/</span> <span class="p">(</span><span class="n">fSampleRate</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">;</span>
+ <span class="n">fMax</span><span class="o">:=</span> <span class="n">fMinimum</span> <span class="o">/</span> <span class="p">(</span><span class="n">fSampleRate</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span>
+
+<span class="k">procedure</span> <span class="nc">TPhaser</span><span class="o">.</span><span class="nf">SetMinimum</span><span class="p">(</span><span class="n">v</span><span class="o">:</span><span class="kt">Single</span><span class="p">)</span><span class="o">;</span>
+<span class="k">begin</span>
+ <span class="n">fMinimum</span><span class="o">:=</span><span class="n">v</span><span class="o">;</span>
+ <span class="n">Calculate</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span>
+
+<span class="k">procedure</span> <span class="nc">TPhaser</span><span class="o">.</span><span class="nf">SetMaximum</span><span class="p">(</span><span class="n">v</span><span class="o">:</span><span class="kt">Single</span><span class="p">)</span><span class="o">;</span>
+<span class="k">begin</span>
+ <span class="n">fMaximum</span><span class="o">:=</span><span class="n">v</span><span class="o">;</span>
+ <span class="n">Calculate</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span>
+
+<span class="k">function</span> <span class="nc">TPhaser</span><span class="o">.</span><span class="nf">Process</span><span class="p">(</span><span class="k">const</span> <span class="n">x</span><span class="o">:</span><span class="kt">single</span><span class="p">)</span><span class="o">:</span><span class="kt">single</span><span class="o">;</span>
+<span class="k">var</span> <span class="n">d</span><span class="o">:</span> <span class="kt">Single</span><span class="o">;</span>
+    <span class="n">i</span><span class="o">:</span> <span class="kt">Integer</span><span class="o">;</span>
+<span class="k">begin</span>
+ <span class="c1">//calculate and update phaser sweep lfo...</span>
+ <span class="n">d</span> <span class="o">:=</span> <span class="n">fMin</span> <span class="o">+</span> <span class="p">(</span><span class="n">fMax</span><span class="o">-</span><span class="n">fMin</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="nb">sin</span><span class="p">(</span> <span class="n">fLFOPhase</span> <span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">;</span>
+ <span class="n">fLFOPhase</span> <span class="o">:=</span> <span class="n">fLFOPhase</span> <span class="o">+</span> <span class="n">fLFOInc</span><span class="o">;</span>
+ <span class="k">if</span> <span class="n">fLFOPhase</span><span class="o">&gt;=</span><span class="nb">Pi</span><span class="o">*</span><span class="mi">2</span>
+  <span class="k">then</span> <span class="n">fLFOPhase</span><span class="o">:=</span><span class="n">fLFOPhase</span><span class="o">-</span><span class="nb">Pi</span><span class="o">*</span><span class="mi">2</span><span class="o">;</span>
+
+ <span class="c1">//update filter coeffs</span>
+ <span class="k">for</span> <span class="n">i</span><span class="o">:=</span><span class="mi">0</span> <span class="k">to</span> <span class="mi">5</span> <span class="k">do</span> <span class="n">fAllpassDelay</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">Delay</span><span class="o">:=</span><span class="n">d</span><span class="o">;</span>
+
+ <span class="c1">//calculate output</span>
+ <span class="bp">Result</span><span class="o">:=</span> <span class="n">fAllpassDelay</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span>
+          <span class="n">fAllpassDelay</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span>
+          <span class="n">fAllpassDelay</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span>
+          <span class="n">fAllpassDelay</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span>
+          <span class="n">fAllpassDelay</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span>
+          <span class="n">fAllpassDelay</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">kDenorm</span> <span class="o">+</span> <span class="n">x</span> <span class="o">+</span> <span class="n">fZM1</span> <span class="o">*</span> <span class="n">fFeedBack</span> <span class="p">))))))</span><span class="o">;</span>
+ <span class="n">fZM1</span><span class="o">:=</span><span class="n">tanh2a</span><span class="p">(</span><span class="bp">Result</span><span class="p">)</span><span class="o">;</span>
+
+ <span class="bp">Result</span><span class="o">:=</span><span class="n">tanh2a</span><span class="p">(</span><span class="mf">1.4</span><span class="o">*</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="bp">Result</span> <span class="o">*</span> <span class="n">fDepth</span><span class="p">))</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span>
+
+<span class="k">procedure</span> <span class="nc">TPhaser</span><span class="o">.</span><span class="nf">SetSampleRate</span><span class="p">(</span><span class="n">v</span><span class="o">:</span><span class="kt">Single</span><span class="p">)</span><span class="o">;</span>
+<span class="k">begin</span>
+ <span class="n">fSampleRate</span><span class="o">:=</span><span class="n">v</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span>
+
+<span class="k">end</span><span class="o">.</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-06-01 22:51:25</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:ed&#46;luosfosruoivas&#37;&#52;&#48;naitsirhC">ed<span>&#46;</span>luosfosruoivas<span>&#64;</span>naitsirhC</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Ups, forgot to remove my special, magic incredients &quot;tanh2a(1.4*(&quot;. It&#39;s just
+to make the sound even warmer.
+
+The frequency range i used for Minimum and Maximum is 0..22000. But I believe there
+is still an error in that formula. The input range doesn&#39;t matter (if you remove my special
+incredient), because it is a linear system.
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-06-05 21:40:35</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;yddaht&#37;&#52;&#48;yddaht">moc<span>&#46;</span>yddaht<span>&#64;</span>yddaht</a></p></li>
+</ul>
+<div class="highlight-delphi notranslate"><div class="highlight"><pre><span></span><span class="c1">// I thought I already posted this but here&#39;s my interpretation for Delphi and KOL.</span>
+<span class="c1">// The reason I repost this, is that it is rather efficient and has no denormal problems.</span>
+
+<span class="k">unit</span> <span class="n">Phaser</span><span class="o">;</span>
+<span class="cm">{</span>
+
+<span class="cm">       Unit: Phaser</span>
+<span class="cm">    purpose: Phaser is a six stage phase shifter, intended to reproduce the</span>
+<span class="cm">             sound of a traditional analogue phaser effect.</span>
+<span class="cm">     Author: Thaddy de Koning, based on a musicdsp.pdf C++ Phaser by</span>
+<span class="cm">             Ross Bencina.http://www.musicdsp.org/musicdsp.pdf</span>
+<span class="cm">  Copyright: This version (c) 2003, Thaddy de Koning</span>
+<span class="cm">             Copyrighted Freeware</span>
+
+<span class="cm">    Remarks: his implementation uses six first order all-pass filters in</span>
+<span class="cm">             series, with delay time modulated by a sinusoidal.</span>
+<span class="cm">             This implementation was created to be clear, not efficient.</span>
+<span class="cm">             Obvious modifications include using a table lookup for the lfo,</span>
+<span class="cm">             not updating the filter delay times every sample, and not</span>
+<span class="cm">             tuning all of the filters to the same delay time.</span>
+
+<span class="cm">             It sounds sensationally good!</span>
+<span class="cm">}</span>
+
+<span class="k">interface</span>
+
+<span class="k">uses</span> <span class="n">Kol</span><span class="o">,</span> <span class="n">AudioUtils</span><span class="o">,</span> <span class="n">SimpleAllpass</span><span class="o">;</span>
+
+<span class="k">type</span>
+  <span class="n">PPhaser</span> <span class="o">=</span> <span class="o">^</span><span class="n">TPhaser</span><span class="o">;</span>
+  <span class="n">TPhaser</span> <span class="o">=</span> <span class="k">object</span><span class="p">(</span><span class="n">Tobj</span><span class="p">)</span>
+  <span class="kp">private</span>
+    <span class="n">FSamplerate</span><span class="o">:</span> <span class="kt">single</span><span class="o">;</span>
+    <span class="n">FFeedback</span><span class="o">:</span> <span class="kt">single</span><span class="o">;</span>
+    <span class="n">FlfoPhase</span><span class="o">:</span> <span class="kt">single</span><span class="o">;</span>
+    <span class="n">FDepth</span><span class="o">:</span> <span class="kt">single</span><span class="o">;</span>
+    <span class="n">FOldOutput</span><span class="o">:</span> <span class="kt">single</span><span class="o">;</span>
+    <span class="n">FMinDelta</span><span class="o">:</span> <span class="kt">single</span><span class="o">;</span>
+    <span class="n">FMaxDelta</span><span class="o">:</span> <span class="kt">single</span><span class="o">;</span>
+    <span class="n">FLfoStep</span><span class="o">:</span> <span class="kt">single</span><span class="o">;</span>
+    <span class="n">FAllpDelays</span><span class="o">:</span> <span class="k">array</span><span class="p">[</span><span class="mi">0</span><span class="o">..</span><span class="mi">5</span><span class="p">]</span> <span class="k">of</span> <span class="n">PAllpassdelay</span><span class="o">;</span>
+    <span class="n">FLowFrequency</span><span class="o">:</span> <span class="kt">single</span><span class="o">;</span>
+    <span class="n">FHighFrequency</span><span class="o">:</span> <span class="kt">single</span><span class="o">;</span>
+    <span class="k">procedure</span> <span class="nf">SetRate</span><span class="p">(</span><span class="n">TheRate</span><span class="o">:</span> <span class="kt">single</span><span class="p">)</span><span class="o">;</span> <span class="c1">// cps</span>
+    <span class="k">procedure</span> <span class="nf">SetFeedback</span><span class="p">(</span><span class="n">TheFeedback</span><span class="o">:</span> <span class="kt">single</span><span class="p">)</span><span class="o">;</span> <span class="c1">// 0 -&gt; &lt;1.</span>
+    <span class="k">procedure</span> <span class="nf">SetDepth</span><span class="p">(</span><span class="n">TheDepth</span><span class="o">:</span> <span class="kt">single</span><span class="p">)</span><span class="o">;</span>
+    <span class="k">procedure</span> <span class="nf">SetHighFrequency</span><span class="p">(</span><span class="k">const</span> <span class="n">Value</span><span class="o">:</span> <span class="kt">single</span><span class="p">)</span><span class="o">;</span>
+    <span class="k">procedure</span> <span class="nf">SetLowFrequency</span><span class="p">(</span><span class="k">const</span> <span class="n">Value</span><span class="o">:</span> <span class="kt">single</span><span class="p">)</span><span class="o">;</span> <span class="c1">// 0 -&gt; 1.</span>
+    <span class="k">procedure</span> <span class="nf">SetRange</span><span class="p">(</span><span class="n">LowFreq</span><span class="o">,</span> <span class="n">HighFreq</span><span class="o">:</span> <span class="kt">single</span><span class="p">)</span><span class="o">;</span> <span class="c1">// Hz</span>
+  <span class="kp">public</span>
+    <span class="k">destructor</span> <span class="nf">Destroy</span><span class="o">;</span> <span class="kp">virtual</span><span class="o">;</span>
+    <span class="k">function</span> <span class="nf">Process</span><span class="p">(</span><span class="n">inSamp</span><span class="o">:</span> <span class="kt">single</span><span class="p">)</span><span class="o">:</span> <span class="kt">single</span><span class="o">;</span>
+    <span class="k">property</span> <span class="py">Rate</span><span class="o">:</span> <span class="kt">single</span> <span class="kp">write</span> <span class="nf">setrate</span><span class="o">;</span><span class="c1">//In Cycles per second</span>
+    <span class="k">property</span> <span class="py">Depth</span><span class="o">:</span> <span class="kt">single</span> <span class="kp">read</span> <span class="nf">Fdepth</span> <span class="kp">write</span> <span class="nf">setdepth</span><span class="o">;</span><span class="c1">//0.. 1</span>
+    <span class="k">property</span> <span class="py">Feedback</span><span class="o">:</span> <span class="kt">single</span> <span class="kp">read</span> <span class="nf">FFeedback</span> <span class="kp">write</span> <span class="nf">setfeedback</span><span class="o">;</span> <span class="c1">//0..&lt; 1</span>
+    <span class="k">property</span> <span class="py">Samplerate</span><span class="o">:</span> <span class="kt">single</span> <span class="kp">read</span> <span class="nf">Fsamplerate</span> <span class="kp">write</span> <span class="nf">Fsamplerate</span><span class="o">;</span>
+    <span class="k">property</span> <span class="py">LowFrequency</span><span class="o">:</span> <span class="kt">single</span> <span class="kp">read</span> <span class="nf">FLowFrequency</span> <span class="kp">write</span> <span class="nf">SetLowFrequency</span><span class="o">;</span>
+    <span class="k">property</span> <span class="py">HighFrequency</span><span class="o">:</span> <span class="kt">single</span> <span class="kp">read</span> <span class="nf">FHighFrequency</span> <span class="kp">write</span> <span class="nf">SetHighFrequency</span><span class="o">;</span>
+  <span class="k">end</span><span class="o">;</span>
+
+<span class="k">function</span> <span class="nf">NewPhaser</span><span class="o">:</span> <span class="n">PPhaser</span><span class="o">;</span>
+
+<span class="k">implementation</span>
+
+
+
+<span class="cm">{ TPhaser }</span>
+<span class="k">function</span> <span class="nf">NewPhaser</span><span class="o">:</span> <span class="n">PPhaser</span><span class="o">;</span>
+<span class="k">var</span>
+  <span class="n">i</span><span class="o">:</span> <span class="kt">integer</span><span class="o">;</span>
+<span class="k">begin</span>
+  <span class="k">New</span><span class="p">(</span><span class="bp">Result</span><span class="o">,</span> <span class="n">Create</span><span class="p">)</span><span class="o">;</span>
+  <span class="k">with</span> <span class="bp">Result</span><span class="o">^</span> <span class="k">do</span>
+  <span class="k">begin</span>
+    <span class="n">Fsamplerate</span> <span class="o">:=</span> <span class="mi">44100</span><span class="o">;</span>
+    <span class="n">FFeedback</span> <span class="o">:=</span> <span class="mf">0.7</span><span class="o">;</span>
+    <span class="n">FlfoPhase</span> <span class="o">:=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="n">Fdepth</span> <span class="o">:=</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="n">FOldOutput</span> <span class="o">:=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="n">setrange</span><span class="p">(</span><span class="mi">440</span><span class="o">,</span><span class="mi">1720</span><span class="p">)</span><span class="o">;</span>
+    <span class="n">setrate</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span><span class="o">;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="mi">0</span> <span class="k">to</span> <span class="mi">5</span> <span class="k">do</span>
+      <span class="n">FAllpDelays</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">:=</span> <span class="n">NewAllpassDelay</span><span class="o">;</span>
+  <span class="k">end</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span>
+
+<span class="k">destructor</span> <span class="nc">TPhaser</span><span class="o">.</span><span class="nf">Destroy</span><span class="o">;</span>
+<span class="k">var</span>
+  <span class="n">i</span><span class="o">:</span> <span class="kt">integer</span><span class="o">;</span>
+<span class="k">begin</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="mi">5</span> <span class="k">downto</span> <span class="mi">0</span> <span class="k">do</span> <span class="n">FAllpDelays</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">Free</span><span class="o">;</span>
+  <span class="k">inherited</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span>
+
+<span class="k">procedure</span> <span class="nc">TPhaser</span><span class="o">.</span><span class="nf">SetDepth</span><span class="p">(</span><span class="n">TheDepth</span><span class="o">:</span> <span class="kt">single</span><span class="p">)</span><span class="o">;</span> <span class="c1">// 0 -&gt; 1.</span>
+<span class="k">begin</span>
+  <span class="n">Fdepth</span> <span class="o">:=</span> <span class="n">TheDepth</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span>
+
+<span class="k">procedure</span> <span class="nc">TPhaser</span><span class="o">.</span><span class="nf">SetFeedback</span><span class="p">(</span><span class="n">TheFeedback</span><span class="o">:</span> <span class="kt">single</span><span class="p">)</span><span class="o">;</span><span class="c1">//0..1;</span>
+<span class="k">begin</span>
+  <span class="n">FFeedback</span> <span class="o">:=</span> <span class="n">TheFeedback</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span>
+
+<span class="k">procedure</span> <span class="nc">TPhaser</span><span class="o">.</span><span class="nf">SetRange</span><span class="p">(</span><span class="n">LowFreq</span><span class="o">,</span> <span class="n">HighFreq</span><span class="o">:</span> <span class="kt">single</span><span class="p">)</span><span class="o">;</span>
+<span class="k">begin</span>
+  <span class="n">FMinDelta</span> <span class="o">:=</span> <span class="n">LowFreq</span> <span class="o">/</span> <span class="p">(</span><span class="n">FsampleRate</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span><span class="o">;</span>
+  <span class="n">FMaxDelta</span> <span class="o">:=</span> <span class="n">HighFreq</span> <span class="o">/</span> <span class="p">(</span><span class="n">FsampleRate</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span>
+
+<span class="k">procedure</span> <span class="nc">TPhaser</span><span class="o">.</span><span class="nf">SetRate</span><span class="p">(</span><span class="n">TheRate</span><span class="o">:</span> <span class="kt">single</span><span class="p">)</span><span class="o">;</span>
+<span class="k">begin</span>
+  <span class="n">FLfoStep</span> <span class="o">:=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">_PI</span> <span class="o">*</span> <span class="p">(</span><span class="n">Therate</span> <span class="o">/</span> <span class="n">FsampleRate</span><span class="p">)</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span>
+
+<span class="k">const</span>
+  <span class="n">_1</span><span class="o">:</span><span class="kt">single</span><span class="o">=</span><span class="mi">1</span><span class="o">;</span>
+  <span class="n">_2</span><span class="o">:</span><span class="kt">single</span><span class="o">=</span><span class="mi">2</span><span class="o">;</span>
+<span class="k">function</span> <span class="nc">TPhaser</span><span class="o">.</span><span class="nf">Process</span><span class="p">(</span><span class="n">inSamp</span><span class="o">:</span> <span class="kt">single</span><span class="p">)</span><span class="o">:</span> <span class="kt">single</span><span class="o">;</span>
+<span class="k">var</span>
+  <span class="n">Delaytime</span><span class="o">,</span> <span class="n">Output</span><span class="o">:</span> <span class="kt">single</span><span class="o">;</span>
+  <span class="n">i</span><span class="o">:</span> <span class="kt">integer</span><span class="o">;</span>
+<span class="k">begin</span>
+
+  <span class="c1">//calculate and Process phaser sweep lfo...</span>
+  <span class="n">Delaytime</span> <span class="o">:=</span> <span class="n">FMinDelta</span> <span class="o">+</span> <span class="p">(</span><span class="n">FMaxDelta</span> <span class="o">-</span> <span class="n">FMinDelta</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="nb">sin</span><span class="p">(</span><span class="n">FlfoPhase</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span><span class="o">;</span>
+  <span class="n">FlfoPhase</span> <span class="o">:=</span> <span class="n">FlfoPhase</span> <span class="o">+</span> <span class="n">FLfoStep</span><span class="o">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">FlfoPhase</span> <span class="o">&gt;=</span> <span class="n">_PI</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="k">then</span>
+    <span class="n">FlfoPhase</span> <span class="o">:=</span> <span class="n">FlfoPhase</span> <span class="o">-</span> <span class="n">_PI</span> <span class="o">*</span> <span class="mi">2</span><span class="o">;</span>
+  <span class="c1">//Process filter coeffs</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="mi">0</span> <span class="k">to</span> <span class="mi">5</span> <span class="k">do</span>
+    <span class="n">FAllpDelays</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">setdelay</span><span class="p">(</span><span class="n">Delaytime</span><span class="p">)</span><span class="o">;</span>
+  <span class="c1">//calculate output</span>
+  <span class="n">Output</span> <span class="o">:=</span> <span class="n">FAllpDelays</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">FAllpDelays</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">Process</span>
+    <span class="p">(</span><span class="n">FAllpDelays</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">FAllpDelays</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">FAllpDelays</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">Process</span>
+    <span class="p">(</span><span class="n">FAllpDelays</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">inSamp</span> <span class="o">+</span> <span class="n">FOldOutput</span> <span class="o">*</span> <span class="n">FFeedback</span><span class="p">))))))</span><span class="o">;</span>
+  <span class="n">FOldOutput</span> <span class="o">:=</span> <span class="n">Output</span><span class="o">;</span>
+  <span class="bp">Result</span> <span class="o">:=</span> <span class="n">kDenorm</span> <span class="o">+</span> <span class="n">inSamp</span> <span class="o">+</span> <span class="n">Output</span> <span class="o">*</span> <span class="n">Fdepth</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span>
+
+<span class="k">procedure</span> <span class="nc">TPhaser</span><span class="o">.</span><span class="nf">SetHighFrequency</span><span class="p">(</span><span class="k">const</span> <span class="n">Value</span><span class="o">:</span> <span class="kt">single</span><span class="p">)</span><span class="o">;</span>
+<span class="k">begin</span>
+  <span class="n">FHighFrequency</span> <span class="o">:=</span> <span class="n">Value</span><span class="o">;</span>
+  <span class="n">setrange</span><span class="p">(</span><span class="n">FlowFrequency</span><span class="o">,</span> <span class="n">FHighFrequency</span><span class="p">)</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span>
+
+<span class="k">procedure</span> <span class="nc">TPhaser</span><span class="o">.</span><span class="nf">SetLowFrequency</span><span class="p">(</span><span class="k">const</span> <span class="n">Value</span><span class="o">:</span> <span class="kt">single</span><span class="p">)</span><span class="o">;</span>
+<span class="k">begin</span>
+  <span class="n">FLowFrequency</span> <span class="o">:=</span> <span class="n">Value</span><span class="o">;</span>
+  <span class="n">setrange</span><span class="p">(</span><span class="n">FlowFrequency</span><span class="o">,</span> <span class="n">FHighFrequency</span><span class="p">)</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span>
+
+<span class="k">end</span><span class="o">.</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-06-05 21:44:47</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;yddaht&#37;&#52;&#48;yddaht">moc<span>&#46;</span>yddaht<span>&#64;</span>yddaht</a></p></li>
+</ul>
+<div class="highlight-delphi notranslate"><div class="highlight"><pre><span></span><span class="c1">// And here the allpass:</span>
+<span class="k">unit</span> <span class="n">SimpleAllpass</span><span class="o">;</span>
+<span class="cm">{</span>
+<span class="cm">       Unit: SimpleAllpass</span>
+<span class="cm">    purpose: Simple allpass delay for creating reverbs and phasing/flanging</span>
+<span class="cm">     Author:</span>
+<span class="cm">  Copyright:</span>
+<span class="cm">    Remarks:</span>
+<span class="cm">}</span>
+<span class="k">interface</span>
+<span class="k">uses</span> <span class="n">kol</span><span class="o">,</span> <span class="n">audioutils</span><span class="o">;</span>
+
+<span class="k">type</span>
+  <span class="n">PAllpassDelay</span> <span class="o">=</span> <span class="o">^</span><span class="n">TAllpassDelay</span><span class="o">;</span>
+  <span class="n">TAllpassdelay</span> <span class="o">=</span> <span class="k">object</span><span class="p">(</span><span class="n">Tobj</span><span class="p">)</span>
+  <span class="kp">protected</span>
+    <span class="n">Fa1</span><span class="o">,</span>
+    <span class="n">Fzm1</span><span class="o">:</span> <span class="kt">single</span><span class="o">;</span>
+  <span class="kp">public</span>
+    <span class="k">procedure</span> <span class="nf">SetDelay</span><span class="p">(</span><span class="n">delay</span><span class="o">:</span> <span class="kt">single</span><span class="p">)</span><span class="o">;</span><span class="c1">//sample delay time</span>
+    <span class="k">function</span> <span class="nf">Process</span><span class="p">(</span><span class="n">inSamp</span><span class="o">:</span> <span class="kt">single</span><span class="p">)</span><span class="o">:</span> <span class="kt">single</span><span class="o">;</span>
+  <span class="k">end</span><span class="o">;</span>
+
+<span class="k">function</span> <span class="nf">NewAllpassDelay</span><span class="o">:</span> <span class="n">PAllpassDelay</span><span class="o">;</span>
+
+
+<span class="k">implementation</span>
+
+<span class="k">function</span> <span class="nf">NewAllpassDelay</span><span class="o">:</span> <span class="n">PAllpassDelay</span><span class="o">;</span>
+<span class="k">begin</span>
+  <span class="k">New</span><span class="p">(</span><span class="bp">Result</span><span class="o">,</span> <span class="n">Create</span><span class="p">)</span><span class="o">;</span>
+  <span class="k">with</span> <span class="bp">Result</span><span class="o">^</span> <span class="k">do</span>
+  <span class="k">begin</span>
+    <span class="n">Fa1</span> <span class="o">:=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="n">Fzm1</span> <span class="o">:=</span> <span class="mi">0</span><span class="o">;</span>
+  <span class="k">end</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span>
+
+<span class="k">function</span> <span class="nc">TallpassDelay</span><span class="o">.</span><span class="nf">Process</span><span class="p">(</span><span class="n">Insamp</span><span class="o">:</span> <span class="kt">single</span><span class="p">)</span><span class="o">:</span> <span class="kt">single</span><span class="o">;</span>
+<span class="k">begin</span>
+  <span class="bp">Result</span> <span class="o">:=</span> <span class="n">kDenorm</span><span class="o">+</span><span class="n">inSamp</span> <span class="o">*</span> <span class="o">-</span><span class="n">Fa1</span> <span class="o">+</span> <span class="n">Fzm1</span><span class="o">;</span>
+  <span class="n">Fzm1</span> <span class="o">:=</span> <span class="bp">Result</span> <span class="o">*</span> <span class="n">Fa1</span> <span class="o">+</span> <span class="n">inSamp</span> <span class="o">+</span> <span class="n">kDenorm</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span>
+
+<span class="k">procedure</span> <span class="nc">TAllpassDelay</span><span class="o">.</span><span class="nf">setdelay</span><span class="p">(</span><span class="n">delay</span><span class="o">:</span> <span class="kt">single</span><span class="p">)</span><span class="o">;</span><span class="c1">// In sample time</span>
+<span class="k">begin</span>
+  <span class="n">Fa1</span> <span class="o">:=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">delay</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">delay</span><span class="p">)</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span>
+
+<span class="k">end</span><span class="o">.</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-06-06 08:15:37</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:ed&#46;luosfosruoivas&#37;&#52;&#48;naitsirhC">ed<span>&#46;</span>luosfosruoivas<span>&#64;</span>naitsirhC</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>// You&#39;ll get a good performance boost by combining the 6 allpasses to one and rewriting
+// that one to FPU code. Heavy speed increase AND you can make the number of allpasses
+// variable as well.
+
+// This would look similar to this:
+
+function TMasterAllpass.Process(const x:single):single;
+var a : array[0..1] of Single;
+    b : Single;
+    i : Integer;
+begin
+ a[0]:=x*fA1+fY[0];
+ b:=a[0]*fA1;
+ fY[0]:=b-x;
+
+ i:=0;
+ while i&lt;fStages do
+  begin
+   a[1]:=b-fY[i+1];
+   b:=a[1]*fA1;
+   fY[i+1]:=a[0]-b;
+   a[0]:=b-fY[i+2];
+   b:=a[0]*fA1;
+   fY[i+2]:=a[1]-b;
+   Inc(i,2);
+  end;
+
+ a[1]:=b-fY[5];
+ b:=a[1]*fA1;
+ fY[5]:=a[0]-b;
+ Result:=a[1];
+end;
+
+Now all you have to do is crawling into the FPU registers...
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-06-07 11:31:05</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;yddaht&#37;&#52;&#48;yddaht">moc<span>&#46;</span>yddaht<span>&#64;</span>yddaht</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Point taken ;)
+Maybe we should combine all the stuff ;)
+Btw:
+It&#39;s lots of fun working from each others code, don&#39;t you think?
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="230-polynominal-waveshaper.html" class="btn btn-neutral float-right" title="Polynominal Waveshaper" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="101-parallel-combs-delay-calculation.html" class="btn btn-neutral float-left" title="Parallel combs delay calculation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Too many to list
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

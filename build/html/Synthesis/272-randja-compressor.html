@@ -1,0 +1,637 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Randja compressor &mdash; Musicdsp.org  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Rossler and Lorenz Oscillators" href="184-rossler-and-lorenz-oscillators.html" />
+    <link rel="prev" title="RBJ Wavetable 101" href="199-rbj-wavetable-101.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Musicdsp.org
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Synthesis</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="16-allmost-ready-to-use-oscillators.html">(Allmost) Ready-to-use oscillators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="224-am-formantic-synthesis.html">AM Formantic Synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1-alias-free-waveform-generation-with-analog-filtering.html">Alias-free waveform generation with analog filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="152-another-lfo-class.html">Another LFO class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="167-another-cheap-sinusoidal-lfo.html">Another cheap sinusoidal LFO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="219-antialiased-square-generator.html">Antialiased square generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="134-arbitary-shaped-band-limited-waveform-generation-using-oversampling-and-low-pass-filtering.html">Arbitary shaped band-limited waveform generation (using oversampling and low-pass filtering)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="123-audiable-alias-free-waveform-gen-using-width-sine.html">Audiable alias free waveform gen using width sine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="268-band-limited-waveforms-my-way.html">Band Limited waveforms my way</a></li>
+<li class="toctree-l2"><a class="reference internal" href="90-bandlimited-sawtooth-synthesis.html">Bandlimited sawtooth synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17-bandlimited-waveform-generation.html">Bandlimited waveform generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="75-bandlimited-waveforms-synopsis.html">Bandlimited waveforms synopsis.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12-bandlimited-waveforms.html">Bandlimited waveforms…</a></li>
+<li class="toctree-l2"><a class="reference internal" href="227-butterworth.html">Butterworth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="239-c-oscilator-class.html">C# Oscilator class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="168-c-gaussian-noise-generation.html">C++ gaussian noise generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="187-chebyshev-waveshaper-using-their-recursive-definition.html">Chebyshev waveshaper (using their recursive definition)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15-cubic-polynomial-envelopes.html">Cubic polynomial envelopes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="140-dsf-super-set-of-blit.html">DSF (super-set of BLIT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="244-direct-pink-noise-synthesis-with-auto-correlated-generator.html">Direct pink noise synthesis with auto-correlated generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="68-discrete-summation-formula-dsf.html">Discrete Summation Formula (DSF)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="183-drift-generator.html">Drift generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="217-easy-noise-generation.html">Easy noise generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="189-fast-exponential-envelope-generator.html">Fast Exponential Envelope Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="151-fast-lfo-in-delphi.html">Fast LFO in Delphi…</a></li>
+<li class="toctree-l2"><a class="reference internal" href="261-fast-sin-approximation-for-usage-in-e-g-additive-synthesizers.html">Fast SIN approximation for usage in e.g. additive synthesizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="216-fast-whitenoise-generator.html">Fast Whitenoise Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-fast-sine-and-cosine-calculation.html">Fast sine and cosine calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="9-fast-sine-wave-calculation.html">Fast sine wave calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="69-fast-square-wave-generator.html">Fast square wave generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="113-gaussian-white-noise.html">Gaussian White Noise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="109-gaussian-white-noise.html">Gaussian White noise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="215-generator.html">Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14-inverted-parabolic-envelope.html">Inverted parabolic envelope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="211-matlab-octave-code-for-minblep-table-generation.html">Matlab/octave code for minblep table generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="213-padsynth-synthesys-method.html">PADsynth synthesys method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="271-prng-for-non-uniformly-distributed-values-from-trigonometric-identity.html">PRNG for non-uniformly distributed values from trigonometric identity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="254-parabolic-shaper.html">Parabolic shaper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="111-phase-modulation-vs-frequency-modulation.html">Phase modulation Vs. Frequency modulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="160-phase-modulation-vs-frequency-modulation-ii.html">Phase modulation Vs. Frequency modulation II</a></li>
+<li class="toctree-l2"><a class="reference internal" href="59-pseudo-random-generator.html">Pseudo-Random generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="242-pulsequad.html">PulseQuad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="8-pulsewidth-modulation.html">Pulsewidth modulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="241-quick-dirty-sine.html">Quick &amp; Dirty Sine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="161-quick-and-dirty-sine-generator.html">Quick and dirty sine generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="199-rbj-wavetable-101.html">RBJ Wavetable 101</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Randja compressor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#comments">Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="184-rossler-and-lorenz-oscillators.html">Rossler and Lorenz Oscillators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="67-sawsin.html">SawSin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="262-simple-time-stretching-granular-synthesizer.html">Simple Time Stretching-Granular Synthesizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13-sine-calculation.html">Sine calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="269-smooth-random-lfo-generator.html">Smooth random LFO Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2-square-waves.html">Square Waves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="220-trammell-pink-noise-c-class.html">Trammell Pink Noise (C++ class)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="112-waveform-generator-using-minbleps.html">Waveform generator using MinBLEPS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="80-wavetable-synthesis.html">Wavetable Synthesis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-weird-synthesis.html">Weird synthesis</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Analysis/index.html">Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Filters/index.html">Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Effects/index.html">Effects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Other/index.html">Other</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Musicdsp.org</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Synthesis</a> &raquo;</li>
+        
+      <li>Randja compressor</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Synthesis/272-randja-compressor.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="randja-compressor">
+<h1>Randja compressor<a class="headerlink" href="#randja-compressor" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><strong>Author or source:</strong> randja</p></li>
+<li><p><strong>Type:</strong> compressor</p></li>
+<li><p><strong>Created:</strong> 2009-09-29 07:37:05</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">notes</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>I had found this code on the internet then made some improvements (speed) and now I post
+it here for others to see.
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">code</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
+<span class="cp">#define max(a,b) (a&gt;b?a:b)</span>
+
+<span class="k">class</span> <span class="nc">compressor</span>
+<span class="p">{</span>
+
+    <span class="k">private</span><span class="o">:</span>
+            <span class="kt">float</span>   <span class="n">threshold</span><span class="p">;</span>
+            <span class="kt">float</span>   <span class="n">attack</span><span class="p">,</span> <span class="n">release</span><span class="p">,</span> <span class="n">envelope_decay</span><span class="p">;</span>
+            <span class="kt">float</span>   <span class="n">output</span><span class="p">;</span>
+            <span class="kt">float</span>   <span class="n">transfer_A</span><span class="p">,</span> <span class="n">transfer_B</span><span class="p">;</span>
+            <span class="kt">float</span>   <span class="n">env</span><span class="p">,</span> <span class="n">gain</span><span class="p">;</span>
+
+    <span class="k">public</span><span class="o">:</span>
+    <span class="n">compressor</span><span class="p">()</span>
+    <span class="p">{</span>
+            <span class="n">threshold</span> <span class="o">=</span> <span class="mf">1.f</span><span class="p">;</span>
+            <span class="n">attack</span> <span class="o">=</span> <span class="n">release</span> <span class="o">=</span> <span class="n">envelope_decay</span> <span class="o">=</span> <span class="mf">0.f</span><span class="p">;</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="mf">1.f</span><span class="p">;</span>
+
+            <span class="n">transfer_A</span> <span class="o">=</span> <span class="mf">0.f</span><span class="p">;</span>
+            <span class="n">transfer_B</span> <span class="o">=</span> <span class="mf">1.f</span><span class="p">;</span>
+
+            <span class="n">env</span> <span class="o">=</span> <span class="mf">0.f</span><span class="p">;</span>
+            <span class="n">gain</span> <span class="o">=</span> <span class="mf">1.f</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">set_threshold</span><span class="p">(</span><span class="kt">float</span> <span class="n">value</span><span class="p">)</span>
+    <span class="p">{</span>
+            <span class="n">threshold</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+            <span class="n">transfer_B</span> <span class="o">=</span> <span class="n">output</span> <span class="o">*</span> <span class="n">pow</span><span class="p">(</span><span class="n">threshold</span><span class="p">,</span><span class="o">-</span><span class="n">transfer_A</span><span class="p">);</span>
+    <span class="p">}</span>
+
+
+    <span class="kt">void</span> <span class="n">set_ratio</span><span class="p">(</span><span class="kt">float</span> <span class="n">value</span><span class="p">)</span>
+    <span class="p">{</span>
+            <span class="n">transfer_A</span> <span class="o">=</span> <span class="n">value</span><span class="o">-</span><span class="mf">1.f</span><span class="p">;</span>
+            <span class="n">transfer_B</span> <span class="o">=</span> <span class="n">output</span> <span class="o">*</span> <span class="n">pow</span><span class="p">(</span><span class="n">threshold</span><span class="p">,</span><span class="o">-</span><span class="n">transfer_A</span><span class="p">);</span>
+    <span class="p">}</span>
+
+
+    <span class="kt">void</span> <span class="n">set_attack</span><span class="p">(</span><span class="kt">float</span> <span class="n">value</span><span class="p">)</span>
+    <span class="p">{</span>
+            <span class="n">attack</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.f</span><span class="o">/</span><span class="n">value</span><span class="p">);</span>
+    <span class="p">}</span>
+
+
+    <span class="kt">void</span> <span class="n">et_release</span><span class="p">(</span><span class="kt">float</span> <span class="n">value</span><span class="p">)</span>
+    <span class="p">{</span>
+            <span class="n">release</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.f</span><span class="o">/</span><span class="n">value</span><span class="p">);</span>
+            <span class="n">envelope_decay</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">4.f</span><span class="o">/</span><span class="n">value</span><span class="p">);</span> <span class="cm">/* = exp(-1/(0.25*value)) */</span>
+    <span class="p">}</span>
+
+
+    <span class="kt">void</span> <span class="n">set_output</span><span class="p">(</span><span class="kt">float</span> <span class="n">value</span><span class="p">)</span>
+    <span class="p">{</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+            <span class="n">transfer_B</span> <span class="o">=</span> <span class="n">output</span> <span class="o">*</span> <span class="n">pow</span><span class="p">(</span><span class="n">threshold</span><span class="p">,</span><span class="o">-</span><span class="n">transfer_A</span><span class="p">);</span>
+    <span class="p">}</span>
+
+
+    <span class="kt">void</span> <span class="n">reset</span><span class="p">()</span>
+    <span class="p">{</span>
+            <span class="n">env</span> <span class="o">=</span> <span class="mf">0.f</span><span class="p">;</span> <span class="n">gain</span> <span class="o">=</span> <span class="mf">1.f</span><span class="p">;</span>
+    <span class="p">}</span>
+
+
+    <span class="kr">__forceinline</span> <span class="kt">void</span> <span class="n">process</span><span class="p">(</span><span class="kt">float</span> <span class="o">*</span><span class="n">input_left</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">input_right</span><span class="p">,</span><span class="kt">float</span> <span class="o">*</span><span class="n">output_left</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">output_right</span><span class="p">,</span>       <span class="kt">int</span> <span class="n">frames</span><span class="p">)</span>
+    <span class="p">{</span>
+            <span class="kt">float</span> <span class="n">det</span><span class="p">,</span> <span class="n">transfer_gain</span><span class="p">;</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">frames</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                    <span class="n">det</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">fabs</span><span class="p">(</span><span class="n">input_left</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span><span class="n">fabs</span><span class="p">(</span><span class="n">input_right</span><span class="p">[</span><span class="n">i</span><span class="p">]));</span>
+                    <span class="n">det</span> <span class="o">+=</span> <span class="mf">10e-30</span><span class="n">f</span><span class="p">;</span> <span class="cm">/* add tiny DC offset (-600dB) to prevent denormals */</span>
+
+                    <span class="n">env</span> <span class="o">=</span> <span class="n">det</span> <span class="o">&gt;=</span> <span class="n">env</span> <span class="o">?</span> <span class="nl">det</span> <span class="p">:</span> <span class="n">det</span><span class="o">+</span><span class="n">envelope_decay</span><span class="o">*</span><span class="p">(</span><span class="n">env</span><span class="o">-</span><span class="n">det</span><span class="p">);</span>
+
+                    <span class="n">transfer_gain</span> <span class="o">=</span> <span class="n">env</span> <span class="o">&gt;</span> <span class="n">threshold</span> <span class="o">?</span> <span class="n">pow</span><span class="p">(</span><span class="n">env</span><span class="p">,</span><span class="n">transfer_A</span><span class="p">)</span><span class="o">*</span><span class="nl">transfer_B</span><span class="p">:</span><span class="n">output</span><span class="p">;</span>
+
+                    <span class="n">gain</span> <span class="o">=</span> <span class="n">transfer_gain</span> <span class="o">&lt;</span> <span class="n">gain</span> <span class="o">?</span>
+                                                    <span class="n">transfer_gain</span><span class="o">+</span><span class="n">attack</span> <span class="o">*</span><span class="p">(</span><span class="n">gain</span><span class="o">-</span><span class="n">transfer_gain</span><span class="p">)</span><span class="o">:</span>
+                                                    <span class="n">transfer_gain</span><span class="o">+</span><span class="n">release</span><span class="o">*</span><span class="p">(</span><span class="n">gain</span><span class="o">-</span><span class="n">transfer_gain</span><span class="p">);</span>
+
+                    <span class="n">output_left</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">input_left</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">gain</span><span class="p">;</span>
+                    <span class="n">output_right</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">input_right</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">gain</span><span class="p">;</span>
+            <span class="p">}</span>
+    <span class="p">}</span>
+
+
+    <span class="kr">__forceinline</span> <span class="kt">void</span> <span class="n">process</span><span class="p">(</span><span class="kt">double</span> <span class="o">*</span><span class="n">input_left</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span><span class="n">input_right</span><span class="p">,</span>     <span class="kt">double</span> <span class="o">*</span><span class="n">output_left</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span><span class="n">output_right</span><span class="p">,</span><span class="kt">int</span> <span class="n">frames</span><span class="p">)</span>
+    <span class="p">{</span>
+            <span class="kt">double</span> <span class="n">det</span><span class="p">,</span> <span class="n">transfer_gain</span><span class="p">;</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">frames</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                    <span class="n">det</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">fabs</span><span class="p">(</span><span class="n">input_left</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span><span class="n">fabs</span><span class="p">(</span><span class="n">input_right</span><span class="p">[</span><span class="n">i</span><span class="p">]));</span>
+                    <span class="n">det</span> <span class="o">+=</span> <span class="mf">10e-30</span><span class="n">f</span><span class="p">;</span> <span class="cm">/* add tiny DC offset (-600dB) to prevent denormals */</span>
+
+                    <span class="n">env</span> <span class="o">=</span> <span class="n">det</span> <span class="o">&gt;=</span> <span class="n">env</span> <span class="o">?</span> <span class="nl">det</span> <span class="p">:</span> <span class="n">det</span><span class="o">+</span><span class="n">envelope_decay</span><span class="o">*</span><span class="p">(</span><span class="n">env</span><span class="o">-</span><span class="n">det</span><span class="p">);</span>
+
+                    <span class="n">transfer_gain</span> <span class="o">=</span> <span class="n">env</span> <span class="o">&gt;</span> <span class="n">threshold</span> <span class="o">?</span> <span class="n">pow</span><span class="p">(</span><span class="n">env</span><span class="p">,</span><span class="n">transfer_A</span><span class="p">)</span><span class="o">*</span><span class="nl">transfer_B</span><span class="p">:</span><span class="n">output</span><span class="p">;</span>
+
+                    <span class="n">gain</span> <span class="o">=</span> <span class="n">transfer_gain</span> <span class="o">&lt;</span> <span class="n">gain</span> <span class="o">?</span>
+                                                    <span class="n">transfer_gain</span><span class="o">+</span><span class="n">attack</span> <span class="o">*</span><span class="p">(</span><span class="n">gain</span><span class="o">-</span><span class="n">transfer_gain</span><span class="p">)</span><span class="o">:</span>
+                                                    <span class="n">transfer_gain</span><span class="o">+</span><span class="n">release</span><span class="o">*</span><span class="p">(</span><span class="n">gain</span><span class="o">-</span><span class="n">transfer_gain</span><span class="p">);</span>
+
+                    <span class="n">output_left</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">input_left</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">gain</span><span class="p">;</span>
+                    <span class="n">output_right</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">input_right</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">gain</span><span class="p">;</span>
+            <span class="p">}</span>
+    <span class="p">}</span>
+
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2010-08-30 21:04:37</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;oohay&#37;&#52;&#48;xofirgomsnart">moc<span>&#46;</span>oohay<span>&#64;</span>xofirgomsnart</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>env = det &gt;= env ? det : det+envelope_decay*(env-det);
+
+I have found it is good to add either a timed peak hold-before-release or something like a &quot;peak magnetism&quot; with an attack/release time that is within a cycle of the lowest expected frequency in the side chain...often ~80Hz is a good reference point... for example here is a snippet to illustrate the idea...please keep in mind this will not work as show because of some obvious things needing to be added...
+//add these variables to your compressor object...
+class compressor {
+float patk;  //&quot;seek&quot; slope
+float ipatk;
+float peakdet;
+float target;
+float envelope;  //the final value used for gain control
+int hold;  //time to hold peak
+int holdcnt;
+
+patk = SAMPLE_RATE/80.0f;
+ipatk = 1.0f - patk;
+.
+.
+.
+}
+///now the envelope following function
+float compressor::envelope_tracker(float input)
+{
+float rect = fabs(input);
+holdcnt++;
+if(rect&gt;peakdet) {
+ peakdet = rect;
+ if(holdcnt&gt;hold) //the hold is really optional
+ {
+ target = rect;
+ holdcnt = 0;
+ }
+}
+peakdet*=ipatk;  //sort of like capacitor+diode discharge.
+
+if(envelope&lt;target) envelope+=patk;
+else envelope -= patk;  //sort of like a heat seeking missile ;)
+//for the seek function this is really nothing more than a feedback control system, so a more elaborate higher order system could be used...
+//the linear interpolation is good to use because
+///it is simple while the main attack &amp; release
+//functions filter off the corners.
+//In either case it is an improvement to a leaky
+//peak detector.
+
+}
+
+Another thing I saw in the form of an analog circuit was a &quot;round robin&quot; peak detector which had 4 peak detectors being reset by a JFET to ground and was clocked by simple binary counter IC.  The full cycle from 0 to 15 on the binary counter was set at about 80Hz, then the JFET gates were reset every /4 of that period.  That way the envelope tracker pretty much grabbed every peak during the 1/80 period, then the &quot;release&quot; time was 1/80th second.  This could be implemented digitally very easily ;)
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2012-12-14 15:24:30</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;liamg&#37;&#52;&#48;etteresemv">moc<span>&#46;</span>liamg<span>&#64;</span>etteresemv</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Hi randja,
+
+I am trying to use your compressor.
+Could you explain in what unity shall be given the values of threshold, ratio, release, attack and output ?
+Have you a good set of values for these parameters to make it work ?
+
+Thanks in advance
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2013-07-17 21:22:21</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;elpmaxe&#37;&#52;&#48;ylper-on">moc<span>&#46;</span>elpmaxe<span>&#64;</span>ylper-on</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>@vmeserette:
+
+To quote the original code that randja &quot;found&quot; on the Internet and then &quot;made some improvements&quot; (he only added __forceinline):
+&quot;
+How to use it:
+--------------
+free_comp.cpp and free_comp.hpp implement a simple C++ class called free_comp.
+(People are expected to know what to do with it! If not seek help on a beginner
+programming forum!)
+The free_comp class implements the following methods:
+    void    set_threshold(float value);
+            Sets the threshold level; &#39;value&#39; must be a _positive_ value
+            representing the amplitude as a floating point figure which should be
+            1.0 at 0dBFS
+
+    void    set_ratio(float value);
+            Sets the ratio; &#39;value&#39; must be in range [0.0; 1.0] with 0.0
+            representing a oo:1 ratio, 0.5 a 2:1 ratio; 1.0 a 1:1 ratio and so on
+
+    void    set_attack(float value);
+            Sets the attack time; &#39;value&#39; gives the attack time in _samples_
+
+    void    set_release(float value);
+            Sets the release time; &#39;value&#39; gives the release time in _samples_
+
+    void    set_output(float value);
+            Sets the output gain; &#39;value&#39; represents the gain, where 0dBFS is 1.0
+            (see set_threshold())
+
+    void    reset();
+            Resets the internal state of the compressor (gain reduction)
+
+    void    process(float *input_left, float *input_right,
+                                    float *output_left, float *output_right,
+                                    int frames, int skip);
+    void    process(double *input_left, double *input_right,
+                                    double *output_left, double *output_right,
+                                    int frames, int skip);
+            Processes a stereo stream of length &#39;frames&#39; from either two arrays of
+            floats or arrays of doubles &#39;input_left&#39; and &#39;input_right&#39; then puts
+            the processed data in &#39;output_left&#39; and &#39;output_right&#39;.
+            &#39;input_{left,right}&#39; and &#39;output_{left,right}&#39; may be the same location
+            in which case the algorithm will work in place. &#39;{input,output}_left&#39;
+            and &#39;{input,output}_right&#39; can also point to the same data, in which
+            case the algorithm works in mono (although if you process a lot of mono
+            data it will yield more performance if you modify the source to make the
+            algorithm mono in the first place).
+            The &#39;skip&#39; parameter allows for processing of interleaved as well as two
+            separate contiguous streams. For two separate streams this value should
+            be 1, for interleaved stereo it should be 2 (but it can also have other
+            values than that to process specific channels in an interleaved audio
+            stream, though if you do that it is highly recommended to study the
+            source first to check whether it yields the expected behaviour or not).
+&quot; - Source: http://outsim.co.uk/forum/download/file.php?id=7296
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="184-rossler-and-lorenz-oscillators.html" class="btn btn-neutral float-right" title="Rossler and Lorenz Oscillators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="199-rbj-wavetable-101.html" class="btn btn-neutral float-left" title="RBJ Wavetable 101" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Too many to list
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

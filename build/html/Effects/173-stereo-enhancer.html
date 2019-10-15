@@ -1,0 +1,456 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Stereo Enhancer &mdash; Musicdsp.org  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Stereo Field Rotation Via Transformation Matrix" href="255-stereo-field-rotation-via-transformation-matrix.html" />
+    <link rel="prev" title="Soft saturation" href="42-soft-saturation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Musicdsp.org
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Synthesis/index.html">Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Analysis/index.html">Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Filters/index.html">Filters</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Effects</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="89-2-wave-shaping-things.html">2 Wave shaping things</a></li>
+<li class="toctree-l2"><a class="reference internal" href="70-alien-wah.html">Alien Wah</a></li>
+<li class="toctree-l2"><a class="reference internal" href="221-band-limited-pwm-generator.html">Band Limited PWM Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="96-bit-quantization-reduction-effect.html">Bit quantization/reduction effect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="98-class-for-waveguide-delay-effects.html">Class for waveguide/delay effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="169-compressor.html">Compressor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="124-decimator.html">Decimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="44-delay-time-calculation-for-reverberation.html">Delay time calculation for reverberation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="207-dynamic-convolution.html">Dynamic convolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="102-ece320-project-reverberation-w-parameter-control-from-pc.html">ECE320 project: Reverberation w/ parameter control from PC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="74-early-echo-s-with-image-mirror-technique.html">Early echo’s with image-mirror technique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="203-fold-back-distortion.html">Fold back distortion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="47-guitar-feedback.html">Guitar feedback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="139-lo-fi-crusher.html">Lo-Fi Crusher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="274-lookahead-limiter.html">Lookahead Limiter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="154-most-simple-and-smooth-feedback-delay.html">Most simple and smooth feedback delay</a></li>
+<li class="toctree-l2"><a class="reference internal" href="153-most-simple-static-delay.html">Most simple static delay</a></li>
+<li class="toctree-l2"><a class="reference internal" href="101-parallel-combs-delay-calculation.html">Parallel combs delay calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="78-phaser-code.html">Phaser code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="230-polynominal-waveshaper.html">Polynominal Waveshaper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="150-reverberation-algorithms-in-matlab.html">Reverberation Algorithms in Matlab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="45-reverberation-techniques.html">Reverberation techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="204-simple-compressor-class-c.html">Simple Compressor class (C++)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="42-soft-saturation.html">Soft saturation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Stereo Enhancer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#comments">Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="255-stereo-field-rotation-via-transformation-matrix.html">Stereo Field Rotation Via Transformation Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="256-stereo-width-control-obtained-via-transfromation-matrix.html">Stereo Width Control (Obtained Via Transfromation Matrix)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="126-time-compression-expansion-using-standard-phase-vocoder.html">Time compression-expansion using standard phase vocoder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="177-transistor-differential-amplifier-simulation.html">Transistor differential amplifier simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="277-univox-univibe-emulator.html">UniVox Univibe Emulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="104-variable-hardness-clipping-function.html">Variable-hardness clipping function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="41-waveshaper.html">WaveShaper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="43-waveshaper.html">Waveshaper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="46-waveshaper.html">Waveshaper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="114-waveshaper-simple-description.html">Waveshaper (simple description)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="86-waveshaper-gloubi-boulga.html">Waveshaper :: Gloubi-boulga</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Other/index.html">Other</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Musicdsp.org</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Effects</a> &raquo;</li>
+        
+      <li>Stereo Enhancer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Effects/173-stereo-enhancer.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="stereo-enhancer">
+<h1>Stereo Enhancer<a class="headerlink" href="#stereo-enhancer" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><strong>Author or source:</strong> <a class="reference external" href="mailto:vl&#46;xobni&#37;&#52;&#48;ksimruk">vl<span>&#46;</span>xobni<span>&#64;</span>ksimruk</a></p></li>
+<li><p><strong>Created:</strong> 2004-06-27 22:44:16</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">notes</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Stereo Enhanca
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">code</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// WideCoeff  0.0 .... 1.5</span>
+
+<span class="cp">#define StereoEnhanca(SamplL,SamplR,MonoSign, \</span>
+<span class="cp">  DeltaLeft,WideCoeff ) \</span>
+<span class="cp">  MonoSign = (SamplL + SamplR)/2.0; \</span>
+<span class="cp">  DeltaLeft = SamplL - MonoSign; \</span>
+<span class="cp">  DeltaLeft = DeltaLeft * WideCoeff; \</span>
+<span class="cp">  SamplL=SamplL + DeltaLeft; \</span>
+<span class="cp">  SamplR=SamplR - DeltaLeft;</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2004-08-20 17:45:38</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;liamg&#37;&#52;&#48;noteex">moc<span>&#46;</span>liamg<span>&#64;</span>noteex</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>#define StereoEnhanca(SamplL,SamplR,MonoSign,
+  DeltaLeft,DeltaRight,WideCoeff )
+  MonoSign = (SamplL + SamplR)/2.0;
+
+  DeltaLeft = SamplL - MonoSign;
+  DeltaLeft *= WideCoeff;
+  DeltaRight = SamplR - MonoSign;
+  DeltaRight *= WideCoeff;
+
+  SamplL += DeltaLeft;
+  SamplR += DeltaRight;
+
+I think this is more along the lines of what you were trying to accomplish. I doubt this is
+the correct way of implementing this type of thing however.
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2004-08-24 15:40:31</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;noomyab&#37;&#52;&#48;grubmah_kram">moc<span>&#46;</span>noomyab<span>&#64;</span>grubmah_kram</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>I believe both pieces of code do the same thing. Since MonoSign is set equal to the average
+of the two signals, in the second case DeltaRight = -DeltaLeft.
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-01-07 10:20:20</p></li>
+<li><p><strong>By</strong>: thaddy[&#64;]thaddy.com</p></li>
+</ul>
+<div class="highlight-delphi notranslate"><div class="highlight"><pre><span></span><span class="c1">// Here&#39;s an implementation of the classic stereo enhancer in Delphi BASM</span>
+<span class="c1">// Values below 0.1 have a narrowing effect</span>
+<span class="c1">// Values abouve 0.1 widens</span>
+<span class="n">parameters</span><span class="o">:</span>
+<span class="n">Buffer</span> <span class="o">=</span> <span class="n">eax</span>
+<span class="n">Amount</span> <span class="o">=</span> <span class="n">edx</span>
+<span class="n">Samples</span> <span class="o">=</span> <span class="n">ecx</span>
+
+<span class="k">const</span>
+  <span class="n">Spread</span><span class="o">:</span><span class="kt">single</span> <span class="o">=</span>  <span class="mf">6.5536</span><span class="o">;</span>
+
+<span class="k">procedure</span> <span class="nf">Sound3d32f</span><span class="p">(</span><span class="n">Buffer</span><span class="o">:</span><span class="kt">PSingle</span><span class="o">;</span><span class="n">Amount</span><span class="o">:</span><span class="kt">Single</span><span class="o">;</span><span class="n">Samples</span><span class="o">:</span><span class="kt">integer</span><span class="p">)</span><span class="o">;</span>
+<span class="k">asm</span>
+  <span class="n">fld</span>     <span class="n">Amount</span>
+  <span class="n">fmul</span>    <span class="n">spread</span>
+  <span class="k">mov</span>     <span class="nb">ecx</span><span class="o">,</span> <span class="nb">edx</span>       <span class="c1">// move samples to ecx</span>
+  <span class="k">shr</span>     <span class="nb">ecx</span><span class="o">,</span> <span class="mi">1</span>         <span class="c1">// divide by two, stereo = 2 samples</span>
+<span class="o">@</span><span class="n">Start</span><span class="o">:</span>
+  <span class="n">fld</span>     <span class="p">[</span><span class="nb">eax</span><span class="p">]</span><span class="o">.</span><span class="n">dword</span>    <span class="c1">// left sample</span>
+  <span class="n">fld</span>     <span class="p">[</span><span class="nb">eax</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">dword</span>  <span class="c1">// right sample, whole calculation runs on the stack</span>
+  <span class="n">fld</span>     <span class="n">st</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>          <span class="c1">// copy</span>
+  <span class="n">fadd</span>    <span class="n">st</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">,</span> <span class="n">st</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+  <span class="n">fmul</span>    <span class="n">half</span>           <span class="c1">// average =st(0), right sample = st(1), left = st(2), amount=st(3)</span>
+  <span class="n">fld</span>     <span class="n">st</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>          <span class="c1">// copy average</span>
+  <span class="n">fsubr</span>   <span class="n">st</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">,</span> <span class="n">st</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>   <span class="c1">// left diffence</span>
+  <span class="n">fmul</span>    <span class="n">st</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">,</span> <span class="n">st</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>   <span class="c1">// amount</span>
+  <span class="n">fadd</span>    <span class="n">st</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">,</span> <span class="n">st</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>   <span class="c1">// add average</span>
+  <span class="n">fadd</span>    <span class="n">st</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">,</span> <span class="n">st</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>   <span class="c1">// add original</span>
+  <span class="n">fmul</span>    <span class="n">half</span>           <span class="c1">// divide by two</span>
+  <span class="n">fstp</span>    <span class="p">[</span><span class="nb">eax</span><span class="p">]</span><span class="o">.</span><span class="n">dword</span>    <span class="c1">// and store</span>
+  <span class="n">fld</span>     <span class="n">st</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+  <span class="n">fsubr</span>   <span class="n">st</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">,</span> <span class="n">st</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>   <span class="c1">// right difference</span>
+  <span class="n">fmul</span>    <span class="n">st</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">,</span> <span class="n">st</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>   <span class="c1">// amount</span>
+  <span class="n">faddp</span>                  <span class="c1">// add average</span>
+  <span class="n">faddp</span>                  <span class="c1">// add original</span>
+  <span class="n">fmul</span>    <span class="n">half</span>           <span class="c1">// divide by 2</span>
+  <span class="n">fstp</span>    <span class="p">[</span><span class="nb">eax</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">dword</span><span class="o">;</span> <span class="c1">// and store</span>
+  <span class="n">fxch</span>                   <span class="c1">// Dangling average?? remove it later, tdk</span>
+  <span class="n">ffree</span>   <span class="n">st</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+  <span class="k">add</span>     <span class="nb">eax</span><span class="o">,</span> <span class="mi">8</span>         <span class="c1">// advance to next stereo pair</span>
+  <span class="k">loop</span>    <span class="o">@</span><span class="n">Start</span>
+  <span class="n">ffree</span>   <span class="n">st</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">;</span>         <span class="c1">// Cleanup amount</span>
+<span class="k">end</span><span class="o">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-03-24 09:45:09</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;yddaht&#37;&#52;&#48;yddaht">moc<span>&#46;</span>yddaht<span>&#64;</span>yddaht</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Note &#39;half&#39; is defined as const half:single = 0.5;
+This is an ommission in the above posting
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-04-21 22:04:02</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;liamtoh&#37;&#52;&#48;gorpketg">moc<span>&#46;</span>liamtoh<span>&#64;</span>gorpketg</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>This original code makes indeed no sense.
+
+&gt;#define StereoEnhanca(SamplL,SamplR,MonoSign, \
+&gt;DeltaLeft,WideCoeff ) \
+&gt;MonoSign = (SamplL + SamplR)/2.0; \
+&gt;DeltaLeft = SamplL - MonoSign; \
+&gt;DeltaLeft = DeltaLeft * WideCoeff; \
+&gt;SamplL=SamplL + DeltaLeft; \
+&gt;SamplR=SamplR - DeltaLeft;
+
+Deltaleft hold no stereoinformation.
+explained: Deltaleft=L-(L+R) = R!!!
+So, in this example your stereo image would slide to the right more as you put widecoeff higher.
+
+A better implementation is the following code.
+#define StereoEnhanca(SamplL,SamplR,MonoSign, \
+stereo,WideCoeff ) \
+MonoSign = (SamplL + SamplR)/2.0; \
+stereo = SamplL - Sampl1L; \
+stereo = DeltaLeft * WideCoeff; \
+SamplL=SamplR + stereo; // R+Stereo = L
+SamplR=SamplL - stereo; // L-Stereo = R
+
+This way of stereoenhancement will lead to exaggerated reverberation effects ( snaredrums).
+This is not the best way to do widening, but it is the easiest.
+
+Gtekprog.
+
+Evert Verduin
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-04-21 22:06:51</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;liamtoh&#37;&#52;&#48;gorpketg">moc<span>&#46;</span>liamtoh<span>&#64;</span>gorpketg</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>oops,
+
+stereo = SamplL - Sampl1L;
+needs ofcourse to be
+stereo = SamplL - Sampl1R;
+
+and
+
+stereo = DeltaLeft * WideCoeff; \
+needs to be
+stereo = stereo * WideCoeff; \
+
+Again the correct code:
+
+#define StereoEnhanca(SamplL,SamplR,MonoSign, \
+stereo,WideCoeff ) \
+MonoSign = (SamplL + SamplR)/2.0; \
+stereo = SamplL - Sampl1R; \
+stereo = stereo * WideCoeff; \
+SamplL=SamplR + stereo; // R+Stereo = L
+SamplR=SamplL - stereo; // L-Stereo = R
+
+This will do.
+
+Evert
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2009-04-17 13:16:42</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;liamg&#37;&#52;&#48;nostohnotyalc">moc<span>&#46;</span>liamg<span>&#64;</span>nostohnotyalc</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>You mean to use MonoSign variable somewhere - as in:
+
+   #define StereoEnhanca(SamplL,SamplR,MonoSign, \
+stereo,WideCoeff ) \
+MonoSign = (SamplL + SamplR)/2.0; \
+stereo = SamplL - Sampl1R; \
+stereo = stereo * WideCoeff; \
+
+SamplL = MonoSign + stereo; // R+Stereo = L
+SamplR = MonoSign - stereo; // L-Stereo = R
+
+Or some variation?
+
+Clayton
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="255-stereo-field-rotation-via-transformation-matrix.html" class="btn btn-neutral float-right" title="Stereo Field Rotation Via Transformation Matrix" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="42-soft-saturation.html" class="btn btn-neutral float-left" title="Soft saturation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Too many to list
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

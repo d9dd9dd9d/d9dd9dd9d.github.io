@@ -1,0 +1,678 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Moog Filter &mdash; Musicdsp.org  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Moog VCF" href="24-moog-vcf.html" />
+    <link rel="prev" title="MDCT and IMDCT based on FFTW3" href="270-mdct-and-imdct-based-on-fftw3.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Musicdsp.org
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Synthesis/index.html">Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Analysis/index.html">Analysis</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Filters</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="257-1-pole-lpf-for-smooth-parameter-changes.html">1 pole LPF for smooth parameter changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="185-1-rc-and-c-filter.html">1-RC and C filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="72-18db-oct-resonant-3-pole-lpf-with-tanh-dist.html">18dB/oct resonant 3 pole LPF with tanh() dist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="85-1st-and-2nd-order-pink-noise-filters.html">1st and 2nd order pink noise filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="236-3-band-equaliser.html">3 Band Equaliser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30-303-type-filter-with-saturation.html">303 type filter with saturation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="266-4th-order-linkwitz-riley-filters.html">4th order Linkwitz-Riley filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="31-all-pass-filters-a-good-explanation.html">All-Pass Filters, a good explanation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="181-another-4-pole-lowpass.html">Another 4-pole lowpass…</a></li>
+<li class="toctree-l2"><a class="reference internal" href="235-bass-booster.html">Bass Booster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="64-biquad-c-code.html">Biquad C code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="276-biquad-butterworth-chebyshev-n-order-m-channel-optimized-filters.html">Biquad, Butterworth, Chebyshev N-order, M-channel  optimized filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="243-butterworth-optimized-c-class.html">Butterworth Optimized C++ Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="128-c-class-implementation-of-rbj-filters.html">C++ class implementation of RBJ Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="226-c-weighed-filter.html">C-Weighed Filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="131-cascaded-resonant-lp-hp-filter.html">Cascaded resonant lp/hp filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="180-cool-sounding-lowpass-with-decibel-measured-resonance.html">Cool Sounding Lowpass With Decibel Measured Resonance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="135-dc-filter.html">DC filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="225-delphi-class-implementation-of-the-rbj-filters.html">Delphi Class implementation of the RBJ filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="122-digital-riaa-equalization-filter-coefficients.html">Digital RIAA equalization filter coefficients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="275-direct-form-ii-biquad.html">Direct Form II biquad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="174-direct-form-ii.html">Direct form II</a></li>
+<li class="toctree-l2"><a class="reference internal" href="214-fast-downsampling-with-antialiasing.html">Fast Downsampling With Antialiasing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="110-formant-filter.html">Formant filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="179-frequency-warped-fir-lattice.html">Frequency warped FIR lattice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="195-hilbert-filter-coefficient-calculation.html">Hilbert Filter Coefficient Calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="231-hiqh-quality-2-decimators.html">Hiqh quality /2 decimators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="141-karlsen.html">Karlsen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="240-karlsen-fast-ladder.html">Karlsen Fast Ladder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="38-lp-and-hp-filter.html">LP and HP filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="229-lpf-24db-oct.html">LPF 24dB/Oct</a></li>
+<li class="toctree-l2"><a class="reference internal" href="28-lowpass-filter-for-parameter-edge-filtering.html">Lowpass filter for parameter edge filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="270-mdct-and-imdct-based-on-fftw3.html">MDCT and IMDCT based on FFTW3</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Moog Filter</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#comments">Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="24-moog-vcf.html">Moog VCF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="25-moog-vcf-variation-1.html">Moog VCF, variation 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="26-moog-vcf-variation-2.html">Moog VCF, variation 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="35-notch-filter.html">Notch filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="116-one-pole-lp-and-hp.html">One pole LP and HP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="237-one-pole-filter-lp-and-hp.html">One pole filter, LP and HP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="117-one-pole-one-zero-lp-hp.html">One pole, one zero LP/HP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="118-one-zero-lp-hp.html">One zero, LP/HP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="263-one-liner-iir-filters-1st-order.html">One-Liner IIR Filters (1st order)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="265-output-limiter-using-envelope-follower-in-c.html">Output Limiter using Envelope Follower in C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="130-peak-notch-filter.html">Peak/Notch filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="253-perfect-lp4-filter.html">Perfect LP4 filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="76-pink-noise-filter.html">Pink noise filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="251-plot-filter-analyze-filter-characteristics.html">Plot Filter (Analyze filter characteristics)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="218-plotting-r-b-j-equalisers-in-excel.html">Plotting R B-J Equalisers in Excel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="39-polyphase-filters.html">Polyphase Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="223-polyphase-filters-delphi.html">Polyphase Filters (Delphi)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="247-poor-man-s-fiwiz.html">Poor Man’s FIWIZ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="34-prewarping.html">Prewarping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="197-rbj-audio-eq-cookbook.html">RBJ Audio-EQ-Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="198-rbj-audio-eq-cookbook.html">RBJ Audio-EQ-Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="209-remez-exchange-algorithm-parks-mcclellan.html">Remez Exchange Algorithm (Parks/McClellan)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="208-remez-remez-parks-mcclellan.html">Remez Remez (Parks/McClellan)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="27-resonant-iir-lowpass-12db-oct.html">Resonant IIR lowpass (12dB/oct)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="29-resonant-filter.html">Resonant filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="33-resonant-low-pass-filter.html">Resonant low pass filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="176-reverb-filter-generator.html">Reverb Filter Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="267-simple-tilt-equalizer.html">Simple Tilt equalizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="259-simple-biquad-filter-from-apple-com.html">Simple biquad filter from apple.com</a></li>
+<li class="toctree-l2"><a class="reference internal" href="258-spuc-s-open-source-filters.html">Spuc’s open source filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="142-state-variable-filter-chamberlin-version.html">State Variable Filter (Chamberlin version)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="92-state-variable-filter-double-sampled-stable.html">State Variable Filter (Double Sampled, Stable)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23-state-variable.html">State variable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="145-stilson-s-moog-filter-code.html">Stilson’s Moog filter code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="65-time-domain-convolution-with-o-n-log2-3.html">Time domain convolution with O(n^log2(3))</a></li>
+<li class="toctree-l2"><a class="reference internal" href="66-time-domain-convolution-with-o-n-log2-3.html">Time domain convolution with O(n^log2(3))</a></li>
+<li class="toctree-l2"><a class="reference internal" href="232-type-lpf-24db-oct.html">Type : LPF 24dB/Oct</a></li>
+<li class="toctree-l2"><a class="reference internal" href="32-various-biquad-filters.html">Various Biquad filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="194-windowed-sinc-fir-generator.html">Windowed Sinc FIR Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="37-zoelzer-biquad-filters.html">Zoelzer biquad filters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Effects/index.html">Effects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Other/index.html">Other</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Musicdsp.org</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Filters</a> &raquo;</li>
+        
+      <li>Moog Filter</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Filters/196-moog-filter.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="moog-filter">
+<h1>Moog Filter<a class="headerlink" href="#moog-filter" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><strong>Author or source:</strong> <a class="reference external" href="mailto:ed&#46;luosfosruoivas&#37;&#52;&#48;naitsirhC">ed<span>&#46;</span>luosfosruoivas<span>&#64;</span>naitsirhC</a></p></li>
+<li><p><strong>Type:</strong> Antti’s version (nonlinearities)</p></li>
+<li><p><strong>Created:</strong> 2005-04-27 08:54:50</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">notes</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Here is a Delphi/Object Pascal translation of Antti&#39;s Moog Filter.
+
+Antti wrote:
+
+&quot;At last DAFX I published a paper presenting a non-linear model of the Moog ladder. For
+that, see http://dafx04.na.infn.it/WebProc/Proc/P_061.pdf
+
+I used quite different approach in that one. A half-sample delay ([0.5 0.5] FIR filter
+basically) is inserted in the feedback loop. The remaining tuning and resonance error are
+corrected with polynomials. This approach depends on using at least 2X oversampling - the
+response after nyquist/2 is abysmal but that&#39;s taken care of by the oversampling.
+
+Victor Lazzarini has implemented my model in CSound:
+http://www.csounds.com/udo/displayOpcode.php?opcode_id=32
+
+In summary: You can use various methods, but you will need some numerically derived
+correction to realize exact tuning and resonance control. If you can afford 2X
+oversampling, use Victor&#39;s CSound code - the tuning has been tested to be very close
+ideal.
+
+Ps. Remember to use real oversampling instead of the &quot;double sampling&quot; the CSound code
+uses.&quot;
+
+I did not implemented real oversampling, but i inserted additional noise, which simulates
+the resistance noise and also avoids denormal problems...
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">code</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nl">http</span><span class="p">:</span><span class="c1">//www.savioursofsoul.de/Christian/MoogFilter.pas</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-04-27 18:08:06</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:ed&#46;luosfosruoivas&#37;&#52;&#48;naitsirhC">ed<span>&#46;</span>luosfosruoivas<span>&#64;</span>naitsirhC</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>You can also listen to it (Windows-VST) here: http://www.savioursofsoul.de/Christian/VST/MoogVST.zip
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-05-06 21:57:17</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:rlindner&#37;&#52;&#48;gmx">rlindner<span>&#64;</span>gmx</a> ..dot.. net</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>and here is the same thing written in C. It was written while translating the CSound Code into code for the synthmaker code module as an intermediate step to enable debugging thru gdb. The code was written to be easy adoptable for the synthmaker code module (funny defines, static vars, single sample tick function,...) Has some room for improvements, but nothing fancy for seasoned C programmers.
+
+
+
+
+#include &lt;memory.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+
+#define polyin  float
+#define polyout float
+
+#define BUFSIZE 64
+
+float delta_func [BUFSIZE];
+float out_buffer [BUFSIZE];
+
+
+
+
+
+
+void tick ( float in, float cf, float reso, float *out ) {
+
+
+// start of sm code
+
+
+// filter based on the text &quot;Non linear digital implementation of the moog ladder filter&quot; by Antti Houvilainen
+// adopted from Csound code at http://www.kunstmusik.com/udo/cache/moogladder.udo
+polyin input;
+polyin cutoff;
+polyin resonance;
+
+polyout sigout;
+
+
+// remove this line in sm
+input = in; cutoff = cf; resonance = reso;
+
+
+// resonance [0..1]
+// cutoff from 0 (0Hz) to 1 (nyquist)
+
+float pi; pi = 3.1415926535;
+float v2; v2 = 40000;   // twice the &#39;thermal voltage of a transistor&#39;
+float sr; sr = 22100;
+
+float  cutoff_hz;
+cutoff_hz = cutoff * sr;
+
+static float az1;
+static float az2;
+static float az3;
+static float az4;
+static float az5;
+static float ay1;
+static float ay2;
+static float ay3;
+static float ay4;
+static float amf;
+
+
+
+float x;         // temp var: input for taylor approximations
+float xabs;
+float exp_out;
+float tanh1_out, tanh2_out;
+float kfc;
+float kf;
+float kfcr;
+float kacr;
+float k2vg;
+
+kfc  = cutoff_hz/sr; // sr is half the actual filter sampling rate
+kf   = cutoff_hz/(sr*2);
+// frequency &amp; amplitude correction
+kfcr = 1.8730*(kfc*kfc*kfc) + 0.4955*(kfc*kfc) - 0.6490*kfc + 0.9988;
+kacr = -3.9364*(kfc*kfc)    + 1.8409*kfc       + 0.9968;
+
+x  = -2.0 * pi * kfcr * kf;
+exp_out  = expf(x);
+
+k2vg = v2*(1-exp_out); // filter tuning
+
+
+// cascade of 4 1st order sections
+float x1 = (input - 4*resonance*amf*kacr) / v2;
+float tanh1 = tanhf (x1);
+float x2 = az1/v2;
+float tanh2 = tanhf (x2);
+ay1 = az1 + k2vg * ( tanh1 - tanh2);
+
+// ay1  = az1 + k2vg * ( tanh( (input - 4*resonance*amf*kacr) / v2) - tanh(az1/v2) );
+az1  = ay1;
+
+ay2  = az2 + k2vg * ( tanh(ay1/v2) - tanh(az2/v2) );
+az2  = ay2;
+
+ay3  = az3 + k2vg * ( tanh(ay2/v2) - tanh(az3/v2) );
+az3  = ay3;
+
+ay4  = az4 + k2vg * ( tanh(ay3/v2) - tanh(az4/v2) );
+az4  = ay4;
+
+// 1/2-sample delay for phase compensation
+amf  = (ay4+az5)*0.5;
+az5  = ay4;
+
+
+
+// oversampling (repeat same block)
+ay1  = az1 + k2vg * ( tanh( (input - 4*resonance*amf*kacr) / v2) - tanh(az1/v2) );
+az1  = ay1;
+
+ay2  = az2 + k2vg * ( tanh(ay1/v2) - tanh(az2/v2) );
+az2  = ay2;
+
+ay3  = az3 + k2vg * ( tanh(ay2/v2) - tanh(az3/v2) );
+az3  = ay3;
+
+ay4  = az4 + k2vg * ( tanh(ay3/v2) - tanh(az4/v2) );
+az4  = ay4;
+
+// 1/2-sample delay for phase compensation
+amf  = (ay4+az5)*0.5;
+az5  = ay4;
+
+
+sigout = amf;
+
+
+
+// end of sm code
+
+
+*out   = sigout;
+
+} // tick
+
+
+int main ( int argc, char *argv[] )  {
+
+    // set delta function
+    memset ( delta_func, 0, sizeof(delta_func));
+    delta_func[0] = 1.0;
+
+    int i = 0;
+    for ( i = 0; i &lt; BUFSIZE; i++ ) {
+            tick ( delta_func[i], 0.6, 0.7, out_buffer+i );
+    }
+    for ( i = 0; i &lt; BUFSIZE; i++ ) {
+            printf (&quot;%f;&quot;, out_buffer[i] );
+    }
+    printf ( &quot;\n&quot; );
+
+
+} // main
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-05-07 03:56:13</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:eb&#46;tenyks&#37;&#52;&#48;didid">eb<span>&#46;</span>tenyks<span>&#64;</span>didid</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>I think that a better speed optimization of Tanh2 would be to extract the sign bit (using integer) instead of abs, and add it back to the final result, to avoid FABS, FCOMP and the branching
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-05-08 19:03:40</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:ed&#46;luosfosruoivas&#37;&#52;&#48;naitsirhC">ed<span>&#46;</span>luosfosruoivas<span>&#64;</span>naitsirhC</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>After reading some more assembler documents for university, i had the same idea...
+Now: Coding!
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-05-08 22:42:55</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:eb&#46;tenyks&#37;&#52;&#48;didid">eb<span>&#46;</span>tenyks<span>&#64;</span>didid</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Btw1, is the idea to get rid of the &quot;*0.5&quot; in the &quot;1/2 sample delay&quot; block by using *2 instead of *4 in the first filter?
+
+Btw2, following the same simplification, you can also precompute &quot;-2*fQ*fAcr&quot; outside.
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-05-09 01:49:49</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:eb&#46;tenyks&#37;&#52;&#48;didid">eb<span>&#46;</span>tenyks<span>&#64;</span>didid</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Forget the sign bit thing, actually your Tanh could already have been much faster at the source:
+
+ a:=f_abs(x);
+ a:=a*(6+a*(3+a));
+ if (x&lt;0)
+  then Result:=-a/(a+12)
+  else Result:= a/(a+12);
+
+can be written as the much simpler:
+
+Result:=x*(6+Abs(x)*(3+Abs(x))/(Abs(x)+12)
+
+..so in asm:
+
+function Tanh2(x:Single):Single;
+const c3 :Single=3;
+      c6 :Single=6;
+      c12:Single=12;
+Asm
+        FLD     x
+        FLD     ST(0)
+        FABS
+        FLD     c3
+        FADD    ST(0),ST(1)
+        FMUL    ST(0),ST(1)
+        FADD    c6
+        FMUL    ST(0),ST(2)
+        FXCH    ST(1)
+        FADD    c12
+        FDIVP   ST(1),ST(0)
+        FSTP    ST(1)
+End;
+
+
+..but it won&#39;t be much faster than your code, because:
+-of the slow FDIV
+-it&#39;s still a function call. Since our dumb Delphi doesn&#39;t support assembler macro&#39;s, you waste a lot in the function call. You can still try to inline a plain pascal code, but since our dumb Delphi isn&#39;t good at compiling float code neither..
+
+Solutions:
+-a lookup table for the TanH
+-you write the filter processing in asm as well, and you put the TanH code in a separate file (without the header, and assuming in &amp; out are ST(0)). You then $I to insert that file when the function call is needed. Poorman&#39;s macro&#39;s in Delphi :)
+
+Still, that&#39;s a lot of FDIV for a filter..
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-05-09 03:24:44</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:eb&#46;tenyks&#37;&#52;&#48;didid">eb<span>&#46;</span>tenyks<span>&#64;</span>didid</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>forget it, I was all wrong :)
+gonna re-post a working version later
+
+still I think that most of the CPU will always be wasted by the division.
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-05-09 03:48:33</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:eb&#46;tenyks&#37;&#52;&#48;didid">eb<span>&#46;</span>tenyks<span>&#64;</span>didid</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Ignore the above, here it is working (for this code, assuming a premultiplied x):
+
+
+function Tanh2(x:Single):Single;
+const c3  :Single=3;
+      c6  :Single=6;
+      c12 :Single=12;
+Asm
+        FLD     x
+        FLD     ST(0)
+        FABS                 // a
+        FLD     c3
+        FADD    ST(0),ST(1)
+        FMUL    ST(0),ST(1)
+        FADD    c6           // b
+        FMUL    ST(2),ST(0)  // x*b
+        FMULP   ST(1),ST(0)  // a*b
+        FADD    c12
+        FDIVP   ST(1),ST(0)
+End;
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-05-09 07:59:40</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:ed&#46;luosfosruoivas&#37;&#52;&#48;naitsirhC">ed<span>&#46;</span>luosfosruoivas<span>&#64;</span>naitsirhC</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>That code is nice and very fast! But it&#39;s not that accurate. But indeed very fast! Thanks for the code. My approach was a lot slower.
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-05-09 15:05:28</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:eb&#46;tenyks&#37;&#52;&#48;didid">eb<span>&#46;</span>tenyks<span>&#64;</span>didid</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>But it should be as accurate as the one in your pascal code: it&#39;s the same approximation as Tanh2_pas2. Of course we&#39;re still talking about a Tanh approximation. You can still take it up to /24 for cheap.
+Of course, don&#39;t try the first one I posted, it&#39;s completely wrong.
+
+Btw it&#39;s also more accurate than pascal code, since it keeps values in the 80bit FPU registers, while the Delphi compiler will put them back to the 32bit variables in-between.
+
+Btw2 I implemented the {$I macro.inc} trick, works pretty well. The whole thing speeded up the code by almost 2. For more you could 3DNow 2 Tanh at once, it&#39;d be easy in that filter.
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-05-09 21:20:06</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:ed&#46;luosfosruoivas&#37;&#52;&#48;naitsirhC">ed<span>&#46;</span>luosfosruoivas<span>&#64;</span>naitsirhC</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>OK, it&#39;s indeed my tanh2_pas2 approximation, but i&#39;ve plotted both functions once and i found out, that the /24 version is much more accurate and that it is worth to calculate the additional macc operation.
+
+But of course the assembler version is much more accurate indeed.
+
+After assembler optimization, i could only speedup the whole thing to a factor of 1.5 the speed (measured with an impulse) and up to a factor of 1.7 measured with noise and the initial version with the branch.
+
+I will now do the 3DNow/SSE optimisation, let&#39;s see how it can be speeded up further more...
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-05-11 04:19:47</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:eb&#46;tenyks&#37;&#52;&#48;didid">eb<span>&#46;</span>tenyks<span>&#64;</span>didid</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>something bugs me about this filter.. I was assuming that it was made for a standard -1..1 normalized input. But looking at the 1/40000 drive gain, isn&#39;t it made for a -32768..32767 input? Otherwise I don&#39;t see what the Tanh drive is doing, it&#39;s basically linear for such low values, and I can&#39;t hear any difference with or without it.
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-05-11 11:00:39</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:ed&#46;luosfosruoivas&#37;&#52;&#48;naitsirhC">ed<span>&#46;</span>luosfosruoivas<span>&#64;</span>naitsirhC</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Usually the tanh component wasn&#39;t a desired feature in the analog filter design. They trie to keep the input of a differential amplifier very low to retain the linearity.
+I have uploaded some plots from my VST Plugin Analyser Pro:
+http://www.savioursofsoul.de/Christian/VST/filter4.png (with -1..+1)
+http://www.savioursofsoul.de/Christian/VST/filter5.png (with -32768..+32767)
+
+http://www.savioursofsoul.de/Christian/VST/
+filter1.png (other...)
+http://www.savioursofsoul.de/Christian/VST/filter2.png (other...)
+http://www.savioursofsoul.de/Christian/VST/filter3.png (other...)
+
+Additionally i have updated the VST with a new slider for a gain multiplication (http://www.savioursofsoul.de/Christian/VST/MoogVST.zip)
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Date</strong>: 2005-11-28 10:09:19</p></li>
+<li><p><strong>By</strong>: <a class="reference external" href="mailto:moc&#46;liamg&#37;&#52;&#48;dwod_niatnif">moc<span>&#46;</span>liamg<span>&#64;</span>dwod_niatnif</a></p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>There is an error in the C implementation above,
+sr = 44100Hz, half the rate of the filter which is oversampled at a rate of 88200Hz. So the 22100 needs to be changed.
+Christians MoogFilter.pas implements it correctly.
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="24-moog-vcf.html" class="btn btn-neutral float-right" title="Moog VCF" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="270-mdct-and-imdct-based-on-fftw3.html" class="btn btn-neutral float-left" title="MDCT and IMDCT based on FFTW3" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Too many to list
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
