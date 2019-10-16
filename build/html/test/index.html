@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>FFT classes in C++ and Object Pascal &mdash; Mark&#39;s Notebook  documentation</title>
+  <title>test &mdash; Mark&#39;s Notebook  documentation</title>
   
 
   
@@ -36,7 +36,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Fast in-place Walsh-Hadamard Transform" href="18-fast-in-place-walsh-hadamard-transform.html" />
-    <link rel="prev" title="FFT" href="79-fft.html" /> 
+    <link rel="prev" title="Vintage VU meters tutorial" href="../Analysis/264-vintage-vu-meters-tutorial.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -82,29 +82,12 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Analysis</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="200-beat-detector-class.html">Beat Detector Class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="20-coefficients-for-daubechies-wavelets-1-38.html">Coefficients for Daubechies wavelets 1-38</a></li>
-<li class="toctree-l2"><a class="reference internal" href="21-dft.html">DFT</a></li>
-<li class="toctree-l2"><a class="reference internal" href="97-envelope-detector.html">Envelope detector</a></li>
-<li class="toctree-l2"><a class="reference internal" href="136-envelope-follower-with-different-attack-and-release.html">Envelope follower with different attack and release</a></li>
-<li class="toctree-l2"><a class="reference internal" href="79-fft.html">FFT</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">FFT classes in C++ and Object Pascal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Analysis/index.html">Analysis</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">test</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="18-fast-in-place-walsh-hadamard-transform.html">Fast in-place Walsh-Hadamard Transform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="186-frequency-response-from-biquad-coefficients.html">Frequency response from biquad coefficients</a></li>
-<li class="toctree-l2"><a class="reference internal" href="156-java-fft.html">Java FFT</a></li>
-<li class="toctree-l2"><a class="reference internal" href="137-lpc-analysis-autocorrelation-levinson-durbin-recursion.html">LPC analysis (autocorrelation + Levinson-Durbin recursion)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="53-look-ahead-limiting.html">Look ahead limiting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="108-magnitude-and-phase-plot-of-arbitrary-iir-function-up-to-5th-order.html">Magnitude and phase plot of arbitrary IIR function, up to 5th order</a></li>
-<li class="toctree-l2"><a class="reference internal" href="22-measuring-interpollation-noise.html">Measuring interpollation noise</a></li>
-<li class="toctree-l2"><a class="reference internal" href="146-qft-and-dqft-double-precision-classes.html">QFT and DQFT (double precision) classes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="19-simple-peak-follower.html">Simple peak follower</a></li>
-<li class="toctree-l2"><a class="reference internal" href="107-tone-detection-with-goertzel.html">Tone detection with Goertzel</a></li>
-<li class="toctree-l2"><a class="reference internal" href="172-tone-detection-with-goertzel-x86-asm.html">Tone detection with Goertzel (x86 ASM)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="264-vintage-vu-meters-tutorial.html">Vintage VU meters tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2019-10-12-multichannel-loudness-measurement.html">Multichannel Loudness Measurement Algorithm</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../test/index.html">test</a></li>
 </ul>
 
             
@@ -150,16 +133,14 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Analysis</a> &raquo;</li>
-        
-      <li>FFT classes in C++ and Object Pascal</li>
+      <li>test</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/d9dd9dd9d/d9dd9dd9d.github.io/blob/master/source/Analysis/82-fft-classes-in-c-and-object-pascal.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/d9dd9dd9d/d9dd9dd9d.github.io/blob/master/source/test/index.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -173,19 +154,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="fft-classes-in-c-and-object-pascal">
-<h1>FFT classes in C++ and Object Pascal<a class="headerlink" href="#fft-classes-in-c-and-object-pascal" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><p><strong>Author or source:</strong> Laurent de Soras (Object Pascal translation by Frederic Vanmol)</p></li>
-<li><p><strong>Type:</strong> Real-to-Complex FFT and Complex-to-Real IFFT</p></li>
-<li><p><strong>Created:</strong> 2002-02-14 02:09:26</p></li>
-<li><p><strong>Linked files:</strong> <a class="reference download internal" download="" href="../_downloads/33fdfefda4093f1e605bb34237712367/FFTReal.zip"><code class="xref download docutils literal notranslate"><span class="pre">FFTReal.zip</span></code></a>.</p></li>
+  <div class="section" id="test">
+<h1>test<a class="headerlink" href="#test" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="18-fast-in-place-walsh-hadamard-transform.html">Fast in-place Walsh-Hadamard Transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2019-10-12-multichannel-loudness-measurement.html">Multichannel Loudness Measurement Algorithm</a></li>
 </ul>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">notes</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>(see linkfile)
-</pre></div>
-</div>
 </div>
 </div>
 
@@ -200,7 +176,7 @@
         <a href="18-fast-in-place-walsh-hadamard-transform.html" class="btn btn-neutral float-right" title="Fast in-place Walsh-Hadamard Transform" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="79-fft.html" class="btn btn-neutral float-left" title="FFT" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../Analysis/264-vintage-vu-meters-tutorial.html" class="btn btn-neutral float-left" title="Vintage VU meters tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

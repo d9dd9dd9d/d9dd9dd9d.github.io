@@ -19,9 +19,9 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'Notebook'
-copyright = '2019, Too many to list'
-author = 'Too many to list'
+project = 'Mark\'s Notebook'
+copyright = '2019, Mark\'s Notebook'
+author = 'Mark'
 
 # The short X.Y version
 version = ''
@@ -40,6 +40,8 @@ release = ''
 # ones.
 extensions = [
     'sphinx.ext.githubpages',
+    'sphinx_rtd_theme',
+    'recommonmark',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -49,7 +51,10 @@ templates_path = ['_templates']
 # You can specify multiple suffix as a list of string:
 #
 # source_suffix = ['.rst', '.md']
-source_suffix = ['.rst', '.md']
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.md': 'markdown',
+}
 
 # The master toctree document.
 master_doc = 'index'
