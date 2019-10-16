@@ -19,7 +19,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'Musicdsp.org'
+project = 'Notebook'
 copyright = '2019, Too many to list'
 author = 'Too many to list'
 
@@ -49,7 +49,7 @@ templates_path = ['_templates']
 # You can specify multiple suffix as a list of string:
 #
 # source_suffix = ['.rst', '.md']
-source_suffix = '.rst'
+source_suffix = ['.rst', '.md']
 
 # The master toctree document.
 master_doc = 'index'
@@ -98,11 +98,21 @@ html_static_path = ['_static']
 #
 # html_sidebars = {}
 
+#html_show_sourcelink = False
+
+html_context = {
+  "display_github": True, # Add 'Edit on Github' link instead of 'View page source'
+  "github_user": "d9dd9dd9d",
+  "github_repo": "d9dd9dd9d.github.io",
+  "github_version": "master",
+  "conf_py_path": "/source/",
+  "source_suffix": source_suffix,
+}
 
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'Musicdsporgdoc'
+htmlhelp_basename = 'Notebookdoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -129,7 +139,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'Musicdsporg.tex', 'Musicdsp.org Documentation',
+    (master_doc, 'Notebook.tex', 'Notebook Documentation',
      'Too many to list', 'manual'),
 ]
 
@@ -139,7 +149,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'musicdsporg', 'Musicdsp.org Documentation',
+    (master_doc, 'Notebook', 'Notebook Documentation',
      [author], 1)
 ]
 
@@ -150,8 +160,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'Musicdsporg', 'Musicdsp.org Documentation',
-     author, 'Musicdsporg', 'One line description of project.',
+    (master_doc, 'Notebook', 'Notebook Documentation',
+     author, 'Notebook', 'One line description of project.',
      'Miscellaneous'),
 ]
 
