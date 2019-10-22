@@ -21,7 +21,7 @@
 
 project = 'Mark\'s Notebook'
 copyright = '2019, Mark\'s Notebook'
-author = 'Mark'
+author = 'Mark\'s Notebook'
 
 # The short X.Y version
 version = ''
@@ -40,9 +40,11 @@ release = ''
 # ones.
 extensions = [
     'sphinx.ext.githubpages',
-    'sphinx_rtd_theme',
     'recommonmark',
+#    'sphinx.ext.autosectionlabel',
 ]
+
+#autosectionlabel_prefix_document = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -51,10 +53,7 @@ templates_path = ['_templates']
 # You can specify multiple suffix as a list of string:
 #
 # source_suffix = ['.rst', '.md']
-source_suffix = {
-    '.rst': 'restructuredtext',
-    '.md': 'markdown',
-}
+source_suffix = ['.rst', '.md']
 
 # The master toctree document.
 master_doc = 'index'
@@ -64,7 +63,7 @@ master_doc = 'index'
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = 'zh'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -103,21 +102,17 @@ html_static_path = ['_static']
 #
 # html_sidebars = {}
 
-#html_show_sourcelink = False
-
 html_context = {
-  "display_github": True, # Add 'Edit on Github' link instead of 'View page source'
-  "github_user": "d9dd9dd9d",
-  "github_repo": "d9dd9dd9d.github.io",
-  "github_version": "master",
-  "conf_py_path": "/source/",
-  "source_suffix": source_suffix,
+    "display_github": True,
+    "github_user": "d9dd9dd9d",
+    "github_repo": 'd9dd9dd9d.github.io',
+    "conf_py_path": "source/"
 }
 
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'Notebookdoc'
+htmlhelp_basename = 'Mark_Notebookdoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -144,7 +139,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'Notebook.tex', 'Notebook Documentation',
+    (master_doc, 'Mark_Notebook.tex', 'Mark_Notebook Documentation',
      'Too many to list', 'manual'),
 ]
 
@@ -154,7 +149,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'Notebook', 'Notebook Documentation',
+    (master_doc, 'Mark_Notebook', 'Mark_Notebook Documentation',
      [author], 1)
 ]
 
@@ -165,8 +160,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'Notebook', 'Notebook Documentation',
-     author, 'Notebook', 'One line description of project.',
+    (master_doc, 'Mark_Notebook', 'Mark_Notebook Documentation',
+     author, 'Mark_Notebook', 'One line description of project.',
      'Miscellaneous'),
 ]
 

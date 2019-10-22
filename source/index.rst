@@ -3,7 +3,7 @@ Mark's Notebook
 
 Welcome to my notebook.
 
-This is a collection of DSP algorithms, thoughts and snippets.
+This notebook is a collection of DSP algorithms, thoughts and snippets.
 
 .. .. IMPORTANT::
 ..   Please help us edit these pages at https://github.com/bdejong/musicdsp
@@ -14,11 +14,22 @@ This is a collection of DSP algorithms, thoughts and snippets.
    :maxdepth: 1
    :caption: Contents:
    
-   Analysis/index
-   test/index
+   Audio/index
+   Software/index
+   Others/index
 	
 .. Indices and tables
 .. ==================
 
 .. * :ref:`genindex`
 .. * :ref:`search`
+
+Useful Links:
+---------------
+- `Matlab Audio Toolbox <https://www.mathworks.com/help/audio/>`_
+- `Music DSP <https://www.musicdsp.org/en/latest/>`_
+- `Earlevel Engineering <https://www.earlevel.com/>`_
+- `DSP RELATED BOOKS <https://www.dsprelated.com/freebooks.php>`_
+
+
+
