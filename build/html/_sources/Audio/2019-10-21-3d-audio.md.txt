@@ -4,8 +4,8 @@
 There are many terms used in 3D audio systems.
 
 ## System
-- binaural audio: We’re given signals to be delivered to the left and right ears, using headphones.
-- transaural audio: Use loudspeakers to deliver sound, i.e. two speakers on the sides for desktop computer.
+- `binaural audio`: We’re given signals to be delivered to the left and right ears, using headphones.
+- `transaural audio`: Use loudspeakers to deliver sound, i.e. two speakers on the sides for desktop computer.
 
 
 
@@ -22,8 +22,8 @@ There are many terms used in 3D audio systems.
 
 
 
-
-- minimum phase:
-	```math
-	f(x) = ax + b
-	```
+- `minimum phase`: a linear, time-invariant system is said to be minimum-phase if the system and its inverse are causal and stable. 
+	For systems that have the same magnitude response, the minimum phase system has the minimum group delay, it also has its energy concentrated near the start of the impulse response:
+```math
+\min\displaystyle\sum_{n=m}^{\infty} |h(n)|^2, \forall m \in \mathbb{Z}^+
+```

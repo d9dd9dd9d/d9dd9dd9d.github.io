@@ -16,4 +16,6 @@ When browsing papers, I first look at abstracts, then the end of introduction wh
 It is inevitable that you think some paper is Double Dutch (even nonsense). Do not be frustrated, go take a walk or give it a second read tomorrow. End your day knowing that you are heading the right direction. 
 I rarely find myself frustrated about the same paper at second time read. I always understand it a bit more, or at least being more familiar with the methods I do not understand.
 
-I do admire people who can learn things fast. However becoming a efficient learner takes tremendous time. You have to gain momentum at the beginning and stick yourself to it. So keep 
+I do admire people who can learn things fast. However becoming a efficient learner takes tremendous time. You have to gain momentum at the beginning and stick yourself to it.
+
+Many research paper may seem impractical to implement. However their value should not be underestimated, since  

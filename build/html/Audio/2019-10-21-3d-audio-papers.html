@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Multirate Filter Bank &mdash; Mark&#39;s Notebook  文档</title>
+  <title>3D Audio Papers &mdash; Mark&#39;s Notebook  文档</title>
   
 
   
@@ -35,9 +35,7 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="3D Audio" href="2019-10-21-3d-audio.html" />
-    <link rel="prev" title="EQ Cookbook" href="2019-10-13-EQ-cookbook.html" /> 
+    <link rel="search" title="搜索" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -82,18 +80,8 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Audio</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="2019-10-12-multichannel-loudness-measurement.html">Multichannel Loudness Measurement Algorithm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2019-10-13-EQ-cookbook.html">EQ Cookbook</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Multirate Filter Bank</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#system">System</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="2019-10-21-3d-audio.html">3D Audio</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Audio</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Software/index.html">Software</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Others/index.html">Misc</a></li>
 </ul>
@@ -141,16 +129,14 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Audio</a> &raquo;</li>
-        
-      <li>Multirate Filter Bank</li>
+      <li>3D Audio Papers</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/d9dd9dd9d/d9dd9dd9d.github.io/blob/source/Audio/2019-10-16-multirate-filter-bank.md" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/d9dd9dd9d/d9dd9dd9d.github.io/blob/source/Audio/2019-10-21-3d-audio-papers.md" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -164,15 +150,18 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="multirate-filter-bank">
-<h1>Multirate Filter Bank<a class="headerlink" href="#multirate-filter-bank" title="永久链接至标题">¶</a></h1>
+  <div class="section" id="d-audio-papers">
+<h1>3D Audio Papers<a class="headerlink" href="#d-audio-papers" title="永久链接至标题">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="永久链接至标题">¶</a></h2>
-<p>When developing a audio DSP system, we often need to support multiple input sample rate: 48kHz, 96kHz, 192kHz.
-In order to reduce the computational load, we can downsample the 96/192kHz input to 48kHz using analysis filter bank, and only process the base band signal while simply store the high band signals. This is doable because the baseband (20-20kHz) contains most audiable content of the music. At the output stage, we can use synthesis filterbank to recombine the baseband and high bands. By using the analysis/sythnize filter banks, we can effeciently process the audio signal without lossing the subtle high frequency content.</p>
+<p>There are many papers discussing 3D audio systems. Here is a list of them.</p>
 </div>
 <div class="section" id="system">
 <h2>System<a class="headerlink" href="#system" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">binaural</span> <span class="pre">audio</span></code>: We’re given signals to be delivered to the left and right ears, using headphones.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">transaural</span> <span class="pre">audio</span></code>: Use loudspeakers to deliver sound, i.e. two speakers on the sides for desktop computer.</p></li>
+</ul>
 </div>
 </div>
 
@@ -181,15 +170,6 @@ In order to reduce the computational load, we can downsample the 96/192kHz input
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="2019-10-21-3d-audio.html" class="btn btn-neutral float-right" title="3D Audio" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="2019-10-13-EQ-cookbook.html" class="btn btn-neutral float-left" title="EQ Cookbook" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

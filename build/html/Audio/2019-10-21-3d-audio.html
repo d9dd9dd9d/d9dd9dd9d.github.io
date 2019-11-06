@@ -25,6 +25,7 @@
         <script type="text/javascript" src="../_static/underscore.js"></script>
         <script type="text/javascript" src="../_static/doctools.js"></script>
         <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -171,15 +172,14 @@
 </div>
 <div class="section" id="system">
 <h2>System<a class="headerlink" href="#system" title="永久链接至标题">¶</a></h2>
-<ul>
-<li><p>binaural audio: We’re given signals to be delivered to the left and right ears, using headphones.</p></li>
-<li><p>transaural audio: Use loudspeakers to deliver sound, i.e. two speakers on the sides for desktop computer.</p></li>
-<li><p>minimum phase:</p>
-<div class="highlight-math notranslate"><div class="highlight"><pre><span></span>f(x) = ax + b
-</pre></div>
-</div>
-</li>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">binaural</span> <span class="pre">audio</span></code>: We’re given signals to be delivered to the left and right ears, using headphones.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">transaural</span> <span class="pre">audio</span></code>: Use loudspeakers to deliver sound, i.e. two speakers on the sides for desktop computer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">minimum</span> <span class="pre">phase</span></code>: a linear, time-invariant system is said to be minimum-phase if the system and its inverse are causal and stable.
+For systems that have the same magnitude response, the minimum phase system has the minimum group delay, it also has its energy concentrated near the start of the impulse response:</p></li>
 </ul>
+<div class="math notranslate nohighlight">
+\[\min\displaystyle\sum_{n=m}^{\infty} |h(n)|^2, \forall m \in \mathbb{Z}^+\]</div>
 </div>
 </div>
 
