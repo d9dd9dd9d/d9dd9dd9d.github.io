@@ -228,18 +228,53 @@ Then by align the RHS of above equations by S_l we have
 S_(u+1) + sigma_1^uS_u + ... + (sigma_(u + 1 - rou)^u + d_u d_rou^-1sigma_1^rou) S_rou + ... + (sigma_j^u + d_u d_rou^-1sigma_(j - u + rou)^rou) S_(u + 1 - j) + ... + d_u d_rou^-1 sigma_i^rou S_(rou + 1 - i) = 0  
 Note that we have u + 1 - j > rou + 1 - i. In polynomial presentation, we have  
 sigma^(u+1)(x) = sigma^(u)(x) + d_u d_rou^-1 sigma^rou(x) x^(u-rou)  
-Also we have sigma^(u+1)(x) satisfying the first u equations, since the sigma_i for i < u-rou is not changed in sigma^(u+1)(x), while the first i equations only constrain the sigma_j, j < i. Using mathematical induction, we can prove that the correction term would not affect the first u equations.
+Also we have sigma^(u+1)(x) satisfying the first u equations, since the sigma_i for i < u-rou is not changed in sigma^(u+1)(x), while the first i equations only constrain the sigma_j, j < i. Using mathematical induction, we can prove that the correction term would not affect the first u equations, if u-rou not decrease every time (**still need to prove this**).
+On the other hand, such non-decreasing assumption must hold for BM correction terms, i.e. if we have d_i at i and d_(i+1) at i+1, then the sigma_1 will be updated which contradict with the first equation sigma_1 = S_1 (sigma_1 is fixed after equation 1). 
+For binary case, we can prove that sigma^(u+1)(x) will satisfy first u equations. Here is a example:  
+
+|u | equations for binary code|
+|:---:|---:|
+|1|												   						  S_1 	     + sigma_1 = 0  |
+|3|				 							    S_3 + 	     S_2sigma_1 + S_1sigma_2 + sigma_3 = 0  |
+|5|				 	  S_5 	     + S_4sigma_1 + S_3sigma_2 + S_2sigma_3 + S_1sigma_4 + sigma_5 = 0  |
+|7|S_7 + S_6sigma_1 + S_5sigma_2 + S_4sigma_3 + S_3sigma_4 + S_2sigma_5 + S_1sigma_6 + sigma_7 = 0  |
+
+In the table, u = 2, 4, 6, 8 are omitted because even number x sigma_i = 0 for binary code. If we choose equation u = 3 and u = 7 to merge, we will have  
+sigma_2' = sigma_2 + 1  
+sigma_3' = sigma_3 + sigma_1  
+sigma_4' = sigma_4 + sigma_2
+sigma_5' = sigma_5 + sigma_3
+
+If we replace sigma_2 - sigma_5 with updated sigma_2' - sigma_5' in equation u5, the result is equivalent to u5+u3. For u3, the result is equivalent to u3 + u1.
+Therefore the updated sigma^(u+1)(x) will still satisfy the first u equations.
+
+
 By choosing value of rou having maximum rou -l_rou, we can build the lowest degree correction term.
 
 After we found the sigma(x) satisfying the 2t equations, we can solve it to find error locations.
 In the above example we have sigma(X) = 1 + alpha^14x + alpha^3x^2, and since the degree of this polynomial is 2, this corresponds to a correctable error pattern (2 <= t). We can find the roots of alpha(X) by inspection, i.e., by substituting the elements of GF(2^4). This will give the two roots of 1 and alpha^12 . Since the roots are the reciprocals of the error location numbers, we conclude that the error location numbers are {a^0, a^-12 = a^(-12+15) = alpha^3} . From this the errors are at locations j_1 = 0 and j_2 = 3. We have c(X) = y(X) + e(X) = 0, i.e., the detected codeword, is the all-zero codeword.
 	
-	
-	
-	
-	
-	
 Reed Solomon
+
+BCH code, g(x) is the minimal polynomial over GF(2), which means the coefficients of the polynomial are in GF(2).
+Therefore we will usually have the generator polynomial of degree larger than 2t, capable of correcting at least t errors.
+
+RS code, g(x) is the minimal polynomial over GF(2^m), which means the coefficients of the polynomial are in GF(2^m). Thus it is straightforward to construct such polynomials, i.e., the minimal polynomial for alpha is X + alpha. The resulting generator polynomial will have degree 2t. Then the generated code will have (2^m-1, 2^m-1-2t), which is a maximum distance separated with D_min = 2t + 1.
+Here the block length of the code is 2^m-1, with each 'coefficient' being a element in GF(2^m).
+
+BM decoding has similar procedure as the binary code case.
+	
+	
+	
+
+
+
+
+
+
+
+
+
 
 A good article about Reed Solomon coding: [Reed Solomon](https://www.embeddedrelated.com/showarticle/1182.php)
 
