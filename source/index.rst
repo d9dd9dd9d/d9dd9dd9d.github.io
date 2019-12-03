@@ -1,4 +1,4 @@
-Mark's Notebook
+Fan's Notebook
 ========================
 
 Welcome to my notebook.
@@ -31,6 +31,6 @@ Useful Links:
 - `Music DSP <https://www.musicdsp.org/en/latest/>`_
 - `Earlevel Engineering <https://www.earlevel.com/>`_
 - `DSP RELATED BOOKS <https://www.dsprelated.com/freebooks.php>`_
-- `EMBEDDED RELATED <https://www.embeddedrelated.com/`_
+- `EMBEDDED RELATED <https://www.embeddedrelated.com/>`_
 
 

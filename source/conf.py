@@ -21,9 +21,9 @@ from recommonmark.transform import AutoStructify
 
 # -- Project information -----------------------------------------------------
 
-project = 'Mark\'s Notebook'
-copyright = '2019, Mark\'s Notebook'
-author = 'Mark\'s Notebook'
+project = 'Fan\'s Notebook'
+copyright = '2019, Fan\'s Notebook'
+author = 'Fan\'s Notebook'
 
 # The short X.Y version
 version = ''
@@ -115,7 +115,7 @@ html_context = {
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'Mark_Notebookdoc'
+htmlhelp_basename = 'Fan_Notebookdoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -142,7 +142,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'Mark_Notebook.tex', 'Mark_Notebook Documentation',
+    (master_doc, 'Fan_Notebook.tex', 'Fan_Notebook Documentation',
      'Too many to list', 'manual'),
 ]
 
@@ -152,7 +152,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'Mark_Notebook', 'Mark_Notebook Documentation',
+    (master_doc, 'Fan_Notebook', 'Fan_Notebook Documentation',
      [author], 1)
 ]
 
@@ -163,8 +163,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'Mark_Notebook', 'Mark_Notebook Documentation',
-     author, 'Mark_Notebook', 'One line description of project.',
+    (master_doc, 'Fan_Notebook', 'Fan_Notebook Documentation',
+     author, 'Fan_Notebook', 'One line description of project.',
      'Miscellaneous'),
 ]
 
