@@ -16,6 +16,7 @@ This notebook is a collection of DSP algorithms, thoughts and snippets.
    
    Audio/index
    Software/index
+   DSP/index
    Others/index
 	
 .. Indices and tables
